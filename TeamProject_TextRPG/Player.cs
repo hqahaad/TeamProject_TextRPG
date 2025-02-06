@@ -8,5 +8,6 @@ namespace TeamProject_TextRPG
 {
      public class Player
      {
+
      }
 }

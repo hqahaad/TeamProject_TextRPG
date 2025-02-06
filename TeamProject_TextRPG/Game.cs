@@ -10,12 +10,12 @@ namespace TeamProject_TextRPG
      {
           public void Start()
           {
-
+               Console.WriteLine("Game Start");
           }
 
           public void End()
           {
-
+               Console.WriteLine("Game End");
           }
      }
 }
