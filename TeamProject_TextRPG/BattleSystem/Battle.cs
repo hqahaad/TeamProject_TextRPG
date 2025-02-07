@@ -1,99 +1,67 @@
-﻿namespace TeamProject_TextRPG.BattleSystem
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace TeamProject_TextRPG.BattleSystem
 {
-    public class Faction
-    {
-        public List<IUnit> UnitList { get; } = new();
+     public class Battle
+     {
+          private Queue<IBattler> battleQueue = new();
 
-        public void AddUnit(IUnit unit)
-        {
-            if (!UnitList.Contains(unit))
+          private List<IBattler> playerList = new();
+          private List<IBattler> enemyList = new();
+
+          private BattleState battleState = BattleState.None;
+
+          public void SetPlayer(IBattler battler)
+          {
+               playerList.Add(battler);
+               battleQueue.Enqueue(battler);
+          }
+
+          public void SetEnemy(IBattler battler)
+          {
+           
+               Random rnd = new Random();
+               int num = rnd.Next(1, 5); // 1에서 사까지 생성
+               for (int i = 0; i < num; i++) // 루프 통해 1~4마리에 몬스터 추가 + 생성
             {
-                UnitList.Add(unit);
+                enemyList.Add(battler);
+                battleQueue.Enqueue(battler);
             }
-        }
+               
+               
+          }
 
-        public bool IsAllDead()
-        {
-            return UnitList.All(u => u.IsDead());
-        }
-    }
+          public void StartBattle()
+          {
+               battleState = BattleState.Battle;
 
-    public class Battle
-    {
-        private SortedDictionary<FactionType, Faction> factionDict = new();
-        private BattleState battleState = BattleState.None;
-        public int TurnCount { get; } = 0;
-
-        public void AddUnit(IUnit unit, FactionType factionType)
-        {
-            if (!factionDict.ContainsKey(factionType))
-            {
-                factionDict.Add(factionType, new());
-            }
-
-            factionDict[factionType].AddUnit(unit);
-        }
-
-        public void DoBattle()
-        {
-            if (factionDict.Count < 2)
-            {
-                battleState = BattleState.None;
-                return;
-            }
-
-            battleState = BattleState.Battle;
-
-            while (battleState == BattleState.Battle)
-            {
-                foreach (var iter in factionDict)
-                {
-                    if (iter.Value.IsAllDead())
+               while (battleState == BattleState.Battle)
+               {
+                    foreach (var iter in battleQueue)
                     {
-                        //진영이 추가된다면 수정필요
-                        battleState = (iter.Key == FactionType.Player) ? BattleState.Defeat : BattleState.Victory;
-                        break;
+                         if (iter.IsPlayer())
+                         {
+
+                         }
+                         else
+                         {
+
+                         }
                     }
+               }
+          }
 
-                    foreach (var unit in iter.Value.UnitList)
-                    {
-                        //개별 유닛 턴 시작
-                        if (!unit.IsDead())
-                        {
-                            unit.DoAction(this);
-                        }
-                    }
-                }
-            }
-        }
-
-        public Faction GetFaction(FactionType faction)
-        {
-            return factionDict[faction];
-        }
-
-        public List<IUnit>? GetUnits(FactionType faction)
-        {
-            return factionDict[faction].UnitList ?? null;
-        }
-
-        public BattleState Result()
-        {
-            return battleState;
-        }
-    }
-
-    public enum BattleState
-    {
-        None,
-        Battle,
-        Victory,
-        Defeat
-    }
-
-    public enum FactionType
-    {
-        Player,
-        Enemy
-    }
+          public enum BattleState
+          {
+               None,
+               Battle,
+               Victory,
+               Defeat,
+               End
+          }
+     }
 }
