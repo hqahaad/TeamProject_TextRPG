@@ -59,12 +59,14 @@ namespace TeamProject_TextRPG.BattleSystem
                     if (target != null)
                     {
                         currentTurn.Attack(target);
-                        if () // 여기에 HP 확인하고 Queue에서 빼는 기능
+                        //if () 이 공격으로 타깃이 죽었으면
                         {
-
+                        battleQueue = new Queue<IBattler>(battleQueue);
                         }
 
                     }
+                    // if(currentTurn)  살아있으면
+                    battleQueue.Enqueue(currentTurn);
 
 
             }
