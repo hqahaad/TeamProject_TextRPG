@@ -8,8 +8,7 @@ namespace TeamProject_TextRPG.BattleSystem
 {
      public class Battle
      {
-          private Queue<IBattler> battleQueue = new();
-
+          private List<IBattler> battlerList = new();
           private List<IBattler> playerList = new();
           private List<IBattler> enemyList = new();
 
@@ -18,65 +17,62 @@ namespace TeamProject_TextRPG.BattleSystem
           public void SetPlayer(IBattler battler)
           {
                playerList.Add(battler);
-               battleQueue.Enqueue(battler);
+               battlerList.Add(battler);
           }
-
           public void SetEnemy(IBattler battler)
           {
-
-               Random rnd = new Random();
-               int num = rnd.Next(1, 5); // 1에서 사까지 생성
-               for (int i = 0; i < num; i++) // 루프 통해 1~4마리에 몬스터 추가 + 생성
-               {
-                    enemyList.Add(battler);
-                    battleQueue.Enqueue(battler);
-               }
-
-
+               enemyList.Add(battler);
+               battlerList.Add(battler);
           }
 
-          public void StartBattle()
+          public void DoBattle()
           {
                battleState = BattleState.Battle;
 
                while (battleState == BattleState.Battle)
                {
-                    IBattler currentTurn = battleQueue.Dequeue(); // 자기 턴이니까 Queue에서 배제
-                    IBattler target = null; // 공격하는 타깃 지정 변수. 자기 아니도록.
-
-                    foreach (var iter in battleQueue)
+                    //모든 배틀러 리스트 순회하기
+                    foreach (IBattler battler in battlerList)
                     {
-
-                         if (!iter.IsPlayer())
+                         if (battler.IsPlayer())
                          {
-                              target = iter; // 이거 공격하도록 만들기
-                              break;
+                              battler.DoAction(enemyList);
+                              bool isDeadAll = playerList.All(b => b.IsDead());
+                              if (isDeadAll)
+                              {
+                                   //플레이어가 모두 사망하면 패배처리 후 루틴 종료
+                                   battleState = BattleState.Defeat;
+                                   break;
+                              }
                          }
-
-                    }
-                    if (target != null)
-                    {
-                         currentTurn.Attack(target);
-                         //if () 이 공격으로 타깃이 죽었으면
+                         else
                          {
-                              battleQueue = new Queue<IBattler>(battleQueue);
+                              battler.DoAction(playerList);
+                              bool isDeadAll = enemyList.All(b => b.IsDead());
+
+                              if (isDeadAll)
+                              {
+                                   //적이 모두 사망하면 패배처리 후 루틴 종료
+                                   battleState = BattleState.Victory;
+                                   break;
+                              }
                          }
-
                     }
-                    // if(currentTurn)  살아있으면
-                    battleQueue.Enqueue(currentTurn);
-
-
+                    //배틀 종료
                }
           }
 
-          public enum BattleState
+          public BattleState Result()
           {
-               None,
-               Battle,
-               Victory,
-               Defeat,
-               End
+               return battleState;
           }
+     }
+
+     public enum BattleState
+     {
+          None,
+          Battle,
+          Victory,
+          Defeat
      }
 }
