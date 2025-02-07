@@ -13,7 +13,7 @@ namespace TeamProject_TextRPG
         private int gold;
         public int Gold { get { return gold; } set { gold = value; } }
 
-        public Player(string name, int level, int hp, float attackPower, float defensivePower, string className) 
+        public Player(string name, int level, int hp, float attackPower, float defensivePower, string className, int gold) 
         {
             
             this.name = name;
@@ -22,6 +22,7 @@ namespace TeamProject_TextRPG
             this.attackPower = attackPower;
             this.defensivePower = defensivePower;
             this.className = className;
+            this.gold = gold;
         }
         
 
@@ -34,7 +35,7 @@ namespace TeamProject_TextRPG
             Console.WriteLine("공격력 : {0}", attackPower);
             Console.WriteLine("방어력 : {0}", defensivePower);
             Console.WriteLine("체 력 : {0}", hp);
-            Console.WriteLine("Gold : {0} G\n",gold);
+            Console.WriteLine("Gold : {0}G\n",gold);
 
 
         }
