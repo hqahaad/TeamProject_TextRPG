@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TeamProject_TextRPG
-
 {
      public class OptionSelecter
      {
