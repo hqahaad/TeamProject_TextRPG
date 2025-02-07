@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TeamProject_TextRPG
 {
-     internal class BattleScene : IScene
+     public class BattleScene : IScene
      {
           public void Awake()
           {
