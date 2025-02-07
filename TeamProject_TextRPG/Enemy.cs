@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TeamProject_TextRPG
 {
-     public class Enemy
+     public class Enemy : GameObject
      {
 
      }
