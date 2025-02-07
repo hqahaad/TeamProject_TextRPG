@@ -6,15 +6,21 @@ using System.Threading.Tasks;
 
 namespace TeamProject_TextRPG
 {
-     public class Game
+     internal class BattleScene : IScene
      {
+          public void Awake()
+          {
+
+          }
+
           public void Start()
           {
+
           }
 
           public void End()
           {
-               Console.WriteLine("Game End");
+
           }
      }
 }
