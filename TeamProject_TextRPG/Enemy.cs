@@ -35,10 +35,5 @@ namespace TeamProject_TextRPG
           {
                return false;
           }
-
-          public bool IsDead()
-          {
-               return hp < 0;
-          }
      }
 }

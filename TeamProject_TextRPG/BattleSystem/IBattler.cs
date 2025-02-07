@@ -12,16 +12,15 @@ namespace TeamProject_TextRPG.BattleSystem
           void GetDamage(Damage damage);
           void DisplayStatus();
           bool IsPlayer();
-          bool IsDead();
      }
 
-     public class Damage
+     public struct Damage
      {
-          public float damage;
+          public float Value;
 
-          public Damage(float damage)
+          public void AA()
           {
-               this.damage = damage;
+               Value = 1f;
           }
      }
 }

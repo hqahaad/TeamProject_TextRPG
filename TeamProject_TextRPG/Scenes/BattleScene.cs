@@ -33,7 +33,7 @@ namespace TeamProject_TextRPG.Scenes
                     battle.SetEnemy(iter);
                }
 
-               battle.DoBattle();
+               battle.StartBattle();
           }
 
           public void End()
