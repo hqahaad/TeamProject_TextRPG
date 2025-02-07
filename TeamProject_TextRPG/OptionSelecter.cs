@@ -16,7 +16,7 @@ namespace TeamProject_TextRPG
                public void Invoke()
                {
                     optionEvent?.Invoke();
-               }
+               } 
           }
 
           private Dictionary<string, OptionContainer> options;
