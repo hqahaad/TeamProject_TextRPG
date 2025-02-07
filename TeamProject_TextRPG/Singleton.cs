@@ -16,7 +16,8 @@ namespace TeamProject_TextRPG
                {
                     if (instance == null)
                     {
-                         return new T() as T;
+                         instance = new T();
+                         return instance;
                     }
 
                     return instance;

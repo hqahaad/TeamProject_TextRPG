@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TeamProject_TextRPG
+namespace TeamProject_TextRPG.Scenes
 {
      internal class BattleScene : IScene
      {
