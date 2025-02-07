@@ -10,6 +10,7 @@ namespace TeamProject_TextRPG.BattleSystem
      {
           void DoAction(List<IBattler> battlers);
           void GetDamage(Damage damage);
+          void DisplayStatus();
           bool IsPlayer();
           bool IsDead();
      }
