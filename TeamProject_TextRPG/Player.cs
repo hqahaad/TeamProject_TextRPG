@@ -23,5 +23,10 @@ namespace TeamProject_TextRPG
           {
                return true;
           }
+
+          public bool IsDead()
+          {
+               return hp < 0;
+          }
      }
 }
