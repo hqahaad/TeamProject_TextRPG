@@ -11,8 +11,8 @@ namespace TeamProject_TextRPG
      {
           public void DoAction(List<IBattler> battlers)
           {
-               //(임시) 단일 플레이어만 공격
-               battlers.First().GetDamage(new Damage(attackPower));
+               //일단은 단일 플레이어만 공격
+               battlers.First().GetDamage(new Damage());
           }
 
           public void GetDamage(Damage damage)
@@ -23,11 +23,6 @@ namespace TeamProject_TextRPG
           public bool IsPlayer()
           {
                return false;
-          }
-
-          public bool IsDead()
-          {
-               return hp < 0;
           }
      }
 }

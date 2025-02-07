@@ -9,6 +9,7 @@ namespace TeamProject_TextRPG.BattleSystem
      public class Battle
      {
           private List<IBattler> battlerList = new();
+
           private List<IBattler> playerList = new();
           private List<IBattler> enemyList = new();
 
@@ -25,54 +26,35 @@ namespace TeamProject_TextRPG.BattleSystem
                battlerList.Add(battler);
           }
 
-          public void DoBattle()
+          public void StartBattle()
           {
                battleState = BattleState.Battle;
 
                while (battleState == BattleState.Battle)
                {
-                    //모든 배틀러 리스트 순회하기
-                    foreach (IBattler battler in battlerList)
+                    foreach (var iter in battlerList)
                     {
-                         if (battler.IsPlayer())
+                         IBattler? target = null;
+
+                         if (iter.IsPlayer())
                          {
-                              battler.DoAction(enemyList);
-                              bool isDeadAll = playerList.All(b => b.IsDead());
-                              if (isDeadAll)
-                              {
-                                   //플레이어가 모두 사망하면 패배처리 후 루틴 종료
-                                   battleState = BattleState.Defeat;
-                                   break;
-                              }
+                              iter.DoAction(enemyList);
                          }
                          else
                          {
-                              battler.DoAction(playerList);
-                              bool isDeadAll = enemyList.All(b => b.IsDead());
-
-                              if (isDeadAll)
-                              {
-                                   //적이 모두 사망하면 패배처리 후 루틴 종료
-                                   battleState = BattleState.Victory;
-                                   break;
-                              }
+                              iter.DoAction(playerList);
                          }
                     }
-                    //배틀 종료
                }
           }
 
-          public BattleState Result()
+          public enum BattleState
           {
-               return battleState;
+               None,
+               Battle,
+               Victory,
+               Defeat,
+               End
           }
-     }
-
-     public enum BattleState
-     {
-          None,
-          Battle,
-          Victory,
-          Defeat
      }
 }
