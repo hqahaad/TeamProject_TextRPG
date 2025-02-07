@@ -6,8 +6,13 @@ using System.Threading.Tasks;
 
 namespace TeamProject_TextRPG
 {
-     public class Game
+     internal class BattleScene : IScene
      {
+          public void Awake()
+          {
+
+          }
+
           public void Start()
           {
 
@@ -15,7 +20,7 @@ namespace TeamProject_TextRPG
 
           public void End()
           {
-               Console.WriteLine("Game End");
+
           }
      }
 }
