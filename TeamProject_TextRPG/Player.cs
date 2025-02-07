@@ -9,17 +9,12 @@ namespace TeamProject_TextRPG
 {
      public class Player : GameObject, IBattler
      {
-          public void Attack(IBattler battler)
+          public void DoAction(List<IBattler> battlers)
           {
-
+               var ops = OptionSelecter.Create();
           }
 
-          public IBattler AttackCaster(List<IBattler> battler)
-          {
-               return null;
-          }
-
-          public void GetDamage(IDamageable damage)
+          public void GetDamage(Damage damage)
           {
 
           }

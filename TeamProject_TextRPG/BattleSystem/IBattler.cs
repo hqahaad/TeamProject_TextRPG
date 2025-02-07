@@ -8,9 +8,18 @@ namespace TeamProject_TextRPG.BattleSystem
 {
      public interface IBattler
      {
-          void Attack(IBattler battler);
-          IBattler AttackCaster(List<IBattler> battler);
+          void DoAction(List<IBattler> battlers);
+          void GetDamage(Damage damage);
           bool IsPlayer();
-          void GetDamage(IDamageable damage);
+     }
+
+     public struct Damage
+     {
+          public float Value;
+
+          public void AA()
+          {
+               Value = 1f;
+          }
      }
 }

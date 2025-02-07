@@ -8,7 +8,7 @@ namespace TeamProject_TextRPG.BattleSystem
 {
      public class Battle
      {
-          private Queue<IBattler> battleQueue = new();
+          private List<IBattler> battlerList = new();
 
           private List<IBattler> playerList = new();
           private List<IBattler> enemyList = new();
@@ -18,13 +18,12 @@ namespace TeamProject_TextRPG.BattleSystem
           public void SetPlayer(IBattler battler)
           {
                playerList.Add(battler);
-               battleQueue.Enqueue(battler);
+               battlerList.Add(battler);
           }
-
           public void SetEnemy(IBattler battler)
           {
                enemyList.Add(battler);
-               battleQueue.Enqueue(battler);
+               battlerList.Add(battler);
           }
 
           public void StartBattle()
@@ -33,15 +32,17 @@ namespace TeamProject_TextRPG.BattleSystem
 
                while (battleState == BattleState.Battle)
                {
-                    foreach (var iter in battleQueue)
+                    foreach (var iter in battlerList)
                     {
+                         IBattler? target = null;
+
                          if (iter.IsPlayer())
                          {
-
+                              iter.DoAction(enemyList);
                          }
                          else
                          {
-
+                              iter.DoAction(playerList);
                          }
                     }
                }
