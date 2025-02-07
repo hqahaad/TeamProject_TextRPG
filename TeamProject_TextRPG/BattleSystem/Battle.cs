@@ -23,8 +23,16 @@ namespace TeamProject_TextRPG.BattleSystem
 
           public void SetEnemy(IBattler battler)
           {
-               playerList.Add(battler);
-               battleQueue.Enqueue(battler);
+           
+               Random rnd = new Random();
+               int num = rnd.Next(1, 5); // 1에서 사까지 생성
+               for (int i = 0; i < num; i++) // 루프 통해 1~4마리에 몬스터 추가 + 생성
+            {
+                enemyList.Add(battler);
+                battleQueue.Enqueue(battler);
+            }
+               
+               
           }
 
           public void StartBattle()
