@@ -6,20 +6,30 @@ using System.Threading.Tasks;
 
 namespace TeamProject_TextRPG.BattleSystem
 {
-    public class Spawner
-    {
-        public void Spawn()
-        {
-            Random rnd = new Random();
-            int num = rnd.Next(1, 5); // 1에서 4까지 생성
+     public class Spawner
+     {
+          public List<Enemy> Spawn(int min, int max, params Enemy[] enemys)
+          {
+               return RandomSpawn(min, max, enemys.ToList());
+          }
 
-            for (int i = 0; i < num; i++) // 루프 통해 1~4마리에 몬스터 추가 + 생성
-            {
-                // 여기에 Enemy type 만들면 4개까지 Spawn하는 기능 추가
-                SetEnemy(enemyList[i]);
-            }
-        }
+          public List<Enemy> Spawn(int min, int max, List<Enemy> enemys)
+          {
+               return RandomSpawn(min, max, enemys);
+          }
 
-    }
+          private List<Enemy> RandomSpawn(int min, int max, List<Enemy> enemys)
+          {
+               List<Enemy> enemyInstances = new List<Enemy>();
+
+               for (int i = 0; i < new Random().Next(min, max); i++)
+               {
+                    int randIndex = new Random().Next(0, enemys.Count);
+                    enemyInstances.Add(enemys[randIndex]);
+               }
+
+               return enemyInstances;
+          }
+     }
 }
 
