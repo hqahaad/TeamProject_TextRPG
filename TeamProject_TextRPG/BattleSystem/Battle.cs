@@ -38,21 +38,36 @@ namespace TeamProject_TextRPG.BattleSystem
           public void StartBattle()
           {
                battleState = BattleState.Battle;
+               SetPlayer(playerList);
+               Spawner.Spawn();
 
                while (battleState == BattleState.Battle)
                {
+                    IBattler currentTurn = battleQueue.Dequeue(); // 자기 턴이니까 Queue에서 배제
+                    IBattler target = null; // 공격하는 타깃 지정 변수. 자기 아니도록.
+
                     foreach (var iter in battleQueue)
                     {
-                         if (iter.IsPlayer())
+                        
+                         if (!iter.IsPlayer())
                          {
-
+                            target = iter; // 이거 공격하도록 만들기
+                            break;
                          }
-                         else
-                         {
-
-                         }
+                        
                     }
-               }
+                    if (target != null)
+                    {
+                        currentTurn.Attack(target);
+                        if () // 여기에 HP 확인하고 Queue에서 빼는 기능
+                        {
+
+                        }
+
+                    }
+
+
+            }
           }
 
           public enum BattleState
