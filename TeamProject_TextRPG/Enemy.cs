@@ -11,7 +11,7 @@ namespace TeamProject_TextRPG
      {
           public void Attack(IBattler battler)
           {
-               battler.GetDamage(this);
+
           }
 
           public IBattler AttackCaster(List<IBattler> battler)
