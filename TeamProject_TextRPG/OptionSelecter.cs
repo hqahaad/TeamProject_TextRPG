@@ -19,6 +19,7 @@ namespace TeamProject_TextRPG
                }
           }
 
+
           private Dictionary<string, OptionContainer> options;
           private OptionContainer exception;
 
