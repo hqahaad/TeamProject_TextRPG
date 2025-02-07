@@ -9,6 +9,8 @@ namespace TeamProject_TextRPG
 {
      public class Enemy : IBattler, IDamageable
      {
+
+
           public void Attack(IBattler battler)
           {
                battler.GetDamage(this);

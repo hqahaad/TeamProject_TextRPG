@@ -9,23 +9,22 @@ namespace TeamProject_TextRPG
 {
      public class Player : IBattler
      {
-          //수정
           int hp = 100;
           int att = 10;
 
           public void Attack(IBattler battler)
           {
-               throw new NotImplementedException();
+
           }
 
           public IBattler AttackCaster(List<IBattler> battler)
           {
-               throw new NotImplementedException();
+               return null;
           }
 
           public void GetDamage(IDamageable damage)
           {
-               throw new NotImplementedException();
+
           }
 
           public bool IsPlayer()

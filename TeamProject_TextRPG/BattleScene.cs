@@ -15,7 +15,7 @@ namespace TeamProject_TextRPG
 
           public void Start()
           {
-
+               //Enemy
           }
 
           public void End()

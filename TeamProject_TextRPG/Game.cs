@@ -11,8 +11,6 @@ namespace TeamProject_TextRPG
           public void Start()
           {
                Console.WriteLine("Game Start\n");
-
-
           }
 
           public void End()
