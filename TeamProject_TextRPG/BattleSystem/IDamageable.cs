@@ -4,12 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TeamProject_TextRPG
+namespace TeamProject_TextRPG.BattleSystem
 {
-     public class Player
+     public interface IDamageable
      {
-          //수정
-          int hp = 100;
-          int att = 10;
+          float Damage();
      }
 }
