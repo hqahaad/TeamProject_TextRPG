@@ -10,7 +10,9 @@ namespace TeamProject_TextRPG
      {
           public void Start()
           {
-               Console.WriteLine("Game Start");
+               Player player = new Player();
+
+               player.Display();
           }
 
           public void End()
