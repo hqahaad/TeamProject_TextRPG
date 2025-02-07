@@ -9,10 +9,21 @@ namespace TeamProject_TextRPG.BattleSystem
      public class Battle
      {
           private Queue<IBattler> battleQueue = new();
+
+          private List<IBattler> playerList = new();
+          private List<IBattler> enemyList = new();
+
           private BattleState battleState = BattleState.None;
 
-          public void AddBattler(IBattler battler)
+          public void SetPlayer(IBattler battler)
           {
+               playerList.Add(battler);
+               battleQueue.Enqueue(battler);
+          }
+
+          public void SetEnemy(IBattler battler)
+          {
+               playerList.Add(battler);
                battleQueue.Enqueue(battler);
           }
 
@@ -22,7 +33,17 @@ namespace TeamProject_TextRPG.BattleSystem
 
                while (battleState == BattleState.Battle)
                {
-                    
+                    foreach (var iter in battleQueue)
+                    {
+                         if (iter.IsPlayer())
+                         {
+
+                         }
+                         else
+                         {
+
+                         }
+                    }
                }
           }
 

@@ -14,6 +14,11 @@ namespace TeamProject_TextRPG
                battler.GetDamage(this);
           }
 
+          public IBattler AttackCaster(List<IBattler> battler)
+          {
+               return null;
+          }
+
           public float Damage()
           {
                return 15f;
@@ -22,6 +27,11 @@ namespace TeamProject_TextRPG
           public void GetDamage(IDamageable damage)
           {
 
+          }
+
+          public bool IsPlayer()
+          {
+               return false;
           }
      }
 }
