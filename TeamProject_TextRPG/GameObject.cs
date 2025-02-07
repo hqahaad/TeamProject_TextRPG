@@ -8,10 +8,10 @@ namespace TeamProject_TextRPG
 {
      public class GameObject
      {
-          protected string? name;
-          protected int level;
-          protected int hp;
-          protected float attackPower;
-          protected float defensivePower;
+          public string? name;
+          public int level;
+          public int hp;
+          public float attackPower;
+          public float defensivePower;
      }
 }
