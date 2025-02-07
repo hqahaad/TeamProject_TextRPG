@@ -10,7 +10,7 @@ namespace TeamProject_TextRPG
      {
           public void Start()
           {
-            Player myPlayer = new Player("전사", 1, 500, 10.0f, 10.0f, "Warrior");
+            Player myPlayer = new Player("전사", 1, 500, 10.0f, 10.0f, "Warrior",1500);
 
             myPlayer.Display();
           }
