@@ -1,21 +1,23 @@
-﻿using TeamProject_TextRPG.Scenes;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace TeamProject_TextRPG
 {
-    public class Game
-    {
-        public void Start()
-        {
-            SceneManager.Instance.AddScene("직업 씬", new JobScene());
-            SceneManager.Instance.AddScene("타이틀 씬", new TitleScene());
-            SceneManager.Instance.AddScene("배틀 씬", new BattleScene());
+     public class Game
+     {
+          public void Start()
+          {
+               Player player = new Player();
 
-            SceneManager.Instance.LoadScene("직업 씬");
-        }
+               player.Display();
+          }
 
-        public void End()
-        {
-            Console.WriteLine("Game End");
-        }
-    }
+          public void End()
+          {
+               Console.WriteLine("Game End");
+          }
+     }
 }
