@@ -10,9 +10,9 @@ namespace TeamProject_TextRPG
      {
           public void Start()
           {
-               Player player = new Player();
+            Player myPlayer = new Player("전사", 1, 500, 10.0f, 10.0f, "Warrior");
 
-               player.Display();
+            myPlayer.Display();
           }
 
           public void End()
