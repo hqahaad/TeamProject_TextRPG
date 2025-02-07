@@ -9,8 +9,6 @@ namespace TeamProject_TextRPG.BattleSystem
      public interface IBattler
      {
           void Attack(IBattler battler);
-          IBattler AttackCaster(List<IBattler> battler);
-          bool IsPlayer();
           void GetDamage(IDamageable damage);
      }
 }

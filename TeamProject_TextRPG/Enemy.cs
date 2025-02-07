@@ -7,16 +7,11 @@ using TeamProject_TextRPG.BattleSystem;
 
 namespace TeamProject_TextRPG
 {
-     public class Enemy : GameObject
+     public class Enemy : IBattler, IDamageable
      {
           public void Attack(IBattler battler)
           {
-
-          }
-
-          public IBattler AttackCaster(List<IBattler> battler)
-          {
-               return null;
+               battler.GetDamage(this);
           }
 
           public float Damage()
@@ -27,11 +22,6 @@ namespace TeamProject_TextRPG
           public void GetDamage(IDamageable damage)
           {
 
-          }
-
-          public bool IsPlayer()
-          {
-               return false;
           }
      }
 }
