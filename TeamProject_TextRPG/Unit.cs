@@ -1,21 +1,17 @@
-﻿namespace TeamProject_TextRPG
-{
-    public class Unit
-    {
-        public string? name;
-        public int level;
-        public int hp;
-        public float attackPower;
-        public float defensivePower;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-        public Unit()
-        {
-            name = Console.ReadLine();
-            
-            level = 1;
-            hp = 10;
-            attackPower = 10;
-            defensivePower = 10;
-        }
-    }
+namespace TeamProject_TextRPG
+{
+     public class Unit
+     {
+          protected string? name;
+          protected int level;
+          protected int hp;
+          protected float attackPower;
+          protected float defensivePower;
+     }
 }

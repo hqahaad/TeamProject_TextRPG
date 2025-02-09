@@ -6,60 +6,81 @@ using System.Threading.Tasks;
 
 namespace TeamProject_TextRPG.BattleSystem
 {
+     public class Faction
+     {
+          public List<IUnit> UnitList { get; } = new();
+
+          public void AddUnit(IUnit unit)
+          {
+               if (!UnitList.Contains(unit))
+               {
+                    UnitList.Add(unit);
+               }
+          }
+
+          public bool IsAllDead()
+          {
+               return UnitList.All(u => u.IsDead());
+          }
+     }
+
      public class Battle
      {
-          private List<IBattler> battlerList = new();
-          private List<IBattler> playerList = new();
-          private List<IBattler> enemyList = new();
-
+          private SortedDictionary<FactionType, Faction> factionDict = new();
           private BattleState battleState = BattleState.None;
+          public int TurnCount { get; } = 0;
 
-          public void SetPlayer(IBattler battler)
+          public void AddUnit(IUnit unit, FactionType factionType)
           {
-               playerList.Add(battler);
-               battlerList.Add(battler);
-          }
-          public void SetEnemy(IBattler battler)
-          {
-               enemyList.Add(battler);
-               battlerList.Add(battler);
+               if (!factionDict.ContainsKey(factionType))
+               {
+                    factionDict.Add(factionType, new());
+               }
+
+               factionDict[factionType].AddUnit(unit);
           }
 
           public void DoBattle()
           {
+               if (factionDict.Count < 2)
+               {
+                    battleState = BattleState.None;
+                    return;
+               }
+
                battleState = BattleState.Battle;
 
                while (battleState == BattleState.Battle)
                {
-                    //모든 배틀러 리스트 순회하기
-                    foreach (IBattler battler in battlerList)
+                    foreach (var iter in factionDict)
                     {
-                         if (battler.IsPlayer())
+                         if (iter.Value.IsAllDead())
                          {
-                              battler.DoAction(enemyList);
-                              bool isDeadAll = playerList.All(b => b.IsDead());
-                              if (isDeadAll)
-                              {
-                                   //플레이어가 모두 사망하면 패배처리 후 루틴 종료
-                                   battleState = BattleState.Defeat;
-                                   break;
-                              }
+                              //진영이 추가된다면 수정필요
+                              battleState = (iter.Key == FactionType.Player) ? BattleState.Defeat : BattleState.Victory;
+                              break;
                          }
-                         else
-                         {
-                              battler.DoAction(playerList);
-                              bool isDeadAll = enemyList.All(b => b.IsDead());
 
-                              if (isDeadAll)
+                         foreach (var unit in iter.Value.UnitList)
+                         {
+                              //개별 유닛 턴 시작
+                              if (!unit.IsDead())
                               {
-                                   //적이 모두 사망하면 패배처리 후 루틴 종료
-                                   battleState = BattleState.Victory;
-                                   break;
+                                   unit.DoAction(this);
                               }
                          }
                     }
-                    //배틀 종료
                }
+          }
+
+          public Faction GetFaction(FactionType faction)
+          {
+               return factionDict[faction];
+          }
+
+          public List<IUnit>? GetUnits(FactionType faction)
+          {
+               return factionDict[faction].UnitList ?? null;
           }
 
           public BattleState Result()
@@ -74,5 +95,11 @@ namespace TeamProject_TextRPG.BattleSystem
           Battle,
           Victory,
           Defeat
+     }
+
+     public enum FactionType
+     {
+          Player,
+          Enemy
      }
 }
