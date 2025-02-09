@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace TeamProject_TextRPG.BattleSystem
 {
-     public interface IBattler
+     public interface IUnit
      {
-          void DoAction(List<IBattler> battlers);
+          void DoAction(Battle battle);
           void GetDamage(Damage damage);
           void DisplayStatus();
-          bool IsPlayer();
           bool IsDead();
      }
 

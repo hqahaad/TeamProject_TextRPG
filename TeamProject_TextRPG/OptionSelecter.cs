@@ -61,26 +61,34 @@ namespace TeamProject_TextRPG
                Console.Write(frontText);
                string? input = Console.ReadLine();
 
-               if (options.TryGetValue(input, out var value))
+               if (options.TryGetValue(input??string.Empty, out var value))
                {
                     value?.Invoke();
                }
                else
                {
-                    if (exception.optionName.Length >= 1)
-                    {
-                         Console.WriteLine(exception?.optionName);
-                    }
-                    exception?.Invoke();
-                    Select(frontText);
+                    Exception(frontText);
                }
+          }
+
+          public void Exception(string frontText = "")
+          {
+               if (exception.optionName != string.Empty)
+               {
+                    Console.WriteLine(exception?.optionName);
+               }
+               exception?.Invoke();
+               Select(frontText);
           }
 
           public void Display()
           {
                foreach (var iter in options)
                {
-                    Console.WriteLine(iter.Value.optionName);
+                    if (iter.Value.optionName != string.Empty)
+                    {
+                         Console.WriteLine(iter.Value.optionName);
+                    }
                }
           }
      }
