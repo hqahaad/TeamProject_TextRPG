@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TeamProject_TextRPG
 {
-     public class GameObject
+     public class Unit
      {
           public string? name;
           public int level;

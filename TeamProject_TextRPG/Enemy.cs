@@ -7,27 +7,40 @@ using TeamProject_TextRPG.BattleSystem;
 
 namespace TeamProject_TextRPG
 {
-     public class Enemy : GameObject, IBattler
+     public class Enemy : Unit, IUnit
      {
-          public void DoAction(List<IBattler> battlers)
+          public void DoAction(Battle battle)
           {
-               //(임시) 단일 플레이어만 공격
-               battlers.First().GetDamage(new Damage(attackPower));
+               //Console.WriteLine($"Lv.{level} {name}의 공격!");
+               ////(임시) 단일 플레이어만 공격
+               //targets.First().GetDamage(new Damage(attackPower));
           }
 
           public void GetDamage(Damage damage)
           {
-               //hp -= (int)battler.Damage();
+               float originHp = hp;
+               Console.WriteLine($"Lv.{level} {name} 을(를) 맞췄습니다. [{damage.damage}]\n");
+               //데미지를 계산 로직
+               hp -= (int)damage.damage;
+               //
+               Console.WriteLine($"Lv.{level} {name}\nHP {originHp}→{hp}");
           }
 
-          public bool IsPlayer()
+          public void DisplayStatus()
           {
-               return false;
+               if (IsDead())
+               {
+                    Utils.Console.WriteLine($"Lv.{level} {name} [Dead]", ConsoleColor.DarkGray);
+               }
+               else
+               {
+                    Console.WriteLine($"Lv.{level} {name} HP {hp}");
+               }
           }
 
           public bool IsDead()
           {
-               return hp < 0;
+               return hp <= 0;
           }
      }
 }

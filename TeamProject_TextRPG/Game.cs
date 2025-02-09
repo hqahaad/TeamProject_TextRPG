@@ -12,7 +12,7 @@ namespace TeamProject_TextRPG
           public void Start()
           {
                SceneManager.Instance.AddScene("타이틀 씬", new TitleScene());
-               SceneManager.Instance.AddScene("배틀 씬", new TitleScene());
+               SceneManager.Instance.AddScene("배틀 씬", new BattleScene());
 
                SceneManager.Instance.LoadScene("타이틀 씬");
           }

@@ -17,18 +17,16 @@ namespace TeamProject_TextRPG.Scenes
                Console.WriteLine("스파르타 던전에 오신 여러분 환영합니다.");
                Console.WriteLine("이제 전투를 시작할 수 있습니다.");
                Console.WriteLine();
-               Console.WriteLine("원하시는 행동을 입력해주세요.");
+               Console.WriteLine("원하시는 행동을 입력해주세요.\n");
 
-               OptionSelecter otp = OptionSelecter.Create();
+               var selecter = OptionSelecter.Create();
 
+               selecter.AddOption("1.상태 보기", "1");
+               selecter.AddOption("2.전투 시작", "2", () => SceneManager.Instance.LoadScene("배틀 씬"));
+               selecter.SetExceptionMessage("잘못된 입력입니다.");
 
-               otp.AddOption("1.상태 보기", "1");
-               otp.AddOption("2.전투 시작", "2", () => SceneManager.Instance.LoadScene("배틀 씬"));
-               otp.SetExceptionMessage("잘못된 입력입니다.");
-
-
-               otp.Display();
-               otp.Select();
+               selecter.Display();
+               selecter.Select("\n원하시는 행동을 입력해주세요.\n>>  ");
           }
 
           public void End()
