@@ -33,6 +33,17 @@ namespace TeamProject_TextRPG
             selecter.Display();
             selecter.Select("\n대상을 선택해주세요.\n>>  ");
         }
+        public Enemy Clone()
+        {
+            Enemy enemy = new Enemy();
+            enemy.name = name;
+            enemy.level = level;
+            enemy.hp = hp;
+            enemy.attackPower = attackPower;
+            enemy.defensivePower= defensivePower;
+            return enemy;
+
+        }
 
         public void GetDamage(Damage damage)
         {

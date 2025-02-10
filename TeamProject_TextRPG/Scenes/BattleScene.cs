@@ -1,4 +1,5 @@
 ﻿using TeamProject_TextRPG.BattleSystem;
+using TeamProject_TextRPG.GameTables;
 
 namespace TeamProject_TextRPG.Scenes
 {
@@ -6,25 +7,17 @@ namespace TeamProject_TextRPG.Scenes
     {
         public void Awake()
         {
-
+            new EnemyTable();
         }
 
         public void Start()
         {
             
            
-            Enemy enemy1 = new Enemy();
-            enemy1.name = "슬라임";
-            enemy1.hp = 15;
-            Enemy enemy2 = new Enemy();
-            enemy2.name = "골렘";
-            enemy2.hp = 20;
-            Enemy enemy3 = new Enemy();
-            enemy3.name = "박쥐";
-            enemy3.hp = 6;
+            
 
             Spawner spawner = new Spawner();
-            List<Enemy> enemyList = spawner.Spawn(5, 10, enemy1, enemy2, enemy3);
+            List<Enemy> enemyList = spawner.Spawn(5, 10, Table<Enemy>.Get().Load("미니언"), Table<Enemy>.Get().Load("공허충"), Table<Enemy>.Get().Load("대포미니언"));
             Battle battle = new Battle();
 
             battle.AddUnit(PlayerManager.Instance.player, FactionType.Player);
