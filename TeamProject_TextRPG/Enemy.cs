@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TeamProject_TextRPG.BattleSystem;
+using TeamProject_TextRPG.GameTables;
 
 namespace TeamProject_TextRPG
 {
@@ -15,7 +16,6 @@ namespace TeamProject_TextRPG
                {
                     return;
                }
-
                Console.Clear();
                Utils.Console.WriteLine("Battle!!\n", ConsoleColor.DarkYellow);
                Console.WriteLine($"Lv.{level} {name}의 공격!");
