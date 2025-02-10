@@ -8,22 +8,22 @@ namespace TeamProject_TextRPG.Item
 {
     class Armor : IItem
     {
-        public string name { get; set; }
-        public int stat { get; set; }
-        public int price { get; set; }
-        public string description { get; set; }
-        public bool isSold { get; set;  }
-        public bool isEquip { get; set; }
+        public string Name { get; set; }
+        public int Stat { get; set; }
+        public int Price { get; set; }
+        public string Description { get; set; }
+        public bool IsSold { get; set;  }
+        public bool IsEquip { get; set; }
 
         public Armor(string name, int stat, int price, string description)
         {
-            this.name = name;
-            this.stat = stat;
-            this.price = price;
-            this.description = description;
-            isSold = false;
-            isEquip = false;
-            
+            Name = name;
+            Stat = stat;
+            Price = price;
+            Description = description;
+            IsSold = false;
+            IsEquip = false;
+
         }
         public string GetDescription()
         {
@@ -33,7 +33,7 @@ namespace TeamProject_TextRPG.Item
         }
         public int GetStat()
         {
-            return stat;
+            return Stat;
         }
 
     }
