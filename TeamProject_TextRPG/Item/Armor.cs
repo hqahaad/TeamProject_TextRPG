@@ -27,7 +27,7 @@ namespace TeamProject_TextRPG.Item
         public string GetDescription()
         {
             
-            string str = $"{Name} | Attack: {Stat} | {Description} | Price: {Price}G";
+            string str = $"{Name} | Defense: {Stat} | {Description} | Price: {Price}G";
             return str;
         }
         public int GetStat()
