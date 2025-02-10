@@ -6,30 +6,35 @@ using System.Threading.Tasks;
 
 namespace TeamProject_TextRPG.Item
 {
-    class Weapon
+    class Weapon : IItem
     {
-        public string name { get; set; }
-        public int stat { get; set; }
-        public int price { get; set; }
-        public string description { get; set; }
-        public bool isSold { get; set;  }
-        public bool isEquip { get; set; }
+        public string Name { get; set; }
+        public int Stat { get; set; }
+        public int Price { get; set; }
+        public string Description { get; set; }
+        public bool IsSold { get; set; }
+        public bool IsEquip { get; set; }
 
         public Weapon(string name, int stat, int price, string description)
         {
-            this.name = name;
-            this.stat = stat;
-            this.price = price;
-            this.description = description;
-            isSold = false;
-            isEquip = false;
+            this.Name = name;
+            this.Stat = stat;
+            this.Price = price;
+            this.Description = description;
+            IsSold = false;
+            IsEquip = false;
         }
         public string GetDescription()
         {
-            string str = isEquip ? "[E]" : "";
-            str += $"{Name} | Attack: {stat} | {description} | Price: {price}G";
+            string str = IsEquip ? "[E]" : "";
+            str += $"{Name} | Attack: {Stat} | {Description} | Price: {Price}G";
             return str;
         }
-        
+        public int GetStat()
+        {
+            return Stat;
+        }
+
+
     }
 }

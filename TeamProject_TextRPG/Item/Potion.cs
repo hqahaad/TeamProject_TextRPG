@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TeamProject_TextRPG.Item
 {
-    class Armor : IItem
+    class Potion : IItem
     {
         public string Name { get; set; }
         public int Stat { get; set; }
@@ -15,7 +15,7 @@ namespace TeamProject_TextRPG.Item
         public bool IsSold { get; set;  }
         public bool IsEquip { get; set; }
 
-        public Armor(string name, int stat, int price, string description)
+        public Potion(string name, int stat, int price, string description)
         {
             Name = name;
             Stat = stat;
@@ -27,8 +27,8 @@ namespace TeamProject_TextRPG.Item
         }
         public string GetDescription()
         {
-            
-            str += $"{Name} | Defense: {stat} | {description} | Price: {price}G";
+
+            string str = $"{Name} | Defense: {Stat} | {Description} | Price: {Price}G";
             return str;
         }
         public int GetStat()
