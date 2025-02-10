@@ -19,7 +19,7 @@
             for (int i = 0; i < new Random().Next(min, max); i++)
             {
                 int randIndex = new Random().Next(0, enemys.Count);
-                enemyInstances.Add(enemys[randIndex]);
+                enemyInstances.Add(enemys[randIndex].Clone());
             }
 
             return enemyInstances;

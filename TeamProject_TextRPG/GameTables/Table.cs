@@ -8,7 +8,7 @@
 
             public void Add(string key, T value)
             {
-                if (Table.ContainsKey(key))
+                if (!Table.ContainsKey(key))
                 {
                     Table.Add(key, value);
                 }
