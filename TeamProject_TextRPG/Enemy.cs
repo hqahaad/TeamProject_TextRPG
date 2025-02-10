@@ -10,6 +10,17 @@ namespace TeamProject_TextRPG
 {
      public class Enemy : Unit, IUnit
      {
+          public Enemy() { }
+
+          public Enemy(string name, int level, int hp, float attackPower, float defensivePower)
+          {
+               this.name = name;
+               this.level = level;
+               this.hp = hp;
+               this.attackPower = attackPower;
+               this.defensivePower = defensivePower;
+          }
+
           public void DoAction(Battle battle)
           {
                if (battle.GetFaction(FactionType.Player).IsAllDead())
