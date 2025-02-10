@@ -11,9 +11,22 @@ namespace TeamProject_TextRPG
      {
           public void DoAction(Battle battle)
           {
-               //Console.WriteLine($"Lv.{level} {name}의 공격!");
+               if (battle.GetFaction(FactionType.Player).IsAllDead())
+               {
+                    return;
+               }
+
+               Console.Clear();
+               Utils.Console.WriteLine("Battle!!\n", ConsoleColor.DarkYellow);
+               Console.WriteLine($"Lv.{level} {name}의 공격!");
                ////(임시) 단일 플레이어만 공격
-               //targets.First().GetDamage(new Damage(attackPower));
+               battle.GetUnits(FactionType.Player)?.First().GetDamage(new Damage(attackPower));
+
+               var selecter = OptionSelecter.Create();
+               selecter.SetExceptionMessage("잘못된 입력입니다");
+               selecter.AddOption("\n0. 다음", "0");
+               selecter.Display();
+               selecter.Select("\n대상을 선택해주세요.\n>>  ");
           }
 
           public void GetDamage(Damage damage)
