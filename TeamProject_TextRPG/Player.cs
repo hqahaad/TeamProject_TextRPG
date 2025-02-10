@@ -13,9 +13,7 @@ namespace TeamProject_TextRPG
 
           public void DoAction(Battle battle)
           {
-               var faction = battle.GetFaction(FactionType.Enemy);
-
-               if (faction.IsAllDead())
+               if (battle.GetFaction(FactionType.Enemy).IsAllDead())
                {
                     return;
                }
@@ -26,7 +24,7 @@ namespace TeamProject_TextRPG
           private void SelectAction(Battle battle)
           {
                Console.Clear();
-               Utils.Console.WriteLine("Battle!\n", ConsoleColor.DarkYellow);
+               Utils.Console.WriteLine("Battle!!\n", ConsoleColor.DarkYellow);
                foreach (var iter in battle.GetUnits(FactionType.Enemy) ?? Enumerable.Empty<IUnit>())
                {
                     iter.DisplayStatus();
@@ -72,7 +70,8 @@ namespace TeamProject_TextRPG
                     int target = i;
 
                     selecter.AddOption(string.Empty, (i + 1).ToString(), () => tryAttack(units[target]));
-                    Console.Write((i + 1).ToString() + " ");
+                    Console.Write($"[{(i + 1).ToString()}] ");
+
                     units[i].DisplayStatus();
                }
                DisplayStatus();
@@ -84,6 +83,7 @@ namespace TeamProject_TextRPG
           private void Attack(IUnit unit)
           {
                Console.Clear();
+               Utils.Console.WriteLine("Battle!!\n", ConsoleColor.DarkYellow);
                Console.WriteLine($"{name} 의 공격!");
                unit.GetDamage(new Damage(attackPower));
 
