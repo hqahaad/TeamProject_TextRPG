@@ -13,7 +13,7 @@ namespace TeamProject_TextRPG.Item
         public int Price { get; set; }
         public string Description { get; set; }
         public bool IsSold { get; set;  }
-        public bool IsEquip { get; set; }
+
 
         public Potion(string name, int stat, int price, string description)
         {
@@ -22,13 +22,13 @@ namespace TeamProject_TextRPG.Item
             Price = price;
             Description = description;
             IsSold = false;
-            IsEquip = false;
+            
 
         }
         public string GetDescription()
         {
 
-            string str = $"{Name} | Defense: {Stat} | {Description} | Price: {Price}G";
+            string str = $"{Name} | Healing: {Stat} | {Description} | Price: {Price}G";
             return str;
         }
         public int GetStat()
