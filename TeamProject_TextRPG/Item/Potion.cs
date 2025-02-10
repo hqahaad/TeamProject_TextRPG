@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TeamProject_TextRPG.Item
 {
-    class Potion : IItem
+    public class Potion : IItem
     {
         public string Name { get; set; }
         public int Stat { get; set; }

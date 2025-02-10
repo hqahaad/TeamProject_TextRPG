@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TeamProject_TextRPG.Item
 {
-    class Weapon : IItem
+    public class Weapon : IItem
     {
         public string Name { get; set; }
         public int Stat { get; set; }
@@ -17,10 +17,10 @@ namespace TeamProject_TextRPG.Item
 
         public Weapon(string name, int stat, int price, string description)
         {
-            this.Name = name;
-            this.Stat = stat;
-            this.Price = price;
-            this.Description = description;
+            Name = name;
+            Stat = stat;
+            Price = price;
+            Description = description;
             IsSold = false;
             IsEquip = false;
         }
