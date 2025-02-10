@@ -48,9 +48,10 @@ namespace TeamProject_TextRPG
         public void GetDamage(Damage damage)
         {
             float originHp = hp;
-            Console.WriteLine($"Lv.{level} {name} 을(를) 맞췄습니다. [{damage.damage}]\n");
+            int fDamage = damage.CalculateDamage();
+            Console.WriteLine($"Lv.{level} {name} 을(를) 맞췄습니다. [{fDamage}]\n");
             //데미지를 계산 로직
-            hp -= (int)damage.damage;
+            hp -= fDamage;
             //
             Console.WriteLine($"Lv.{level} {name}\nHP {originHp}→{hp}");
         }

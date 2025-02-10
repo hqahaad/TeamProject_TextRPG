@@ -1,4 +1,6 @@
-﻿using TeamProject_TextRPG.BattleSystem;
+﻿using System;
+using System.Formats.Asn1;
+using TeamProject_TextRPG.BattleSystem;
 
 namespace TeamProject_TextRPG
 {
@@ -90,13 +92,16 @@ namespace TeamProject_TextRPG
         }
 
         #endregion
-
+        
+        
+        
         public void GetDamage(Damage damage)
         {
             float originHp = hp;
-            Console.WriteLine($"Lv.{level} {name} 을(를) 맞췄습니다. [{damage.damage}]\n");
+            int fDamage = damage.CalculateDamage();
+            Console.WriteLine($"Lv.{level} {name} 을(를) 맞췄습니다. [{fDamage}]\n");
             //데미지를 계산 로직
-
+            hp -= fDamage;
             //
             Console.WriteLine($"Lv.{level} {name}\nHP {originHp}→{hp}");
         }
