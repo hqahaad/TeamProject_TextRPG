@@ -11,9 +11,25 @@
     public class Damage
     {
         private float damage;
+        private bool isCritical;
         public int CalculateDamage()
         {
-            return CalculateAttack(damage);
+            if (IsMissed())
+            {
+                Console.WriteLine("회피!");
+                return 0;  // 공격 실패 시 데미지 0
+            }
+
+            int calculatedDamage = CalculateAttack(damage);
+
+            if (IsCritical())
+            {
+                isCritical = true;
+                calculatedDamage = (int)(calculatedDamage * 1.5f); // 크리티컬 데미지 1.5배
+                Console.WriteLine("크리티컬!");
+            }
+
+            return calculatedDamage;
         }
         public Damage(float damage)
         {
@@ -36,6 +52,22 @@
 
 
 
+        }
+        private bool IsMissed()
+        {
+            Random random = new Random();
+            return random.NextDouble() < 0.1;
+        }
+
+        private bool IsCritical() //크리티컬 추가
+        {
+            Random random = new Random();
+            return random.NextDouble() < 0.2; //20%
+        }
+
+        public bool GetIsCritical() //외부에서 엑세스 하기위함
+        {
+            return isCritical;
         }
     }
 
