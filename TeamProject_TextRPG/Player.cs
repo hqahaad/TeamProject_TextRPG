@@ -8,13 +8,12 @@ namespace TeamProject_TextRPG
 {
     public class Player : Unit, IUnit
     {
-        private List<ISkill> skillList = new();
+        private List<Skill> skillList = new();
 
         public string className;
         public int mp;
 
         private StressGauge stressGauge = new StressGauge(100); // 스트레스 게이지 추가
-
 
         #region 플레이어의 행동
         private void SelectAction(Battle battle)
@@ -30,7 +29,7 @@ namespace TeamProject_TextRPG
             var selecter = OptionSelecter.Create();
             selecter.SetExceptionMessage("잘못된 입력입니다");
             selecter.AddOption("\n1. 공격", "1", () => CastAttack(battle));
-            selecter.AddOption("2. 스킬", "2", () => CastSkill(battle));
+            selecter.AddOption("2. 스킬", "2", () => SelectSkill(battle));
 
             selecter.Display();
             selecter.Select("\n원하시는 행동을 입력해주세요.\n>>  ");
@@ -94,7 +93,7 @@ namespace TeamProject_TextRPG
             selecter.Select();
         }
 
-        private void CastSkill(Battle battle)
+        private void SelectSkill(Battle battle)
         {
             Console.Clear();
 
@@ -115,16 +114,10 @@ namespace TeamProject_TextRPG
             selecter.Select("\n원하시는 스킬을 선택해주세요..\n>>  ");
         }
 
-        private void Skill(Battle battle, ISkill skill)
+        private void Skill(Battle battle, Skill skill)
         {
-            if (skill.CastSkill(battle))
+            if (!skill.CastSkill(battle))
             {
-                //마나 감소, 효과 적용
-            }
-            else
-            {
-                //스킬 시전 실패
-                //Console.WriteLine("스킬 실패 메세지");
                 SelectAction(battle);
             }
         }
@@ -183,7 +176,7 @@ namespace TeamProject_TextRPG
 
         #endregion
 
-        public void AddSkill(ISkill skill)
+        public void AddSkill(Skill skill)
         {
             skill.SetOrder(this);
             skillList.Add(skill);

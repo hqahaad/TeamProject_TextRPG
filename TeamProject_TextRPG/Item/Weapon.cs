@@ -24,10 +24,7 @@
             str += $" | Attack: {Stat} | {Description} | Price: {Price}G";
             return str;
         }
-        public int GetStat()
-        {
-            return Stat;
-        }
+        public int GetStat() => Stat;
 
         public bool GetBool()
         {
@@ -35,11 +32,10 @@
         }
         public ItemType GetItemType() => ItemType.Weapon;
         public string GetName() => Name;
+
         public void SetEquipped(bool equip)
         {
             IsEquip = equip;
         }
-
-
     }
 }

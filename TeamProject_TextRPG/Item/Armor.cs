@@ -18,11 +18,10 @@
             IsSold = false;
             IsEquip = false;
         }
-        
-        public string GetName() => Name;
+
+        public string GetName() { return Name; }
         public string GetDescription()
         {
-
             string str = $" | Defense: {Stat} | {Description} | Price: {Price}G";
             return str;
         }
