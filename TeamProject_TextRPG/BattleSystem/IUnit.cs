@@ -10,6 +10,10 @@
 
     public class Damage
     {
+        private readonly float criticalProbability = 0.2f;
+        private readonly float criticalMultipler = 1.5f;
+        private readonly float missProbability = 0.1f;
+
         private float damage;
 
         private bool isCritical;
@@ -18,7 +22,7 @@
         {
             if (IsMissed())
             {
-                Console.WriteLine("회피!");
+                Utils.Console.WriteLine("회피!", ConsoleColor.Blue);
                 return 0;  // 공격 실패 시 데미지 0
             }
 
@@ -27,8 +31,8 @@
             if (IsCritical())
             {
                 isCritical = true;
-                calculatedDamage = (int)(calculatedDamage * 1.5f); // 크리티컬 데미지 1.5배
-                Console.WriteLine("크리티컬!");
+                calculatedDamage = (int)(calculatedDamage * criticalMultipler); // 크리티컬 데미지 1.5배
+                Utils.Console.WriteLine("크리티컬!", ConsoleColor.Yellow);
             }
 
             return calculatedDamage;
@@ -51,16 +55,17 @@
             Random random = new Random();
             return random.Next(minAttack, maxAttack + 1);
         }
+
         private bool IsMissed()
         {
             Random random = new Random();
-            return random.NextDouble() < 0.1;
+            return random.NextDouble() < missProbability;
         }
 
         private bool IsCritical() //크리티컬 추가
         {
             Random random = new Random();
-            return random.NextDouble() < 0.2; //20%
+            return random.NextDouble() < criticalProbability; //20%
         }
 
         public bool GetIsCritical() //외부에서 엑세스 하기위함
