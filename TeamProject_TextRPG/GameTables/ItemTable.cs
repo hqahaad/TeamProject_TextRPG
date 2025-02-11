@@ -14,7 +14,7 @@ namespace TeamProject_TextRPG.GameTables
             Table<Weapon>.Get()?.Add("서리한", new Weapon("서리한", 30, 80, "서리한이 굶주렸다"));
             Table<Weapon>.Get()?.Add("대화수단", new Weapon("대화수단", 60, 200, "디스 이스 건"));
         }
-
+    }
         public class ArmorTable
         {
             public ArmorTable()
@@ -28,7 +28,7 @@ namespace TeamProject_TextRPG.GameTables
                 Table<Armor>.Get()?.Add("산데비스탄", new Armor("산데비스탄", 20, 100, "I really wanna stay at your house~"));
             }
         }
-
+    
         public class PotionTable
         {
             public PotionTable()
@@ -44,5 +44,5 @@ namespace TeamProject_TextRPG.GameTables
             }
         }
 
-    }
+    
 }
