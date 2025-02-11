@@ -11,7 +11,9 @@
     public class Damage
     {
         private float damage;
+
         private bool isCritical;
+
         public int CalculateDamage()
         {
             if (IsMissed())
@@ -31,13 +33,14 @@
 
             return calculatedDamage;
         }
+
         public Damage(float damage)
         {
             this.damage = damage;
         }
+
         private int CalculateAttack(float baseAttack)
         {
-
             float variance = baseAttack * 0.10f;
 
             int cell = (int)MathF.Ceiling(variance);
@@ -47,11 +50,6 @@
 
             Random random = new Random();
             return random.Next(minAttack, maxAttack + 1);
-
-
-
-
-
         }
         private bool IsMissed()
         {
