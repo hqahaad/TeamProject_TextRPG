@@ -11,7 +11,7 @@ namespace TeamProject_TextRPG
         private List<Skill> skillList = new();
 
         public string className;
-        public int mp;
+        public int mp = 100;
 
         private StressGauge stressGauge = new StressGauge(100); // 스트레스 게이지 추가
 
@@ -120,6 +120,11 @@ namespace TeamProject_TextRPG
             {
                 SelectAction(battle);
             }
+            var selecter = OptionSelecter.Create();
+            selecter.SetExceptionMessage("잘못된 입력입니다");
+            selecter.AddOption("\n0. 다음", "0");
+            selecter.Display();
+            selecter.Select();
         }
 
         #endregion

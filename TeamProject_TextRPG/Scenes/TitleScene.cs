@@ -1,5 +1,6 @@
 ﻿using TeamProject_TextRPG.GameTables;
 using TeamProject_TextRPG.Item;
+using TeamProject_TextRPG.SkillSystem.Skills;
 
 namespace TeamProject_TextRPG.Scenes
 {
@@ -32,12 +33,12 @@ namespace TeamProject_TextRPG.Scenes
             Inventory inven = new Inventory();
             player.name = inputName;
             player.level = 1;
-            player.attackPower = 100;
+            player.attackPower = 10;
             player.defensivePower = 50;
             player.hp = 150;
 
             //
-            //player.AddSkill(new Skill_BattleCry());
+            player.AddSkill(new Skill_BattleAttack());
             //
 
             PlayerManager.Instance.player = player;
