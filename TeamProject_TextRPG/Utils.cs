@@ -26,6 +26,28 @@
                     System.Console.ResetColor();
                 }
             }
+
+            public static void TypingWriteLine(string text, ConsoleColor color = ConsoleColor.Gray, int milliSecondTimeOut = 0, bool isReset = true)
+            {
+                TypingWrite(text, color, milliSecondTimeOut, isReset);
+                System.Console.WriteLine();
+            }
+
+            public static void TypingWrite(string text, ConsoleColor color = ConsoleColor.Gray, int milliSecondTimeOut = 0, bool isReset = true)
+            {
+                System.Console.ForegroundColor = color;
+
+                foreach (var iter in text)
+                {
+                    System.Console.Write(iter.ToString());
+                    Thread.Sleep(milliSecondTimeOut);
+                }
+
+                if (isReset)
+                {
+                    System.Console.ResetColor();
+                }
+            }
         }
     }
 }
