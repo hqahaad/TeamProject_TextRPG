@@ -3,6 +3,7 @@ using System.Formats.Asn1;
 using TeamProject_TextRPG.BattleSystem;
 using TeamProject_TextRPG.SkillSystem;
 
+
 namespace TeamProject_TextRPG
 {
     public class Player : Unit, IUnit
@@ -11,6 +12,9 @@ namespace TeamProject_TextRPG
 
         public string className;
         public int mp;
+
+        private StressGauge stressGauge = new StressGauge(100); // 스트레스 게이지 추가
+
 
         #region 플레이어의 행동
         private void SelectAction(Battle battle)
@@ -141,6 +145,8 @@ namespace TeamProject_TextRPG
 
         public void GetDamage(Damage damage)
         {
+            
+
             float originHp = hp;
             int fDamage = damage.CalculateDamage();
             Console.Write("Lv.{0} ", level);
@@ -150,7 +156,12 @@ namespace TeamProject_TextRPG
             //데미지를 계산 로직
             hp -= fDamage;
             //
+            int stressIncreaseAmount = fDamage/2; // 데미지 양에 따라 스트레스 증가
+            stressGauge.IncreaseStress(stressIncreaseAmount);
+
             Console.WriteLine($"Lv.{level} {name}\nHP {originHp}→{hp}");
+
+            
         }
 
         public void DisplayStatus()
@@ -158,6 +169,11 @@ namespace TeamProject_TextRPG
             Console.WriteLine("\n[내 정보]");
             Console.WriteLine($"Lv.{level} {name} ({className})");
             Console.WriteLine($"HP : {hp}");
+            double stressPercentage = stressGauge.GetStressPercentage() * 100;
+            
+            stressGauge.UpdateDisplay(); // 스트레스 게이지 업데이트
+            Console.WriteLine($"스트레스 : {stressPercentage:F0}%");
+            Console.WriteLine("스트레스가 많으면 안좋은 일이 일어납니다!!");
         }
 
         public bool IsDead()
