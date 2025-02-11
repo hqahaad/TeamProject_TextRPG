@@ -1,6 +1,6 @@
 ﻿namespace TeamProject_TextRPG.Item
 {
-    public class Weapon : IItem
+    public class Weapon : Equipment, IItem
     {
         public string Name { get; set; }
         public int Stat { get; set; }
@@ -32,5 +32,10 @@
         }
         public ItemType GetItemType() => ItemType.Weapon;
         public string GetName() => Name;
+
+        public void SetEquipped(bool equip)
+        {
+            IsEquip = equip;
+        }
     }
 }

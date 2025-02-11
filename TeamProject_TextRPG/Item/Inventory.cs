@@ -50,6 +50,41 @@ namespace TeamProject_TextRPG.Item
             
         }
 
+        public void EquipItem(Equipment item)
+        {
+            if (item.GetItemType() == ItemType.Weapon)
+            {
+                if(EquipW != null)
+                {
+                    if(EquipW.GetName() == item.GetName())
+                    {
+                        EquipW = (Weapon)item;
+                    }                    
+                    return;
+                }                
+                else
+                {
+                    EquipW = (Weapon)item;
+                }
+                
+            }
+            else if (item.GetItemType() == ItemType.Armor)
+            {
+                if (EquipA != null)
+                {
+                    if (EquipA.GetName() == item.GetName())
+                    {
+                        EquipA = (Armor)item;
+                    }
+                    return;
+                }
+                else
+                {
+                    EquipA = (Armor)item;
+                }
+            }
+        }
+
         public void UsePotion(IItem item)
         {
             if (item is Potion potion)
