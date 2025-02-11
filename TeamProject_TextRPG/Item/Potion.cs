@@ -9,15 +9,15 @@
         public bool IsSold { get; set; }
 
 
-
-
         public Potion(string name, int stat, int price, string description)
         {
             Name = name;
+            
             Stat = stat;
             Price = price;
             Description = description;
             IsSold = false;
+            int count;
         }
         public string GetName() => Name;
         public string GetDescription()
@@ -34,6 +34,7 @@
         {
             return false;
         }
+        public ItemType GetItemType() => ItemType.Potion;
 
     }
 }

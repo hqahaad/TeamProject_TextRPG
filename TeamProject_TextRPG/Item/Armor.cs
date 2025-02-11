@@ -18,10 +18,12 @@
             IsSold = false;
             IsEquip = false;
         }
+        
+        public string GetName() => Name;
         public string GetDescription()
         {
 
-            string str = $"{Name} | Defense: {Stat} | {Description} | Price: {Price}G";
+            string str = $" | Defense: {Stat} | {Description} | Price: {Price}G";
             return str;
         }
         
@@ -33,5 +35,6 @@
         {
             return IsEquip;
         }
+        public ItemType GetItemType() => ItemType.Armor;
     }
 }

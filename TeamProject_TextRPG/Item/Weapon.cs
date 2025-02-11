@@ -21,7 +21,7 @@
         public string GetDescription()
         {
             string str = IsEquip ? "[E]" : "";
-            str += $"{Name} | Attack: {Stat} | {Description} | Price: {Price}G";
+            str += $" | Attack: {Stat} | {Description} | Price: {Price}G";
             return str;
         }
         public int GetStat()
@@ -33,6 +33,7 @@
         {
             return IsEquip;
         }
+        public ItemType GetItemType() => ItemType.Weapon;
         public string GetName() => Name;
 
 

@@ -8,5 +8,10 @@
         int GetStat();
 
         bool GetBool();
+        ItemType GetItemType();
+    }
+    public enum ItemType
+    {
+        Weapon, Armor, Potion
     }
 }

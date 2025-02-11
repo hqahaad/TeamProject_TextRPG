@@ -7,43 +7,46 @@ using System.Threading.Tasks;
 namespace TeamProject_TextRPG.Item
 {
     public class Inventory
-    {
-       
-        public List<InventorySlot> Inven { get; private set; } = new(); 
+    {      
+        public List<InventorySlot> Inven { get; private set; }
+        public Weapon EquipW { get; private set; }
+        public Armor EquipA { get; private set; }
 
         public Inventory()
         {
-            CreateInventory();
+            Inven = new List<InventorySlot>();
         }
 
-        public void CreateInventory()
+        
+        public void AddItem(IItem item , int count)
         {
-            for(int i = 0; i < 50; i++)
+            //스택 가능한 포션이면
+            if (item.GetItemType() == ItemType.Potion) // 포션 종류만 스택이 되니까
             {
-                Inven.Add(new InventorySlot());
+                InventorySlot existingSlot = Inven.Find(slot => slot.Item.GetName == item.GetName); // 같은 이름 있는지 확인
+                if (existingSlot != null)
+                {
+                    existingSlot.Count += count; // 포션 추가
+                    return;
+                }
             }
-        }
+            // 포션 아닌경우 인벤토리 슬롯에 추가
+            Inven.Add(new InventorySlot(item, count));
 
-        public void AddItem(IItem item)
-        {
-            if (item is Potion)
-            {
-                
-                Inven.Add();
-            Console.WriteLine($"{item.GetName} 획득!");
-            }
-            else
-            {
-            Inven.Add(InventorySlot());
-            Console.WriteLine($"{item.GetName} 획득!");
-            }
         }
         public void RemoveItem(IItem item)
         {
-            if(item is Potion)
+            int removeItem = 1;
+            if(item.GetItemType() == ItemType.Potion)
             {
-                
-                Console.WriteLine($"{item.GetName}을 사용했습니다.");
+                InventorySlot slot = Inven.Find(s => s.Item == item); // 같은 이름 있는지 확인
+                if (slot.Item.GetItemType() == ItemType.Potion)
+                {
+                    if (slot.Count <= 1)
+                        Inven.Remove(slot);
+                    else
+                        slot.Count -= removeItem;
+                }                               
             }
             
         }
@@ -91,8 +94,19 @@ namespace TeamProject_TextRPG.Item
     }
     public class InventorySlot
     {
-        IItem item;
-        int count;
-        //인벤토리 중복이 있을 시 x (개수) 기록
+        public IItem Item { get; set; }
+        public int Count { get; set; }
+        
+        public InventorySlot(IItem item, int count)
+        {
+            Item = item; // 슬롯 해당 아이템
+            Count = count; 
+        }
+
+        public override string ToString()
+        {
+            string equippedTag = (Item is Weapon w && w.IsEquip || Item is Armor a && a.IsEquip) ? "E" : "";
+            return $"{equippedTag} {Item.GetName} x {Count} | {Item.GetDescription()}";
+        }
     }
 }
