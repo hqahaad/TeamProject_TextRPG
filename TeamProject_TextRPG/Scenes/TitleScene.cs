@@ -1,4 +1,6 @@
-﻿namespace TeamProject_TextRPG.Scenes
+﻿using TeamProject_TextRPG.GameTables;
+
+namespace TeamProject_TextRPG.Scenes
 {
     public class TitleScene : IScene
     {
@@ -31,6 +33,11 @@
             player.attackPower = 100;
             player.defensivePower = 50;
             player.hp = 150;
+
+            //
+            player.AddSkill(new Skill_BattleCry());
+            //
+
             PlayerManager.Instance.player = player;
             SceneManager.Instance.LoadScene("로비 씬");
         }

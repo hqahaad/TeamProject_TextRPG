@@ -1,22 +1,17 @@
 ﻿using System;
 using System.Formats.Asn1;
 using TeamProject_TextRPG.BattleSystem;
+using TeamProject_TextRPG.SkillSystem;
 
 namespace TeamProject_TextRPG
 {
     public class Player : Unit, IUnit
     {
+        private List<ISkill> skillList = new();
+
         public string className;
+        public int mp;
 
-        public void DoAction(Battle battle)
-        {
-            if (battle.GetFaction(FactionType.Enemy).IsAllDead())
-            {
-                return;
-            }
-
-            SelectAction(battle);
-        }
         #region 플레이어의 행동
         private void SelectAction(Battle battle)
         {
@@ -31,6 +26,7 @@ namespace TeamProject_TextRPG
             var selecter = OptionSelecter.Create();
             selecter.SetExceptionMessage("잘못된 입력입니다");
             selecter.AddOption("\n1. 공격", "1", () => CastAttack(battle));
+            selecter.AddOption("2. 스킬", "2", () => CastSkill(battle));
 
             selecter.Display();
             selecter.Select("\n원하시는 행동을 입력해주세요.\n>>  ");
@@ -94,10 +90,55 @@ namespace TeamProject_TextRPG
             selecter.Select();
         }
 
+        private void CastSkill(Battle battle)
+        {
+            Console.Clear();
+
+            var selecter = OptionSelecter.Create();
+            selecter.SetExceptionMessage("잘못된 입력입니다");
+
+            for (int i = 0; i < skillList.Count; i++)
+            {
+                var skill = skillList[i];
+
+                selecter.AddOption($"1. {skill.SkillName()} - {skill.SkillDescription()}", (i + 1).ToString(), () => Skill(battle, skill));
+                //스킬 조건 체크 Action
+            }
+            selecter.AddOption(string.Empty, "0", () => SelectAction(battle));
+
+            selecter.Display();
+            Utils.Console.WriteLine("\n0. 취소", ConsoleColor.Red);
+            selecter.Select("\n원하시는 스킬을 선택해주세요..\n>>  ");
+        }
+
+        private void Skill(Battle battle, ISkill skill)
+        {
+            if (skill.CastSkill(battle))
+            {
+                //마나 감소, 효과 적용
+            }
+            else
+            {
+                //스킬 시전 실패
+                //Console.WriteLine("스킬 실패 메세지");
+                SelectAction(battle);
+            }
+        }
+
         #endregion
-        
-        
-        
+
+        #region IUnit 인터페이스
+
+        public void DoAction(Battle battle)
+        {
+            if (battle.GetFaction(FactionType.Enemy).IsAllDead())
+            {
+                return;
+            }
+
+            SelectAction(battle);
+        }
+
         public void GetDamage(Damage damage)
         {
             float originHp = hp;
@@ -122,6 +163,14 @@ namespace TeamProject_TextRPG
         public bool IsDead()
         {
             return hp <= 0;
+        }
+
+        #endregion
+
+        public void AddSkill(ISkill skill)
+        {
+            skill.SetOrder(this);
+            skillList.Add(skill);
         }
     }
 }

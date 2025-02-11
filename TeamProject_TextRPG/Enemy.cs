@@ -33,7 +33,7 @@ namespace TeamProject_TextRPG
             selecter.SetExceptionMessage("잘못된 입력입니다");
             selecter.AddOption("\n0. 다음", "0");
             selecter.Display();
-            selecter.Select("\n대상을 선택해주세요.\n>>  ");
+            selecter.Select();
         }
         public Enemy Clone()
         {

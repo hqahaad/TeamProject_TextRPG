@@ -19,7 +19,6 @@
             {
                 System.Console.ForegroundColor = color;
                 System.Console.Write(text, args);
-                System.Console.ResetColor();
 
                 if (isReset)
                 {
