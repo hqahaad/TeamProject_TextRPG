@@ -1,36 +1,42 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TeamProject_TextRPG.Scenes
+﻿namespace TeamProject_TextRPG.Scenes
 {
-     public class TitleScene : IScene
-     {
-          public void Awake()
-          {
-          }
+    public class TitleScene : IScene
+    {
+        public void Awake()
+        {
+        }
 
-          public void Start()
-          {
-               Console.WriteLine("스파르타 던전에 오신 여러분 환영합니다.");
-               Console.WriteLine("이제 전투를 시작할 수 있습니다.");
-               Console.WriteLine();
-               Console.WriteLine("원하시는 행동을 입력해주세요.\n");
+        public void Start()
+        {
+            Console.WriteLine("이름을 입력해주세요\n");
+            Console.Write(">>  ");
+            string inputName = Console.ReadLine() ?? string.Empty;
 
-               var selecter = OptionSelecter.Create();
+            Console.Clear();
+            Console.WriteLine("직업을 선택해주세요\n");
+            var selecter = OptionSelecter.Create();
+            selecter.AddOption("1. 전사", "1");
+            selecter.AddOption("2. 궁수", "2");
+            selecter.AddOption("3. 도적", "3");
+            selecter.AddOption("2. 성직자", "4");
 
-               selecter.AddOption("1.상태 보기", "1");
-               selecter.AddOption("2.전투 시작", "2", () => SceneManager.Instance.LoadScene("배틀 씬"));
-               selecter.SetExceptionMessage("잘못된 입력입니다.");
+            selecter.SetExceptionMessage("잘못된 입력입니다.");
 
-               selecter.Display();
-               selecter.Select("\n원하시는 행동을 입력해주세요.\n>>  ");
-          }
+            selecter.Display();
+            selecter.Select("\n원하시는 직업을 선택해주세요.\n>>  ");
 
-          public void End()
-          {
-          }
-     }
+            Player player = new Player();
+            player.name = inputName;
+            player.level = 1;
+            player.attackPower = 100;
+            player.defensivePower = 50;
+            player.hp = 150;
+            PlayerManager.Instance.player = player;
+            SceneManager.Instance.LoadScene("로비 씬");
+        }
+
+        public void End()
+        {
+        }
+    }
 }

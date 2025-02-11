@@ -1,10 +1,12 @@
-﻿using TeamProject_TextRPG.BattleSystem;
+﻿using System;
+using System.Formats.Asn1;
+using TeamProject_TextRPG.BattleSystem;
 
 namespace TeamProject_TextRPG
 {
     public class Player : Unit, IUnit
     {
-        public string className = "전사";
+        public string className;
 
         public void DoAction(Battle battle)
         {
@@ -79,7 +81,10 @@ namespace TeamProject_TextRPG
         {
             Console.Clear();
             Utils.Console.WriteLine("Battle!!\n", ConsoleColor.DarkYellow);
-            Console.WriteLine($"{name} 의 공격!");
+            Console.Write("Lv.{0} ", level);
+            Utils.Console.Write(name, ConsoleColor.Green);
+            Console.WriteLine(" 의 공격!");
+            //Console.WriteLine($"{name} 의 공격!");
             unit.GetDamage(new Damage(attackPower));
 
             var selecter = OptionSelecter.Create();
@@ -90,13 +95,19 @@ namespace TeamProject_TextRPG
         }
 
         #endregion
-
+        
+        
+        
         public void GetDamage(Damage damage)
         {
             float originHp = hp;
-            Console.WriteLine($"Lv.{level} {name} 을(를) 맞췄습니다. [{damage.damage}]\n");
+            int fDamage = damage.CalculateDamage();
+            Console.Write("Lv.{0} ", level);
+            Utils.Console.Write("{0}", ConsoleColor.Green, true, name);
+            Console.Write(" 을 맞췄습니다.[{0}]\n\n", fDamage);
+            //Console.WriteLine($"Lv.{level} {name} 을(를) 맞췄습니다. [{fDamage}]\n");
             //데미지를 계산 로직
-
+            hp -= fDamage;
             //
             Console.WriteLine($"Lv.{level} {name}\nHP {originHp}→{hp}");
         }

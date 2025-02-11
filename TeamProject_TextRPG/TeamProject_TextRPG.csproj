@@ -8,8 +8,4 @@
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Folder Include="GameTables\" />
-  </ItemGroup>
-
 </Project>

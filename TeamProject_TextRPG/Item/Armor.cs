@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace TeamProject_TextRPG.Item
+﻿namespace TeamProject_TextRPG.Item
 {
     public class Armor : IItem
     {
@@ -26,7 +20,7 @@ namespace TeamProject_TextRPG.Item
         }
         public string GetDescription()
         {
-            
+
             string str = $"{Name} | Defense: {Stat} | {Description} | Price: {Price}G";
             return str;
         }
