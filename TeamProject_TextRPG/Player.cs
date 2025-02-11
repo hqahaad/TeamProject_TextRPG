@@ -81,7 +81,10 @@ namespace TeamProject_TextRPG
         {
             Console.Clear();
             Utils.Console.WriteLine("Battle!!\n", ConsoleColor.DarkYellow);
-            Console.WriteLine($"{name} 의 공격!");
+            Console.Write("Lv.{0} ", level);
+            Utils.Console.Write(name, ConsoleColor.Green);
+            Console.WriteLine(" 의 공격!");
+            //Console.WriteLine($"{name} 의 공격!");
             unit.GetDamage(new Damage(attackPower));
 
             var selecter = OptionSelecter.Create();
@@ -99,7 +102,10 @@ namespace TeamProject_TextRPG
         {
             float originHp = hp;
             int fDamage = damage.CalculateDamage();
-            Console.WriteLine($"Lv.{level} {name} 을(를) 맞췄습니다. [{fDamage}]\n");
+            Console.Write("Lv.{0} ", level);
+            Utils.Console.Write("{0}", ConsoleColor.Green, true, name);
+            Console.Write(" 을 맞췄습니다.[{0}]\n\n", fDamage);
+            //Console.WriteLine($"Lv.{level} {name} 을(를) 맞췄습니다. [{fDamage}]\n");
             //데미지를 계산 로직
             hp -= fDamage;
             //

@@ -28,7 +28,7 @@
         private void DisplayPlayer()
         {
             Console.Clear();
-            Utils.Console.WriteLine("상태보기",ConsoleColor.Yellow);
+            Utils.Console.WriteLine("[상태보기]",ConsoleColor.Yellow);
             Console.WriteLine("캐릭터의 정보가 표시됩니다\n");
             Console.WriteLine("LV.{0}", PlayerManager.Instance.player.level);
             Console.WriteLine("{0}({1})", PlayerManager.Instance.player.name, PlayerManager.Instance.player.className);
@@ -38,7 +38,7 @@
             Console.WriteLine("Gold: 1500 G");
 
             var selecter = OptionSelecter.Create();
-            selecter.AddOption("0.나가기", "0", Start);
+            selecter.AddOption("\n0.나가기", "0", Start);
             selecter.Display();
             selecter.Select("\n원하시는 행동을 입력해주세요.\n>>  ");
         }

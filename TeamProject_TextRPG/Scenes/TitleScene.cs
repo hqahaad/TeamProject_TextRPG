@@ -8,15 +8,17 @@
 
         public void Start()
         {
-            Console.WriteLine("이름을 입력해주세요");
-            string inputName = Console.ReadLine();
+            Console.WriteLine("이름을 입력해주세요\n");
+            Console.Write(">>  ");
+            string inputName = Console.ReadLine() ?? string.Empty;
+
             Console.Clear();
-            Console.WriteLine("직업을 선택해주세요");
+            Console.WriteLine("직업을 선택해주세요\n");
             var selecter = OptionSelecter.Create();
-            selecter.AddOption("1.전사", "1");
-            selecter.AddOption("2.궁수", "2");
-            selecter.AddOption("3.도적", "3");
-            selecter.AddOption("2.성직자", "4");
+            selecter.AddOption("1. 전사", "1");
+            selecter.AddOption("2. 궁수", "2");
+            selecter.AddOption("3. 도적", "3");
+            selecter.AddOption("2. 성직자", "4");
 
             selecter.SetExceptionMessage("잘못된 입력입니다.");
 

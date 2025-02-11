@@ -23,7 +23,9 @@ namespace TeamProject_TextRPG
             }
             Console.Clear();
             Utils.Console.WriteLine("Battle!!\n", ConsoleColor.DarkYellow);
-            Console.WriteLine($"Lv.{level} {name}의 공격!");
+            Console.Write("Lv.{0} ", level);
+            Utils.Console.Write(name, ConsoleColor.Red);
+            Console.WriteLine(" 의 공격!");
             ////(임시) 단일 플레이어만 공격
             battle.GetUnits(FactionType.Player)?.First().GetDamage(new Damage(attackPower));
 
@@ -49,7 +51,9 @@ namespace TeamProject_TextRPG
         {
             float originHp = hp;
             int fDamage = damage.CalculateDamage();
-            Console.WriteLine($"Lv.{level} {name} 을(를) 맞췄습니다. [{fDamage}]\n");
+            Console.Write("Lv.{0} ", level);
+            Utils.Console.Write("{0}", ConsoleColor.Red, true, name);
+            Console.Write(" 을 맞췄습니다.[{0}]\n\n", fDamage);
             //데미지를 계산 로직
             hp -= fDamage;
             //
