@@ -1,18 +1,10 @@
 ﻿namespace TeamProject_TextRPG.BattleSystem
 {
-    public interface IUnit
-    {
-        void DoAction(Battle battle);
-        void GetDamage(Damage damage);
-        void DisplayStatus();
-        bool IsDead();
-    }
-
     public class Damage
     {
-        private readonly float criticalProbability = 0.2f;
-        private readonly float criticalMultipler = 1.5f;
-        private readonly float missProbability = 0.1f;
+        private static readonly float criticalProbability = 0.2f;
+        private static readonly float criticalMultipler = 1.5f;
+        private static readonly float missProbability = 0.1f;
 
         private float damage;
 
@@ -73,5 +65,4 @@
             return isCritical;
         }
     }
-
 }
