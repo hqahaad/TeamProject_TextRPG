@@ -1,18 +1,34 @@
 ﻿namespace TeamProject_TextRPG.Item
 {
-    public interface IItem
+    public class Item
     {
-        string GetName();
+        public string Name { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        public ItemType ItemType { get; set; }
+        public int Price { get; set; }
+        public int Stat { get; set; }
+    }
 
-        string GetDescription();
-        int GetStat();
-        bool GetBool();
-        ItemType GetItemType();
-        
+    public class EquipmentItem : Item
+    {
+        public bool IsEquip { get; set; }
+        public EquipmentType EquipmentType { get; set; }
+    }
+
+    public class PotionItem : Item
+    {
+
     }
 
     public enum ItemType
     {
-        Weapon, Armor, Potion
+        Equipment, 
+        Potion
+    }
+
+    public enum EquipmentType
+    {
+        Weapon,
+        Armor
     }
 }

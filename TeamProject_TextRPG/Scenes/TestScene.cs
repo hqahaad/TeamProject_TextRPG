@@ -36,7 +36,7 @@ namespace TeamProject_TextRPG.Scenes
             inven.RemoveItem(Table<Potion>.Get().Load("콜라"));
             foreach (var item in inven.Inven)
             {
-                Console.WriteLine($"{item.Item.GetName} {item.Count}");
+                Console.WriteLine($"{item.SlotItem.GetName} {item.Count}");
             }
         }
     }

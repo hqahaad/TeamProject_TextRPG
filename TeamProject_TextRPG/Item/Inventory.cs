@@ -12,20 +12,20 @@ namespace TeamProject_TextRPG.Item
 
         public int Count { get { return count; } }
         public List<InventorySlot> Inven { get; private set; }
-        public Weapon EquipW { get; private set; }
-        public Armor EquipA { get; private set; }
+        public EquipmentItem? EquippedWeapon { get; private set; }
+        public EquipmentItem? EquippedArmor { get; private set; }
 
         public Inventory()
         {
             Inven = new List<InventorySlot>();
         }
  
-        public void AddItem(IItem item , int count = 1)
+        public void AddItem(Item item)
         {
             //스택 가능한 포션이면
-            if (item.GetItemType() == ItemType.Potion) // 포션 종류만 스택이 되니까
+            if (item.ItemType == ItemType.Potion) // 포션 종류만 스택이 되니까
             {
-                InventorySlot? existingSlot = Inven.Find(slot => slot.Item.GetName() == item.GetName()); // 같은 이름 있는지 확인
+                InventorySlot? existingSlot = Inven.Find(slot => slot.SlotItem.Name == item.Name); // 같은 이름 있는지 확인
                 if (existingSlot != null)
                 {
                     existingSlot.Count += count; // 포션 추가
@@ -35,55 +35,60 @@ namespace TeamProject_TextRPG.Item
             // 포션 아닌경우 인벤토리 슬롯에 추가
             Inven.Add(new InventorySlot(item, count));
         }
-        public void RemoveItem(IItem item)
+
+        public void RemoveItem(Item item)
         {
             int removeItem = 1;
 
-            if(item.GetItemType() == ItemType.Potion)
+            if(item.ItemType == ItemType.Potion)
             {
-                InventorySlot slot = Inven.Find(s => s.Item == item); // 같은 이름 있는지 확인
-                if (slot.Item.GetItemType() == ItemType.Potion)
+                InventorySlot slot = Inven.Find(s => s.SlotItem.Name == item.Name); // 같은 이름 있는지 확인
+                if (slot.SlotItem.ItemType == ItemType.Potion)
                 {
                     if (slot.Count <= 1)
+                    {
                         Inven.Remove(slot);
+                    }
                     else
+                    {
                         slot.Count -= removeItem;
+                    }
                 }                               
             }
             
         }
 
-        public void EquipItem(Equipment item)
+        public void EquipItem(EquipmentItem item)
         {
-            if (item.GetItemType() == ItemType.Weapon)
+            if (item.EquipmentType == EquipmentType.Weapon)
             {
-                if(EquipW != null)
+                if(EquippedWeapon != null)
                 {
-                    if(EquipW.GetName() == item.GetName())
+                    if(EquippedWeapon.Name == item.Name)
                     {
-                        EquipW = (Weapon)item;
+                        EquippedWeapon = item;
                     }                    
                     return;
                 }                
                 else
                 {
-                    EquipW = (Weapon)item;
+                    EquippedWeapon = item;
                 }
                 
             }
-            else if (item.GetItemType() == ItemType.Armor)
+            else if (item.EquipmentType == EquipmentType.Armor)
             {
-                if (EquipA != null)
+                if (EquippedArmor != null)
                 {
-                    if (EquipA.GetName() == item.GetName())
+                    if (EquippedArmor.GetName() == item.GetName())
                     {
-                        EquipA = (Armor)item;
+                        EquippedArmor = (Armor)item;
                     }
                     return;
                 }
                 else
                 {
-                    EquipA = (Armor)item;
+                    EquippedArmor = (Armor)item;
                 }
             }
         }
@@ -99,19 +104,13 @@ namespace TeamProject_TextRPG.Item
     }
     public class InventorySlot
     {
-        public IItem Item { get; set; }
+        public Item SlotItem { get; set; }
         public int Count { get; set; }
         
-        public InventorySlot(IItem item, int count)
+        public InventorySlot(Item item, int count)
         {
-            Item = item; // 슬롯 해당 아이템
+            SlotItem = item; // 슬롯 해당 아이템
             Count = count; 
-        }
-
-        public override string ToString()
-        {
-            string equippedTag = (Item is Weapon w && w.IsEquip || Item is Armor a && a.IsEquip) ? "E" : "";
-            return $"{equippedTag} {Item.GetName} x {Count} | {Item.GetDescription()}";
         }
     }
 }
