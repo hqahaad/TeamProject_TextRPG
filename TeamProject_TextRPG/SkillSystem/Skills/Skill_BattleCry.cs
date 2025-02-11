@@ -16,7 +16,7 @@ namespace TeamProject_TextRPG.SkillSystem.Skills
             skillDescription = "모든 아군이 공격력 10을 얻습니다";
         }
 
-        public override void SkillAction(Battle battle)
+        public override void SkillAction(IBattle battle)
         {
             foreach (var unit in battle.GetUnits(FactionType.Player))
             {

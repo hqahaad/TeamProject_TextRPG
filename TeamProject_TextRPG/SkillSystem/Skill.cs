@@ -14,7 +14,7 @@ namespace TeamProject_TextRPG.SkillSystem
         protected string skillDescription = string.Empty;
         protected Player? order;
 
-        public bool CastSkill(Battle battle)
+        public bool CastSkill(IBattle battle)
         {
             if (!IsCostSkill())
             {
@@ -33,7 +33,7 @@ namespace TeamProject_TextRPG.SkillSystem
             order = unit;
         }
 
-        public abstract void SkillAction(Battle battle);
+        public abstract void SkillAction(IBattle battle);
 
         public virtual void CastEnd() { }
 

@@ -17,6 +17,7 @@ namespace TeamProject_TextRPG.Scenes
             Battle battle = new Battle();
 
             battle.AddUnit(PlayerManager.Instance.player, FactionType.Player);
+
             foreach (var iter in enemyList)
             {
                 battle.AddUnit(iter, FactionType.Enemy);
@@ -26,7 +27,7 @@ namespace TeamProject_TextRPG.Scenes
 
             if (battle.Result() == BattleState.Defeat)
             {
-                //패배! 게임 종료 로직
+                Console.WriteLine("패배했습니다...");
             }
             else
             {
@@ -40,8 +41,4 @@ namespace TeamProject_TextRPG.Scenes
 
         }
     }
-
-    public class Test : Player
-    { }
-
 }

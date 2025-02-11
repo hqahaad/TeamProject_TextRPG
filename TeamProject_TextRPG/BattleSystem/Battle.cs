@@ -1,28 +1,23 @@
 ﻿namespace TeamProject_TextRPG.BattleSystem
 {
-    public class Faction
+    public interface IBattle
     {
-        public List<IUnit> UnitList { get; } = new();
-
-        public void AddUnit(IUnit unit)
-        {
-            if (!UnitList.Contains(unit))
-            {
-                UnitList.Add(unit);
-            }
-        }
-
-        public bool IsAllDead()
-        {
-            return UnitList.All(u => u.IsDead());
-        }
+        List<IUnit>? GetUnits(FactionType faction);
+        bool IsAllDead(FactionType faction);
     }
 
-    public class Battle
+    public class Battle : IBattle
     {
-        private SortedDictionary<FactionType, Faction> factionDict = new();
+        private readonly SortedDictionary<FactionType, List<IUnit>> factionDict = new();
+        private readonly List<IBattleCondition> conditions = new();
         private BattleState battleState = BattleState.None;
         public int TurnCount { get; } = 0;
+
+        public Battle()
+        {
+            conditions.Add(new VictoryPlayer(() => battleState = BattleState.Victory));
+            conditions.Add(new DefeatPlayer(() => battleState = BattleState.Defeat));
+        }
 
         public void AddUnit(IUnit unit, FactionType factionType)
         {
@@ -31,7 +26,7 @@
                 factionDict.Add(factionType, new());
             }
 
-            factionDict[factionType].AddUnit(unit);
+            factionDict[factionType].Add(unit);
         }
 
         public void DoBattle()
@@ -44,37 +39,39 @@
 
             battleState = BattleState.Battle;
 
-            while (battleState == BattleState.Battle)
+            foreach (var iter in factionDict)
             {
-                foreach (var iter in factionDict)
+                foreach (var unit in iter.Value)
                 {
-                    if (iter.Value.IsAllDead())
-                    {
-                        //진영이 추가된다면 수정필요
-                        battleState = (iter.Key == FactionType.Player) ? BattleState.Defeat : BattleState.Victory;
-                        break;
-                    }
+                    conditions.ForEach(c => c.Update(this));
 
-                    foreach (var unit in iter.Value.UnitList)
+                    if (battleState == BattleState.Battle)
                     {
-                        //개별 유닛 턴 시작
                         if (!unit.IsDead())
                         {
                             unit.DoAction(this);
                         }
                     }
+                    else
+                    {
+                        return;
+                    }
                 }
             }
         }
 
-        public Faction GetFaction(FactionType faction)
+        public bool IsAllDead(FactionType faction)
         {
-            return factionDict[faction];
+            if (!factionDict.ContainsKey(faction))
+            {
+                return true;
+            }
+            return factionDict[faction].All(u => u.IsDead());
         }
 
         public List<IUnit>? GetUnits(FactionType faction)
         {
-            return factionDict[faction].UnitList ?? null;
+            return factionDict[faction] ?? null;
         }
 
         public BattleState Result()

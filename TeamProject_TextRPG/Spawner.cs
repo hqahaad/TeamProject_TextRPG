@@ -1,4 +1,4 @@
-﻿namespace TeamProject_TextRPG.BattleSystem
+﻿namespace TeamProject_TextRPG
 {
     public class Spawner
     {
@@ -19,7 +19,7 @@
             for (int i = 0; i < new Random().Next(min, max); i++)
             {
                 int randIndex = new Random().Next(0, enemys.Count);
-                enemyInstances.Add(enemys[randIndex].Clone());
+                enemyInstances.Add(Enemy.Clone(enemys[randIndex]));
             }
 
             return enemyInstances;

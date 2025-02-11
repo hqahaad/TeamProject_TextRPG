@@ -15,12 +15,12 @@ namespace TeamProject_TextRPG
             this.defensivePower = defensivePower;
         }
 
-        public void DoAction(Battle battle)
+        public void DoAction(IBattle battle)
         {
-            if (battle.GetFaction(FactionType.Player).IsAllDead())
-            {
-                return;
-            }
+            //if (battle.GetFaction(FactionType.Player).IsAllDead())
+            //{
+            //    return;
+            //}
             Console.Clear();
             Utils.Console.WriteLine("Battle!!\n", ConsoleColor.DarkYellow);
             Console.Write("Lv.{0} ", level);
@@ -35,16 +35,17 @@ namespace TeamProject_TextRPG
             selecter.Display();
             selecter.Select();
         }
-        public Enemy Clone()
+
+        public static Enemy Clone(Enemy origin)
         {
             Enemy enemy = new Enemy();
-            enemy.name = name;
-            enemy.level = level;
-            enemy.hp = hp;
-            enemy.attackPower = attackPower;
-            enemy.defensivePower= defensivePower;
-            return enemy;
+            enemy.name = origin.name;
+            enemy.level = origin.level;
+            enemy.hp = origin.hp;
+            enemy.attackPower = origin.attackPower;
+            enemy.defensivePower= origin.defensivePower;
 
+            return enemy;
         }
 
         public void GetDamage(Damage damage)

@@ -16,7 +16,7 @@ namespace TeamProject_TextRPG
         private StressGauge stressGauge = new StressGauge(100); // 스트레스 게이지 추가
 
         #region 플레이어의 행동
-        private void SelectAction(Battle battle)
+        private void SelectAction(IBattle battle)
         {
             Console.Clear();
             Utils.Console.WriteLine("Battle!!\n", ConsoleColor.DarkYellow);
@@ -35,7 +35,7 @@ namespace TeamProject_TextRPG
             selecter.Select("\n원하시는 행동을 입력해주세요.\n>>  ");
         }
 
-        private void CastAttack(Battle battle)
+        private void CastAttack(IBattle battle)
         {
             var units = battle.GetUnits(FactionType.Enemy);
 
@@ -93,7 +93,7 @@ namespace TeamProject_TextRPG
             selecter.Select();
         }
 
-        private void SelectSkill(Battle battle)
+        private void SelectSkill(IBattle battle)
         {
             Console.Clear();
 
@@ -114,7 +114,7 @@ namespace TeamProject_TextRPG
             selecter.Select("\n원하시는 스킬을 선택해주세요..\n>>  ");
         }
 
-        private void Skill(Battle battle, Skill skill)
+        private void Skill(IBattle battle, Skill skill)
         {
             if (!skill.CastSkill(battle))
             {
@@ -131,20 +131,18 @@ namespace TeamProject_TextRPG
 
         #region IUnit 인터페이스
 
-        public void DoAction(Battle battle)
+        public void DoAction(IBattle battle)
         {
-            if (battle.GetFaction(FactionType.Enemy).IsAllDead())
-            {
-                return;
-            }
+            //if (battle.GetFaction(FactionType.Enemy).IsAllDead())
+            //{
+            //    return;
+            //}
 
             SelectAction(battle);
         }
 
         public void GetDamage(Damage damage)
         {
-            
-
             float originHp = hp;
             int fDamage = damage.CalculateDamage();
             

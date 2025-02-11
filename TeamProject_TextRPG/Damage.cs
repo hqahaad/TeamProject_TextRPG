@@ -1,4 +1,4 @@
-﻿namespace TeamProject_TextRPG.BattleSystem
+﻿namespace TeamProject_TextRPG
 {
     public class Damage
     {

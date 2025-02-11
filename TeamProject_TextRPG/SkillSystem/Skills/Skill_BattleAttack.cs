@@ -16,7 +16,7 @@ namespace TeamProject_TextRPG.SkillSystem.Skills
         }
 
 
-        public override void SkillAction(Battle battle)
+        public override void SkillAction(IBattle battle)
         {
             var enemies = battle.GetUnits(FactionType.Enemy);
 
