@@ -20,13 +20,13 @@ namespace TeamProject_TextRPG.SkillSystem.Skills
         {
             var enemies = battle.GetUnits(FactionType.Enemy);
 
-            //if (enemies.Count == 0)
-            //{
-            //    Console.WriteLine("공격할 적이 없습니다!");
-            //    return;
-            //}
+            
             foreach (var iter in enemies)
             {
+                if (iter.IsDead()) 
+                {
+                    continue;
+                }
                 iter.GetDamage(new Damage(order.attackPower));
 
                 

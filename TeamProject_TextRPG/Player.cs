@@ -147,6 +147,15 @@ namespace TeamProject_TextRPG
 
             float originHp = hp;
             int fDamage = damage.CalculateDamage();
+            
+            if (fDamage <= 0)
+            {
+                Console.Write("Lv.{0} ", level);
+                Utils.Console.Write("{0}", ConsoleColor.Green, true, name);
+                Console.WriteLine(" 은(는) 회피했습니다.\n");
+                return;
+            }
+
             Console.Write("Lv.{0} ", level);
             Utils.Console.Write("{0}", ConsoleColor.Green, true, name);
             Console.Write(" 을 맞췄습니다.[{0}]\n\n", fDamage);

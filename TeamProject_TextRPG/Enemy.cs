@@ -51,13 +51,20 @@ namespace TeamProject_TextRPG
         {
             float originHp = hp;
             int fDamage = damage.CalculateDamage();
+            if (fDamage <= 0)
+            {
+                Console.Write("Lv.{0} ", level);
+                Utils.Console.Write("{0}", ConsoleColor.Red, true, name);
+                Console.WriteLine(" 은(는) 회피했습니다.\n");
+                return;
+            }
             Console.Write("Lv.{0} ", level);
             Utils.Console.Write("{0}", ConsoleColor.Red, true, name);
-            Console.Write(" 을 맞췄습니다.[{0}]\n\n", fDamage);
+            Console.Write(" 을 맞췄습니다.[{0}]\n", fDamage);
             //데미지를 계산 로직
             hp -= fDamage;
             //
-            Console.WriteLine($"Lv.{level} {name}\nHP {originHp}→{hp}");
+            Console.WriteLine($"Lv.{level} {name}\nHP {originHp}→{hp}\n");
         }
 
         public void DisplayStatus()

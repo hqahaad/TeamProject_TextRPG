@@ -30,12 +30,12 @@ namespace TeamProject_TextRPG.SkillSystem.Skills
 
         public override bool IsCostSkill()
         {
-            return order.mp < 100;
+            return order.mp > 10;
         }
 
         public override void UseCost()
         {
-            order.mp -= 100;
+            order.mp -= 10;
         }
     }
 }
