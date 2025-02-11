@@ -7,7 +7,10 @@ using System.Threading.Tasks;
 namespace TeamProject_TextRPG.Item
 {
     public class Inventory
-    {      
+    {
+        internal int count;
+
+        public int Count { get { return count; } }
         public List<InventorySlot> Inven { get; private set; }
         public Weapon EquipW { get; private set; }
         public Armor EquipA { get; private set; }

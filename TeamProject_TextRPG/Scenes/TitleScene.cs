@@ -1,4 +1,5 @@
 ﻿using TeamProject_TextRPG.GameTables;
+using TeamProject_TextRPG.Item;
 
 namespace TeamProject_TextRPG.Scenes
 {
@@ -20,7 +21,7 @@ namespace TeamProject_TextRPG.Scenes
             selecter.AddOption("1. 전사", "1");
             selecter.AddOption("2. 궁수", "2");
             selecter.AddOption("3. 도적", "3");
-            selecter.AddOption("2. 성직자", "4");
+            selecter.AddOption("4. 성직자", "4");
 
             selecter.SetExceptionMessage("잘못된 입력입니다.");
 
@@ -28,6 +29,7 @@ namespace TeamProject_TextRPG.Scenes
             selecter.Select("\n원하시는 직업을 선택해주세요.\n>>  ");
 
             Player player = new Player();
+            Inventory inven = new Inventory();
             player.name = inputName;
             player.level = 1;
             player.attackPower = 100;
@@ -39,7 +41,7 @@ namespace TeamProject_TextRPG.Scenes
             //
 
             PlayerManager.Instance.player = player;
-            PlayerManager.Instance.inventory = new();
+            PlayerManager.Instance.inventory = inven;
             SceneManager.Instance.LoadScene("로비 씬");
         }
 
