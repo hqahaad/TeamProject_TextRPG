@@ -18,6 +18,7 @@
 
             selecter.AddOption("1.상태 보기", "1",DisplayPlayer) ;
             selecter.AddOption("2.전투 시작", "2", () => SceneManager.Instance.LoadScene("배틀 씬"));
+            selecter.AddOption("3.인벤토리", "3", () => SceneManager.Instance.LoadScene("인벤토리 씬"));
             selecter.SetExceptionMessage("잘못된 입력입니다.");
 
             selecter.Display();
