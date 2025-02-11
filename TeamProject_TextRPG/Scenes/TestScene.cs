@@ -31,10 +31,12 @@ namespace TeamProject_TextRPG.Scenes
             inven.AddItem(Table<Potion>.Get().Load("콜라"), 1);
             inven.AddItem(Table<Potion>.Get().Load("콜라"), 1);
             inven.AddItem(Table<Potion>.Get().Load("콜라"), 1);
+            inven.AddItem(Table<Potion>.Get().Load("콜라"), 1);
             inven.AddItem(Table<Potion>.Get().Load("사이다"), 1);
+            inven.RemoveItem(Table<Potion>.Get().Load("콜라"));
             foreach (var item in inven.Inven)
             {
-                Console.WriteLine($"{item.Item.GetName()} {item.Count}");
+                Console.WriteLine($"{item.Item.GetName} {item.Count}");
             }
         }
     }

@@ -35,7 +35,7 @@ namespace TeamProject_TextRPG.Scenes
             player.hp = 150;
 
             //
-            player.AddSkill(new Skill_BattleCry());
+            //player.AddSkill(new Skill_BattleCry());
             //
 
             PlayerManager.Instance.player = player;

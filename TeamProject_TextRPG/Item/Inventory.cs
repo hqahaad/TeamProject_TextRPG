@@ -16,14 +16,13 @@ namespace TeamProject_TextRPG.Item
         {
             Inven = new List<InventorySlot>();
         }
-
-        
-        public void AddItem(IItem item , int count)
+ 
+        public void AddItem(IItem item , int count = 1)
         {
             //스택 가능한 포션이면
             if (item.GetItemType() == ItemType.Potion) // 포션 종류만 스택이 되니까
             {
-                InventorySlot existingSlot = Inven.Find(slot => slot.Item.GetName == item.GetName); // 같은 이름 있는지 확인
+                InventorySlot? existingSlot = Inven.Find(slot => slot.Item.GetName() == item.GetName()); // 같은 이름 있는지 확인
                 if (existingSlot != null)
                 {
                     existingSlot.Count += count; // 포션 추가
@@ -32,11 +31,11 @@ namespace TeamProject_TextRPG.Item
             }
             // 포션 아닌경우 인벤토리 슬롯에 추가
             Inven.Add(new InventorySlot(item, count));
-
         }
         public void RemoveItem(IItem item)
         {
             int removeItem = 1;
+
             if(item.GetItemType() == ItemType.Potion)
             {
                 InventorySlot slot = Inven.Find(s => s.Item == item); // 같은 이름 있는지 확인
@@ -51,38 +50,6 @@ namespace TeamProject_TextRPG.Item
             
         }
 
-        //public void EquipItem(IItem item)
-        //{
-        //    if (item is Weapon weapon)
-        //    {
-        //        if ()
-        //        {
-        //            // item.GetStat 만큼 공격력 저하
-        //            Console.WriteLine($"{item.GetDescription}무기 장착 해제");
-        //        }
-
-        //        else
-        //        {
-        //            // item.GetStat 만큼 공격력 상승
-        //            Console.WriteLine($"{item.GetDescription}무기 장착");
-        //        }
-
-        //    }
-        //    else if (item is Armor armor)
-        //    {
-        //        if (IsEquip)
-        //        {
-        //            // item.GetStat 만큼 방어력 저하
-        //            Console.WriteLine($"방어구 장착 해제");
-        //        }
-        //        else
-        //        {
-        //            // item.GetStat 만큼 방어력 상승
-        //            Console.WriteLine($"방어구 장착");
-        //        }
-
-        //    }
-        //}
         public void UsePotion(IItem item)
         {
             if (item is Potion potion)

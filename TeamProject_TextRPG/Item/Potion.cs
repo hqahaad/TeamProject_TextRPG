@@ -19,7 +19,10 @@
             IsSold = false;
             int count;
         }
-        public string GetName() => Name;
+        public string GetName()
+        {
+            return Name;
+        }
         public string GetDescription()
         {
 
