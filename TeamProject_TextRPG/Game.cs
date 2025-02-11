@@ -1,4 +1,5 @@
-﻿using TeamProject_TextRPG.Scenes;
+﻿using TeamProject_TextRPG.GameTables;
+using TeamProject_TextRPG.Scenes;
 
 namespace TeamProject_TextRPG
 {
@@ -6,6 +7,11 @@ namespace TeamProject_TextRPG
     {
         public void Start()
         {
+            new WeaponTable();
+            new ArmorTable();
+            new PotionTable();
+            new EnemyTable();
+
             SceneManager.Instance.AddScene("타이틀 씬", new TitleScene());
             SceneManager.Instance.AddScene("배틀 씬", new BattleScene());
             SceneManager.Instance.AddScene("로비 씬", new LobbyScene());

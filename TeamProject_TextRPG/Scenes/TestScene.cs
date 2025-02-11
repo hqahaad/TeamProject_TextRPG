@@ -26,17 +26,17 @@ namespace TeamProject_TextRPG.Scenes
 
         public void Start()
         {
-            inven.AddItem(Table<Weapon>.Get().Load("나무몽둥이"), 1);
-            inven.AddItem(Table<Weapon>.Get().Load("나무몽둥이"), 1);
-            inven.AddItem(Table<Potion>.Get().Load("콜라"), 1);
-            inven.AddItem(Table<Potion>.Get().Load("콜라"), 1);
-            inven.AddItem(Table<Potion>.Get().Load("콜라"), 1);
-            inven.AddItem(Table<Potion>.Get().Load("콜라"), 1);
-            inven.AddItem(Table<Potion>.Get().Load("사이다"), 1);
+            inven.AddItem(Table<Weapon>.Get().Load("나무몽둥이"));
+            inven.AddItem(Table<Weapon>.Get().Load("나무몽둥이"));
+            inven.AddItem(Table<Potion>.Get().Load("콜라"));
+            inven.AddItem(Table<Potion>.Get().Load("콜라"));
+            inven.AddItem(Table<Potion>.Get().Load("콜라"));
+            inven.AddItem(Table<Potion>.Get().Load("콜라"));
+            inven.AddItem(Table<Potion>.Get().Load("사이다"));
             inven.RemoveItem(Table<Potion>.Get().Load("콜라"));
             foreach (var item in inven.Inven)
             {
-                Console.WriteLine($"{item.SlotItem.GetName} {item.Count}");
+                Console.WriteLine($"{item.SlotItem.Name} {item.Count}");
             }
         }
     }
