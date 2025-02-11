@@ -9,6 +9,8 @@
         public bool IsSold { get; set; }
 
 
+
+
         public Potion(string name, int stat, int price, string description)
         {
             Name = name;
@@ -16,9 +18,8 @@
             Price = price;
             Description = description;
             IsSold = false;
-
-
         }
+        public string GetName() => Name;
         public string GetDescription()
         {
 
@@ -28,6 +29,10 @@
         public int GetStat()
         {
             return Stat;
+        }
+        public bool GetBool()
+        {
+            return false;
         }
 
     }

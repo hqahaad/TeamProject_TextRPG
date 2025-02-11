@@ -29,6 +29,12 @@
             return Stat;
         }
 
+        public bool GetBool()
+        {
+            return IsEquip;
+        }
+        public string GetName() => Name;
+
 
     }
 }

@@ -24,9 +24,14 @@
             string str = $"{Name} | Defense: {Stat} | {Description} | Price: {Price}G";
             return str;
         }
+        
         public int GetStat()
         {
             return Stat;
+        }
+        public bool GetBool()
+        {
+            return IsEquip;
         }
     }
 }

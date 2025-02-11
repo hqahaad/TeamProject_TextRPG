@@ -39,6 +39,7 @@ namespace TeamProject_TextRPG.Scenes
             //
 
             PlayerManager.Instance.player = player;
+            PlayerManager.Instance.inventory = new();
             SceneManager.Instance.LoadScene("로비 씬");
         }
 
