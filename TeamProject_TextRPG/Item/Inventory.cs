@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TeamProject_TextRPG.Scenes;
+using TeamProject_TextRPG.ModifierSystem;
 
 namespace TeamProject_TextRPG.Item
 {
@@ -47,8 +48,7 @@ namespace TeamProject_TextRPG.Item
                 {
                     if (slot.Count <= 1)
                     {
-                        Inven.Remove(slot);
-                        
+                        Inven.Remove(slot);                        
                     }
                     else
                     {
@@ -61,6 +61,7 @@ namespace TeamProject_TextRPG.Item
 
         public void EquipItem(EquipmentItem item)
         {
+            var player = PlayerManager.Instance.player;
             if (item.EquipmentType == EquipmentType.Weapon)
             {
                 if(EquippedWeapon != null)
@@ -68,11 +69,14 @@ namespace TeamProject_TextRPG.Item
                     if(EquippedWeapon.Name == item.Name)
                     {
                         Console.WriteLine($"{item.Name} 장착 해제");
+                        //var modifier = new StatModifier(StatType.Attack, new RemoveOperation(item.Stat));
                         EquippedWeapon = null;
                     }
                     else
                     {
                         Console.WriteLine($"{item.Name} 무기칸에 장착");
+                        var modifier = new StatModifier(StatType.Attack, new AddOperation(item.Stat));
+                        PlayerManager.Instance.player.mediator.AddModifier(modifier);
                         EquippedWeapon = item;
                     }
                     return;
@@ -80,6 +84,8 @@ namespace TeamProject_TextRPG.Item
                 else
                 {
                     Console.WriteLine($"{item.Name} 무기칸에 장착");
+                    var modifier = new StatModifier(StatType.Attack, new AddOperation(item.Stat));
+                    PlayerManager.Instance.player.mediator.AddModifier(modifier);
                     EquippedWeapon = item;
                 }
                 
@@ -91,11 +97,14 @@ namespace TeamProject_TextRPG.Item
                     if (EquippedArmor.Name == item.Name)
                     {
                         Console.WriteLine($"{item.Name} 장착 해제");
+                        // var modifier = new StatModifier(StatType.Defensive, new RemoveOperation(item.Stat));
                         EquippedArmor = null;
                     }
                     else
                     {
                         Console.WriteLine($"{item.Name} 갑옷칸에 장착");
+                        var modifier = new StatModifier(StatType.Defensive, new AddOperation(item.Stat));
+                        PlayerManager.Instance.player.mediator.AddModifier(modifier);
                         EquippedArmor = item;
                     }
                     return;                   
@@ -103,6 +112,8 @@ namespace TeamProject_TextRPG.Item
                 else
                 {
                     Console.WriteLine($"{item.Name} 갑옷칸에 장착");
+                    var modifier = new StatModifier(StatType.Defensive, new AddOperation(item.Stat));
+                    PlayerManager.Instance.player.mediator.AddModifier(modifier);
                     EquippedArmor = item;
                 }
             }
