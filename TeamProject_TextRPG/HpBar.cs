@@ -9,16 +9,16 @@ namespace TeamProject_TextRPG
 {
     public class HpBar
     {
-        private int maxHp;
-        private int Hp;
+        private float maxHp;
+        private float Hp;
 
-        public HpBar(int maxHp)
+        public HpBar(float maxHp)
         {
             this.maxHp = maxHp;
             this.Hp = maxHp; // 초기 HP는 최대 HP로 설정
         }
 
-        public void SetCurrentHp(int hp)
+        public void SetCurrentHp(float hp)
         {
             Hp = hp;
             if (Hp > maxHp) Hp = maxHp;

@@ -1,6 +1,4 @@
-﻿using TeamProject_TextRPG.GameTables;
-using TeamProject_TextRPG.Item;
-using TeamProject_TextRPG.ModifierSystem;
+﻿using TeamProject_TextRPG.Item;
 using TeamProject_TextRPG.SkillSystem.Skills;
 
 namespace TeamProject_TextRPG.Scenes
@@ -40,8 +38,7 @@ namespace TeamProject_TextRPG.Scenes
             player.maxHp = 100;
 
             //test code
-            player.mediator.AddModifier(new StatModifier(ModifierSystem.StatType.Attack,
-                new AddOperation(115), 2));
+
             //
             player.AddSkill(new Skill_BattleAttack());
             player.AddSkill(new Skill_BattleCry());
