@@ -1,6 +1,6 @@
 ﻿using TeamProject_TextRPG.BattleSystem;
 using TeamProject_TextRPG.GameTables;
-using TeamProject_TextRPG.Item;
+using TeamProject_TextRPG.InventorySystem;
 namespace TeamProject_TextRPG.Scenes
 {
     public class ShopScene

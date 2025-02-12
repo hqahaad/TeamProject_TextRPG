@@ -1,4 +1,4 @@
-﻿using TeamProject_TextRPG.Item;
+﻿using TeamProject_TextRPG.InventorySystem;
 using TeamProject_TextRPG.SkillSystem.Skills;
 
 namespace TeamProject_TextRPG.Scenes

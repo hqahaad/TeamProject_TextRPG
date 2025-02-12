@@ -5,20 +5,23 @@ using System.Text;
 using System.Threading.Tasks;
 using TeamProject_TextRPG.Scenes;
 using TeamProject_TextRPG.ModifierSystem;
+using TeamProject_TextRPG.GameTables;
 
-namespace TeamProject_TextRPG.Item
+namespace TeamProject_TextRPG.InventorySystem
 {
     public class Inventory
     {
-        
         public List<InventorySlot> Inven { get; private set; }
         public EquipmentItem? EquippedWeapon { get; private set; }
         public EquipmentItem? EquippedArmor { get; private set; }
+
         public OptionSelecter selecter = OptionSelecter.Create();
 
         public Inventory()
         {
             Inven = new List<InventorySlot>();
+
+            var a = Table<Item>.Get()?.Load("나무몽둥이");
         }
         
         public void AddItem(Item item)
@@ -43,8 +46,8 @@ namespace TeamProject_TextRPG.Item
 
             if(item.ItemType == ItemType.Potion)
             {
-                InventorySlot slot = Inven.Find(s => s.SlotItem.Name == item.Name); // 같은 이름 있는지 확인
-                if (slot.SlotItem.ItemType == ItemType.Potion)
+                InventorySlot? slot = Inven.Find(s => s.SlotItem.Name == item.Name); // 같은 이름 있는지 확인
+                if (slot?.SlotItem.ItemType == ItemType.Potion)
                 {
                     if (slot.Count <= 1)
                     {
@@ -87,8 +90,7 @@ namespace TeamProject_TextRPG.Item
                     var modifier = new StatModifier(StatType.Attack, new AddOperation(item.Stat));
                     PlayerManager.Instance.player.mediator.AddModifier(modifier);
                     EquippedWeapon = item;
-                }
-                
+                }             
             }
             else if (item.EquipmentType == EquipmentType.Armor)
             {
@@ -121,7 +123,6 @@ namespace TeamProject_TextRPG.Item
             selecter.SetExceptionMessage("잘못된 입력입니다.");
             selecter.Display();
             selecter.Select("\n원하시는 행동을 입력해주세요.\n>>  ");
-
         }
 
         public void UsePotion(Item item)

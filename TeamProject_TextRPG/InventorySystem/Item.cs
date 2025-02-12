@@ -1,4 +1,4 @@
-﻿namespace TeamProject_TextRPG.Item
+﻿namespace TeamProject_TextRPG.InventorySystem
 {
     public class Item
     {
@@ -7,7 +7,7 @@
         public ItemType ItemType { get; set; }
         public int Price { get; set; }
         public int Stat { get; set; }
-        public EquipmentItem EquipmentType { get; internal set; }
+        public EquipmentItem EquipmentType { get; set; }
     }
 
     public class EquipmentItem : Item

@@ -1,4 +1,4 @@
-﻿namespace TeamProject_TextRPG.Item
+﻿namespace TeamProject_TextRPG.InventorySystem
 {
     public class Potion : PotionItem
     {

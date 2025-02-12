@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TeamProject_TextRPG.GameTables;
-using TeamProject_TextRPG.Item;
+using TeamProject_TextRPG.InventorySystem;
 using TeamProject_TextRPG.ModifierSystem;
 
 namespace TeamProject_TextRPG.Scenes

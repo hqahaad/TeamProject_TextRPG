@@ -1,4 +1,4 @@
-﻿using TeamProject_TextRPG.Item;
+﻿using TeamProject_TextRPG.InventorySystem;
 
 namespace TeamProject_TextRPG.GameTables
 {
