@@ -17,7 +17,7 @@ namespace TeamProject_TextRPG.SkillSystem.Skills
             foreach (var unit in battle.GetUnits(FactionType.Player))
             {
                 var player = unit as Player;
-                player.mediator.AddModifier(new StatModifier(StatType.Attack, new AddOperation(10),2));
+                player.mediator.AddModifier(new StatModifier(StatType.Attack, new AddOperation(10), 2));
                 Console.WriteLine($"{player.Name}의 공격력이 10 증가했습니다!");
 
             }

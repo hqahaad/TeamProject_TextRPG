@@ -28,7 +28,7 @@ namespace TeamProject_TextRPG.InventorySystem
         public Inventory()
         {
             Inven = new List<InventorySlot>();
-           
+
             OnEquipped += (e) =>
             {
                 if (e.EquipmentType == EquipmentType.Weapon)
@@ -59,12 +59,12 @@ namespace TeamProject_TextRPG.InventorySystem
 
         }
 
-        
+
         public void AddItem(Item item)
         {
             if (item.ItemType == ItemType.Potion)
             {
-                InventorySlot? existingSlot = Inven.Find(slot => slot.SlotItem.Name == item.Name); 
+                InventorySlot? existingSlot = Inven.Find(slot => slot.SlotItem.Name == item.Name);
                 if (existingSlot != null)
                 {
                     existingSlot.Count += 1;
@@ -77,21 +77,21 @@ namespace TeamProject_TextRPG.InventorySystem
 
         public void RemoveItem(Item item)
         {
-            if(item.ItemType == ItemType.Potion)
+            if (item.ItemType == ItemType.Potion)
             {
                 InventorySlot? slot = Inven.Find(s => s.SlotItem.Name == item.Name);
-                
+
                 if (slot?.SlotItem.ItemType == ItemType.Potion)
                 {
                     if (slot.Count <= 1)
                     {
-                        Inven.Remove(slot);                        
+                        Inven.Remove(slot);
                     }
                     else
                     {
                         slot.Count -= 1;
                     }
-                }                               
+                }
             }
             else
             {
@@ -103,7 +103,7 @@ namespace TeamProject_TextRPG.InventorySystem
 
         public void EquipItem(EquipmentItem equipment)
         {
-            
+
             if (equipment.EquipmentType == EquipmentType.Weapon)
             {
                 UnEquipped(EquipmentType.Weapon);
@@ -113,13 +113,13 @@ namespace TeamProject_TextRPG.InventorySystem
             {
                 UnEquipped(EquipmentType.Armor);
                 Equipped(EquipmentType.Armor, equipment);
-            }          
-            
+            }
+
         }
 
         private void Equipped(EquipmentType equipmentType, EquipmentItem equipment)
         {
-            
+
             if (equipment == null)
                 return;
 
@@ -134,7 +134,7 @@ namespace TeamProject_TextRPG.InventorySystem
 
             OnEquipped?.Invoke(equipment);
             RemoveItem(equipment);
-            
+
         }
 
         private void UnEquipped(EquipmentType equipmentType)
@@ -161,11 +161,11 @@ namespace TeamProject_TextRPG.InventorySystem
             }
 
             //Add Item, Stat 감소
-            
+
         }
 
         public void UsePotion(Item item)
-        {            
+        {
             RemoveItem(item);
         }
     }
@@ -175,7 +175,7 @@ namespace TeamProject_TextRPG.InventorySystem
 
         public EquipmentItem SlotEquipment { get; set; }
         public int Count { get; set; }
-        
+
         public InventorySlot(Item item)
         {
             SlotItem = item; // 슬롯 해당 아이템

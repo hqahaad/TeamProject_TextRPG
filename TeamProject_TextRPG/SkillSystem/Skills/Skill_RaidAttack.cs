@@ -22,7 +22,7 @@ namespace TeamProject_TextRPG.SkillSystem.Skills
         }
 
         public override bool IsCostSkill()
-        {            
+        {
             return order.Mp > 20;
         }
 

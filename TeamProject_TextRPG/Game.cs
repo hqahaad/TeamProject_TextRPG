@@ -11,6 +11,7 @@ namespace TeamProject_TextRPG
             new ArmorTable();
             new PotionTable();
             new EnemyTable();
+            new DungeonTable();
 
             SceneManager.Instance.AddScene("테스트 씬", new TestScene());
             SceneManager.Instance.AddScene("타이틀 씬", new TitleScene());

@@ -20,18 +20,18 @@ namespace TeamProject_TextRPG.SkillSystem.Skills
         {
             var enemies = battle.GetUnits(FactionType.Enemy);
 
-            
+
             foreach (var iter in enemies)
             {
-                if (iter.IsDead()) 
+                if (iter.IsDead())
                 {
                     continue;
                 }
                 iter.GetDamage(new Damage(order.Attack));
 
-                
+
             }
-            
+
         }
         public override bool IsCostSkill()
         {

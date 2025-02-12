@@ -22,7 +22,7 @@
 
     public enum ItemType
     {
-        Equipment, 
+        Equipment,
         Potion
     }
 

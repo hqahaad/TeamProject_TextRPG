@@ -15,32 +15,32 @@ namespace TeamProject_TextRPG.GameTables
             Table<Item>.Get()?.Add("대화수단", new Weapon("대화수단", 60, 200, "디스 이스 건"));
         }
     }
-        public class ArmorTable
+    public class ArmorTable
+    {
+        public ArmorTable()
         {
-            public ArmorTable()
-            {
-                Table<Item>.Get()?.Add("소울류 갑옷", new Armor("소울류 갑옷", 1, 1, "고인물들이 입고다닌다는 전설의 갑옷"));
-                Table<Item>.Get()?.Add("티셔츠", new Armor("티셔츠", 2, 10, "색상이 다양하다"));
-                Table<Item>.Get()?.Add("천갑옷", new Armor("천갑옷", 4, 20, "천을 겹겹이 쌓아서 만든 갑옷"));
-                Table<Item>.Get()?.Add("롱패딩", new Armor("롱패딩", 6, 30, "따뜻한 롱패딩. 이상하게도 천갑옷보다 보호를 더 잘한다."));
-                Table<Item>.Get()?.Add("가죽갑옷", new Armor("가죽갑옷", 8, 40, "악어가죽으로 만든 Fashionable~"));
-                Table<Item>.Get()?.Add("플레이트메일", new Armor("플레이트메일", 10, 50, "철로 만들어진 갑옷"));
-                Table<Item>.Get()?.Add("산데비스탄", new Armor("산데비스탄", 20, 100, "I really wanna stay at your house~"));
-            }
+            Table<Item>.Get()?.Add("소울류 갑옷", new Armor("소울류 갑옷", 1, 1, "고인물들이 입고다닌다는 전설의 갑옷"));
+            Table<Item>.Get()?.Add("티셔츠", new Armor("티셔츠", 2, 10, "색상이 다양하다"));
+            Table<Item>.Get()?.Add("천갑옷", new Armor("천갑옷", 4, 20, "천을 겹겹이 쌓아서 만든 갑옷"));
+            Table<Item>.Get()?.Add("롱패딩", new Armor("롱패딩", 6, 30, "따뜻한 롱패딩. 이상하게도 천갑옷보다 보호를 더 잘한다."));
+            Table<Item>.Get()?.Add("가죽갑옷", new Armor("가죽갑옷", 8, 40, "악어가죽으로 만든 Fashionable~"));
+            Table<Item>.Get()?.Add("플레이트메일", new Armor("플레이트메일", 10, 50, "철로 만들어진 갑옷"));
+            Table<Item>.Get()?.Add("산데비스탄", new Armor("산데비스탄", 20, 100, "I really wanna stay at your house~"));
         }
+    }
 
-        public class PotionTable
+    public class PotionTable
+    {
+        public PotionTable()
         {
-            public PotionTable()
-            {
-                Table<Item>.Get()?.Add("콜라", new Potion("콜라", 1, 1, "제로를 마시면 죄책감이 덜든다"));
-                Table<Item>.Get()?.Add("사이다", new Potion("사이다", 1, 1, "이것도 제로다"));
-                Table<Item>.Get()?.Add("아메리카노", new Potion("아메리카노", 1, 1, "얼.죽.아."));
-                Table<Item>.Get()?.Add("카페라떼", new Potion("카페라떼", 2, 2, "우유가 들어가서 회복률이 좀 더 효과가 있다."));
-                Table<Item>.Get()?.Add("레드불", new Potion("레드불", 3, 3, "카페인 파워!"));
-                Table<Item>.Get()?.Add("빨간포션", new Potion("빨간포션", 10, 10, "여기서 부터는 진짜 회복약이다"));
-                Table<Item>.Get()?.Add("보약", new Potion("보약", 20, 20, "무협 게임에서 나올거 같은 보약. 수정과 맛"));
-                Table<Item>.Get()?.Add("엘릭시어", new Potion("엘릭시어", 50, 50, "최상급 포션"));
-            }
+            Table<Item>.Get()?.Add("콜라", new Potion("콜라", 1, 1, "제로를 마시면 죄책감이 덜든다"));
+            Table<Item>.Get()?.Add("사이다", new Potion("사이다", 1, 1, "이것도 제로다"));
+            Table<Item>.Get()?.Add("아메리카노", new Potion("아메리카노", 1, 1, "얼.죽.아."));
+            Table<Item>.Get()?.Add("카페라떼", new Potion("카페라떼", 2, 2, "우유가 들어가서 회복률이 좀 더 효과가 있다."));
+            Table<Item>.Get()?.Add("레드불", new Potion("레드불", 3, 3, "카페인 파워!"));
+            Table<Item>.Get()?.Add("빨간포션", new Potion("빨간포션", 10, 10, "여기서 부터는 진짜 회복약이다"));
+            Table<Item>.Get()?.Add("보약", new Potion("보약", 20, 20, "무협 게임에서 나올거 같은 보약. 수정과 맛"));
+            Table<Item>.Get()?.Add("엘릭시어", new Potion("엘릭시어", 50, 50, "최상급 포션"));
         }
+    }
 }

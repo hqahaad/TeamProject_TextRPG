@@ -8,5 +8,5 @@
         void Update();
         bool IsDead();
     }
-       
+
 }

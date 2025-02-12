@@ -17,7 +17,7 @@
 
             var selecter = OptionSelecter.Create();
 
-            selecter.AddOption("[1] 상태 보기", "1",DisplayPlayer) ;
+            selecter.AddOption("[1] 상태 보기", "1", DisplayPlayer);
             selecter.AddOption("[2] 전투 시작", "2", () => SceneManager.Instance.LoadScene("배틀 씬"));
             selecter.AddOption("[3] 인벤토리", "3", () => SceneManager.Instance.LoadScene("인벤토리 씬"));
             selecter.SetExceptionMessage("잘못된 입력입니다.");
@@ -30,7 +30,7 @@
             var player = PlayerManager.Instance.player;
 
             Console.Clear();
-            Utils.Console.WriteLine("[상태보기]",ConsoleColor.Yellow);
+            Utils.Console.WriteLine("[상태보기]", ConsoleColor.Yellow);
             Console.WriteLine("캐릭터의 정보가 표시됩니다.\n");
             Console.WriteLine("◆ LV - {0}", player.Level);
             Console.WriteLine("◆ {0} ({1})", player.Name, player.className);

@@ -69,7 +69,7 @@ namespace TeamProject_TextRPG.GameObject
         }
 
         #region 플레이어의 행동
-        
+
         private void SelectAction(IBattle battle)
         {
             Console.Clear();
@@ -130,7 +130,7 @@ namespace TeamProject_TextRPG.GameObject
             {
                 var skill = skillList[i];
 
-                selecter.AddOption($"{(i+1)}. {skill.SkillName()} - {skill.SkillDescription()}", (i + 1).ToString(), () => Skill(battle, skill));
+                selecter.AddOption($"{(i + 1)}. {skill.SkillName()} - {skill.SkillDescription()}", (i + 1).ToString(), () => Skill(battle, skill));
                 //스킬 조건 체크 Action
             }
             selecter.AddOption(string.Empty, "0", () => SelectAction(battle));
