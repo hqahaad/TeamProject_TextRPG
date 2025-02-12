@@ -7,6 +7,10 @@ namespace TeamProject_TextRPG
     {
         public void Start()
         {
+            Utils.Console.ConsoleGauge(50, 100, duration: 20, '■', ConsoleColor.Red, ConsoleColor.Green, ConsoleColor.Yellow, ConsoleColor.Red);
+
+            Console.ReadLine();
+
             new WeaponTable();
             new ArmorTable();
             new PotionTable();

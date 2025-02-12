@@ -61,13 +61,12 @@ namespace TeamProject_TextRPG.InventorySystem
         
         public void AddItem(Item item)
         {
-            //스택 가능한 포션이면
-            if (item.ItemType == ItemType.Potion) // 포션 종류만 스택이 되니까
+            if (item.ItemType == ItemType.Potion)
             {
-                InventorySlot? existingSlot = Inven.Find(slot => slot.SlotItem.Name == item.Name); // 같은 이름 있는지 확인
+                InventorySlot? existingSlot = Inven.Find(slot => slot.SlotItem.Name == item.Name); 
                 if (existingSlot != null)
                 {
-                    existingSlot.Count += 1; // 포션 추가
+                    existingSlot.Count += 1;
                     return;
                 }
             }
@@ -79,7 +78,7 @@ namespace TeamProject_TextRPG.InventorySystem
         {
             if(item.ItemType == ItemType.Potion)
             {
-                InventorySlot? slot = Inven.Find(s => s.SlotItem.Name == item.Name); // 같은 이름 있는지 확인
+                InventorySlot? slot = Inven.Find(s => s.SlotItem.Name == item.Name);
                 
                 if (slot?.SlotItem.ItemType == ItemType.Potion)
                 {

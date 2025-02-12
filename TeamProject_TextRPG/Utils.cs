@@ -47,6 +47,37 @@
                     System.Console.ResetColor();
                 }
             }
+
+            public static void ConsoleGauge(float current, float max, int duration, char fillSymbol, ConsoleColor frontColor, ConsoleColor color1 = ConsoleColor.Gray, ConsoleColor color2 = ConsoleColor.Gray, ConsoleColor color3 = ConsoleColor.Gray)
+            {
+                float fillAmount = current / max;
+
+                int fillDur = (int)MathF.Round(duration * fillAmount);
+                int emptyDur = duration - fillDur;
+                int multiply = char.GetUnicodeCategory(fillSymbol) == System.Globalization.UnicodeCategory.OtherSymbol ? 2 : 1;
+
+                string filledPart = new string(fillSymbol, fillDur);
+                string emptyPart = new string(' ', emptyDur * multiply);
+
+                ConsoleColor gaugeColor;
+
+                if (fillAmount < 0.3f)
+                {
+                    gaugeColor = color1;
+                }
+                else if (fillAmount < 0.6f)
+                {
+                    gaugeColor = color2;
+                }
+                else
+                {
+                    gaugeColor = color3;
+                }
+
+                Console.Write("[", frontColor);
+                Console.Write("{0}{1}", gaugeColor, true, filledPart, emptyPart);
+                Console.Write("]", frontColor);
+            }
         }
     }
 }
