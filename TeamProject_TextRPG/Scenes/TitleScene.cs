@@ -36,7 +36,8 @@ namespace TeamProject_TextRPG.Scenes
             player.level = 1;
             player.attackPower = 10;
             player.defensivePower = 50;
-            player.hp = 10000;
+            player.hp = 100;
+            player.maxHp = 100;
 
             //test code
             player.mediator.AddModifier(new StatModifier(ModifierSystem.StatType.Attack,
