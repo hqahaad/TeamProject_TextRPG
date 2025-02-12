@@ -37,6 +37,7 @@ namespace TeamProject_TextRPG.Scenes
             player.defensivePower = 50;
             player.hp = 100;
             player.maxHp = 100;
+            player.mp = 100;
 
             //test code
 

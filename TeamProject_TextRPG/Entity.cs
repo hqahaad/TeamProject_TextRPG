@@ -13,8 +13,10 @@ namespace TeamProject_TextRPG
 
         public string? name;
         public int level;
-        public float maxHp;
-        public float hp;
+        public float maxHp = 100.0f;
+        public float hp = 0.0f;
+        public float maxMp = 100.0f;
+        public float mp = 0.0f;
         public float attackPower;
         public float defensivePower;
 
