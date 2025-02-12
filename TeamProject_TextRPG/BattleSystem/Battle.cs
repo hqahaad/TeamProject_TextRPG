@@ -11,14 +11,12 @@
         private readonly SortedDictionary<FactionType, List<IUnit>> unitDict = new();
         private readonly List<IBattleUpdateHandler> updaters = new();
         private BattleState battleState = BattleState.None;
-        public int TurnCount { get; } = 0;
 
         public Battle()
         {
             AddUpdateHandler(new VictoryPlayer(() => battleState = BattleState.Victory));
             AddUpdateHandler(new DefeatPlayer(() => battleState = BattleState.Defeat));
         }
-
 
         public void AddUpdateHandler(IBattleUpdateHandler handler)
         {

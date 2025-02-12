@@ -56,7 +56,7 @@
                 int emptyDur = duration - fillDur;
                 int multiply = char.GetUnicodeCategory(fillSymbol) == System.Globalization.UnicodeCategory.OtherSymbol ? 2 : 1;
 
-                string filledPart = new string(fillSymbol, fillDur);
+                string filledPart = fillDur > 0 ? new string(fillSymbol, fillDur) : string.Empty;
                 string emptyPart = new string(' ', emptyDur * multiply);
 
                 ConsoleColor gaugeColor;

@@ -17,17 +17,18 @@ namespace TeamProject_TextRPG.SkillSystem.Skills
 
         private void Skill_Attack(IUnit unit)
         {
-            unit.GetDamage(new Damage(order.attackPower * 2));
+            Console.Clear();
+            unit.GetDamage(new Damage(order.Attack * 2));
         }
 
         public override bool IsCostSkill()
         {            
-            return order.mp > 20;
+            return order.Mp > 20;
         }
 
         public override void UseCost()
         {
-            order.mp -= 20;
+            order.Mp -= 20;
         }
     }
 }

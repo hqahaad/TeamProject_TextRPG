@@ -17,25 +17,24 @@ namespace TeamProject_TextRPG.SkillSystem.Skills
             skillDescription = "모든 아군이 방어력 10 증가합니다";
         }
 
-
         public override void SkillAction(IBattle battle)
         {
             foreach (var units in battle.GetUnits(FactionType.Player))
             {
                 var player = units as Player;
                 player.mediator.AddModifier(new StatModifier(StatType.Defensive, new AddOperation(10), 2));
-                Console.WriteLine($"{player.name}의 방어력 10 증가했습니다!");
+                Console.WriteLine($"{player.Name}의 방어력 10 증가했습니다!");
 
             }
         }
 
         public override bool IsCostSkill()
         {
-            return order.mp > 10;
+            return order.Mp > 10;
         }
         public override void UseCost()
         {
-            order.mp -= 10;
+            order.Mp -= 10;
         }
     }
 }

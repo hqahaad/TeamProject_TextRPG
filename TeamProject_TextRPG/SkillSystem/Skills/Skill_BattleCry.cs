@@ -18,19 +18,19 @@ namespace TeamProject_TextRPG.SkillSystem.Skills
             {
                 var player = unit as Player;
                 player.mediator.AddModifier(new StatModifier(StatType.Attack, new AddOperation(10),2));
-                Console.WriteLine($"{player.name}의 공격력이 10 증가했습니다!");
+                Console.WriteLine($"{player.Name}의 공격력이 10 증가했습니다!");
 
             }
         }
 
         public override bool IsCostSkill()
         {
-            return order.mp > 10;
+            return order.Mp > 10;
         }
 
         public override void UseCost()
         {
-            order.mp -= 10;
+            order.Mp -= 10;
         }
     }
 }

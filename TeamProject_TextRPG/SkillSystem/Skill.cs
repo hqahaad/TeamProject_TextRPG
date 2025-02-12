@@ -21,7 +21,6 @@ namespace TeamProject_TextRPG.SkillSystem
             {
                 return false;
             }
-
             SkillAction(battle);
             UseCost();
             CastEnd();

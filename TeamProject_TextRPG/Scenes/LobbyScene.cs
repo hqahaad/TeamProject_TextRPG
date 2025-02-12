@@ -27,14 +27,16 @@
 
         private void DisplayPlayer()
         {
+            var player = PlayerManager.Instance.player;
+
             Console.Clear();
             Utils.Console.WriteLine("[상태보기]",ConsoleColor.Yellow);
             Console.WriteLine("캐릭터의 정보가 표시됩니다.\n");
-            Console.WriteLine("◆ LV - {0}", PlayerManager.Instance.player.level);
-            Console.WriteLine("◆ {0} ({1})", PlayerManager.Instance.player.name, PlayerManager.Instance.player.className);
-            Console.WriteLine("◆ 공격력 - {0}", PlayerManager.Instance.player.attackPower);
-            Console.WriteLine("◆ 방어력 - {0}", PlayerManager.Instance.player.defensivePower);
-            Console.WriteLine("◆ 체력 - {0}", PlayerManager.Instance.player.hp);
+            Console.WriteLine("◆ LV - {0}", player.Level);
+            Console.WriteLine("◆ {0} ({1})", player.Name, player.className);
+            Console.WriteLine("◆ 공격력 - {0}", player.Attack);
+            Console.WriteLine("◆ 방어력 - {0}", player.Defensive);
+            Console.WriteLine("◆ 체력 - {0}", player.Hp);
             Console.WriteLine("◆ Gold - 1500 G");
 
             var selecter = OptionSelecter.Create();

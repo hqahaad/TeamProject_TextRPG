@@ -14,6 +14,23 @@ namespace TeamProject_TextRPG.GameObject
         public float stressGauge = 0.0f;
         public float maxStressGauge = 100.0f;
 
+        public Player(string name, string className, float att, float def, float maxHp, float maxMp, params Skill[] skills)
+        {
+            this.name = name;
+            this.className = className;
+            this.attackPower = att;
+            this.defensivePower = def;
+            this.maxHp = maxHp;
+            this.hp = maxHp;
+            this.maxMp = maxMp;
+            this.mp = maxMp;
+
+            foreach (var iter in skills)
+            {
+                AddSkill(iter);
+            }
+        }
+
         public void CastTarget(IBattle battle, FactionType faction, Action<IUnit> action)
         {
             var units = battle.GetUnits(faction);
@@ -51,6 +68,7 @@ namespace TeamProject_TextRPG.GameObject
         }
 
         #region 플레이어의 행동
+        
         private void SelectAction(IBattle battle)
         {
             Console.Clear();
@@ -111,7 +129,7 @@ namespace TeamProject_TextRPG.GameObject
             {
                 var skill = skillList[i];
 
-                selecter.AddOption($"1. {skill.SkillName()} - {skill.SkillDescription()}", (i + 1).ToString(), () => Skill(battle, skill));
+                selecter.AddOption($"{(i+1)}. {skill.SkillName()} - {skill.SkillDescription()}", (i + 1).ToString(), () => Skill(battle, skill));
                 //스킬 조건 체크 Action
             }
             selecter.AddOption(string.Empty, "0", () => SelectAction(battle));
@@ -123,6 +141,8 @@ namespace TeamProject_TextRPG.GameObject
 
         private void Skill(IBattle battle, Skill skill)
         {
+            Console.Clear();
+
             if (!skill.CastSkill(battle))
             {
                 SelectAction(battle);
@@ -172,7 +192,6 @@ namespace TeamProject_TextRPG.GameObject
 
             stressGauge += fDamage / 2; // 데미지 양에 따라 스트레스 증가
             DisplayStatus();
-
         }
 
         public void DisplayStatus()
@@ -180,24 +199,18 @@ namespace TeamProject_TextRPG.GameObject
             Console.WriteLine("\n[내 정보]");
             Console.WriteLine($"Lv.{level} {name} ({className})");
 
-
             Utils.Console.ConsoleGauge(hp, maxHp, 20, '■',
             ConsoleColor.Red, ConsoleColor.Red, ConsoleColor.Red, ConsoleColor.Red);
             Console.WriteLine($" HP : {hp / maxHp * 100f:F0}%");
-
-
 
             Utils.Console.ConsoleGauge(mp, maxMp, 20, '■',
             ConsoleColor.Blue, ConsoleColor.Blue, ConsoleColor.Blue, ConsoleColor.Blue);
             Console.WriteLine($" MP : {mp / maxMp * 100f:F0}%");
 
-
-
-
             Utils.Console.ConsoleGauge(stressGauge, maxStressGauge, 20, '■',
             ConsoleColor.Red, ConsoleColor.Green, ConsoleColor.Yellow, ConsoleColor.Red);
             Console.WriteLine($" 스트레스 : {stressGauge / maxStressGauge * 100f:F0}%");
-            Console.WriteLine("스트레스가 많으면 안좋은 일이 일어납니다!!");
+            Console.WriteLine("\n스트레스가 많으면 안좋은 일이 일어납니다!!");
         }
 
         public bool IsDead()

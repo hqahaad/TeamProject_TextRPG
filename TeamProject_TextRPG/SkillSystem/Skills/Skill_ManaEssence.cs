@@ -12,7 +12,7 @@ namespace TeamProject_TextRPG.SkillSystem.Skills
     {
         public Skill_ManaEssence()
         {
-            skillName = "날쌘 발";
+            skillName = "마나 회복";
             skillDescription = "모든 아군이 마나 30을 얻습니다";
         }
 
@@ -20,18 +20,18 @@ namespace TeamProject_TextRPG.SkillSystem.Skills
         {
             foreach (var unit in battle.GetUnits(FactionType.Player))
             {
-                ((Player)unit).mp += 30;
-                Console.WriteLine($"{((Player)unit).name}의 마나가 30 증가했습니다!");
+                ((Player)unit).Mp += 30;
+                Console.WriteLine($"{((Player)unit).Name}의 마나가 30 증가했습니다!");
             }
         }
         public override bool IsCostSkill()
         {
-            return order.mp > 20;
+            return order.Mp > 20;
         }
 
         public override void UseCost()
         {
-            order.mp -= 20;
+            order.Mp -= 20;
         }
     }
 }

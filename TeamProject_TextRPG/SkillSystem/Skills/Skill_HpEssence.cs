@@ -20,18 +20,18 @@ namespace TeamProject_TextRPG.SkillSystem.Skills
         {
             foreach (var unit in battle.GetUnits(FactionType.Player))
             {
-                ((Player)unit).hp += 30;
-                Console.WriteLine($"{((Player)unit).name}의 체력 30을 얻었습니다!");
+                ((Player)unit).Hp += 30;
+                Console.WriteLine($"{((Player)unit).Name}의 체력 30을 얻었습니다!");
             }
         }
         public override bool IsCostSkill()
         {
-            return order.mp > 20;
+            return order.Mp > 20;
         }
 
         public override void UseCost()
         {
-            order.mp -= 20;
+            order.Mp -= 20;
         }
     }
 }

@@ -11,14 +11,53 @@ namespace TeamProject_TextRPG.GameObject
     {
         public readonly StatMediator mediator = new();
 
-        public string? name;
-        public int level;
-        public float maxHp = 100.0f;
-        public float hp = 0.0f;
-        public float maxMp = 100.0f;
-        public float mp = 0.0f;
-        public float attackPower;
-        public float defensivePower;
+        protected string name;
+        protected int level;
+        protected float maxHp;
+        protected float hp;
+        protected float maxMp;
+        protected float mp;
+        protected float attackPower;
+        protected float defensivePower;
+
+        public abstract void Update();
+
+        public string Name
+        {
+            get
+            {
+                return name;
+            }
+        }
+
+        public int Level
+        {
+            get { return level; }
+        }
+
+        public float Hp
+        {
+            get
+            {
+                return Math.Clamp(hp, 0, maxHp);
+            }
+            set
+            {
+                hp = Math.Clamp(value, 0, maxHp);
+            }
+        }
+
+        public float Mp
+        {
+            get
+            {
+                return Math.Clamp(mp, 0, maxMp);
+            }
+            set
+            {
+                mp = Math.Clamp(value, 0, maxMp);
+            }
+        }
 
         public float Attack
         {
@@ -39,8 +78,6 @@ namespace TeamProject_TextRPG.GameObject
                 return q.Value;
             }
         }
-
-        public abstract void Update();
     }
 
     public enum StatType
