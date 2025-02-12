@@ -21,7 +21,7 @@ namespace TeamProject_TextRPG.InventorySystem
         {
             Inven = new List<InventorySlot>();
 
-            var a = Table<Item>.Get()?.Load("나무몽둥이");
+            
         }
         
         public void AddItem(Item item)

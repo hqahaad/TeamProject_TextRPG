@@ -14,7 +14,7 @@ namespace TeamProject_TextRPG
         public int mp = 100;
 
         private StressGauge stressGauge = new StressGauge(100); // 스트레스 게이지 추가
-        private HpBar HpBar = new HpBar(100);// 체력바 추가
+        private HpBar HpBar { get; set; } = new HpBar(100);// 체력바 추가
 
         public void CastTarget(IBattle battle, FactionType faction, Action<IUnit> action)
         {
@@ -129,6 +129,7 @@ namespace TeamProject_TextRPG
             {
                 SelectAction(battle);
             }
+            HpBar.UpdateDisplay();
             var selecter = OptionSelecter.Create();
             selecter.SetExceptionMessage("잘못된 입력입니다");
             selecter.AddOption("\n0. 다음", "0");
@@ -205,5 +206,6 @@ namespace TeamProject_TextRPG
             skill.SetOrder(this);
             skillList.Add(skill);
         }
+       
     }
 }

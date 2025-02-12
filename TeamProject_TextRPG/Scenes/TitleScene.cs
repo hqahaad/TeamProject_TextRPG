@@ -43,6 +43,10 @@ namespace TeamProject_TextRPG.Scenes
             player.AddSkill(new Skill_BattleAttack());
             player.AddSkill(new Skill_BattleCry());
             player.AddSkill(new Skill_RaidAttack());
+            player.AddSkill(new Skill_QuickMovements());
+            player.AddSkill(new Skill_ManaEssence());
+            player.AddSkill(new Skill_HpEssence());
+
             //
 
             PlayerManager.Instance.player = player;
