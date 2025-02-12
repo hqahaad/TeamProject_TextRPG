@@ -23,22 +23,7 @@ namespace TeamProject_TextRPG.Scenes
 
         public void Start()
         {
-            Stats stat = new Stats();
 
-            var mod = new StatModifier(StatType.Att, new MultiplyOperation(2));
-
-            stat.mediator.AddModifier(new StatModifier(StatType.Att, new AddOperation(12)));
-            stat.mediator.AddModifier(new StatModifier(StatType.Att, new AddOperation(12)));
-            stat.mediator.AddModifier(new StatModifier(StatType.Att, new AddOperation(12)));
-            stat.mediator.AddModifier(mod);
-            stat.mediator.AddModifier(new StatModifier(StatType.Att, new AddOperation(12)));
-            stat.mediator.AddModifier(new StatModifier(StatType.Att, new AddOperation(12)));
-
-            Console.WriteLine(stat.Attack);
-
-            mod.Dispose();
-
-            Console.WriteLine(stat.Attack);
         }
     }
 }

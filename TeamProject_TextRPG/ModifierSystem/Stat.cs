@@ -13,7 +13,7 @@ namespace TeamProject_TextRPG.ModifierSystem
 
     public enum StatType
     {
-        Hp,
-        Att
+        Attack,
+        Defensive
     }
 }

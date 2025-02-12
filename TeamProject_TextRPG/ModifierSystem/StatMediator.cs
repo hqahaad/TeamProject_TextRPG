@@ -51,9 +51,9 @@ namespace TeamProject_TextRPG.ModifierSystem
     public class Query
     {
         public readonly StatType StatType;
-        public int Value;
+        public float Value;
 
-        public Query(StatType statType, int value)
+        public Query(StatType statType, float value)
         {
             StatType = statType;
             Value = value;

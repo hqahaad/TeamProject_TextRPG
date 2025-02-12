@@ -2,11 +2,11 @@
 
 namespace TeamProject_TextRPG
 {
-    public class Enemy : Unit, IUnit
+    public class Enemy : Entity, IUnit
     {
         public Enemy() { }
 
-        public Enemy(string name, int level, int hp, float attackPower, float defensivePower)
+        public Enemy(string name, int level, float hp, float attackPower, float defensivePower)
         {
             this.name = name;
             this.level = level;
@@ -30,6 +30,11 @@ namespace TeamProject_TextRPG
             selecter.AddOption("\n0. 다음", "0");
             selecter.Display();
             selecter.Select();
+        }
+
+        public override void Update()
+        {
+            mediator.Update();
         }
 
         public static Enemy Clone(Enemy origin)
