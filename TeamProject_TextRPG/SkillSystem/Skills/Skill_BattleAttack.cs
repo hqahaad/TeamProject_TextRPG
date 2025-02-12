@@ -27,7 +27,7 @@ namespace TeamProject_TextRPG.SkillSystem.Skills
                 {
                     continue;
                 }
-                iter.GetDamage(new Damage(order.attackPower));
+                iter.GetDamage(new Damage(order.Attack));
 
                 
             }

@@ -14,6 +14,7 @@ namespace TeamProject_TextRPG
         public int mp = 100;
 
         private StressGauge stressGauge = new StressGauge(100); // 스트레스 게이지 추가
+        private HpBar HpBar = new HpBar(100);// 체력바 추가
 
         public void CastTarget(IBattle battle, FactionType faction, Action<IUnit> action)
         {
@@ -168,6 +169,8 @@ namespace TeamProject_TextRPG
             //Console.WriteLine($"Lv.{level} {name} 을(를) 맞췄습니다. [{fDamage}]\n");
             //데미지를 계산 로직
             hp -= fDamage;
+            HpBar.SetCurrentHp(hp);
+            HpBar.UpdateDisplay();
             //
             int stressIncreaseAmount = fDamage/2; // 데미지 양에 따라 스트레스 증가
             stressGauge.IncreaseStress(stressIncreaseAmount);
@@ -182,6 +185,7 @@ namespace TeamProject_TextRPG
             Console.WriteLine("\n[내 정보]");
             Console.WriteLine($"Lv.{level} {name} ({className})");
             Console.WriteLine($"HP : {hp}");
+            HpBar.UpdateDisplay();
             double stressPercentage = stressGauge.GetStressPercentage() * 100;
             
             stressGauge.UpdateDisplay(); // 스트레스 게이지 업데이트

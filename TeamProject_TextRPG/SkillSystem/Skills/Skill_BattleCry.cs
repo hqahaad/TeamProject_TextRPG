@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
-using TeamProject_TextRPG.BattleSystem;
+﻿using TeamProject_TextRPG.BattleSystem;
+using TeamProject_TextRPG.ModifierSystem;
 
 namespace TeamProject_TextRPG.SkillSystem.Skills
 {
@@ -20,11 +15,10 @@ namespace TeamProject_TextRPG.SkillSystem.Skills
         {
             foreach (var unit in battle.GetUnits(FactionType.Player))
             {
+                var player = unit as Player;
+                player.mediator.AddModifier(new StatModifier(StatType.Attack, new AddOperation(10),2));
+                Console.WriteLine($"{player.name}의 공격력이 10 증가했습니다!");
 
-
-                   ((Player)unit).attackPower += 10;
-                    Console.WriteLine($"{((Player)unit).name}의 공격력이 10 증가했습니다!");
-                
             }
         }
 
