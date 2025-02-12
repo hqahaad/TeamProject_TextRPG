@@ -7,6 +7,7 @@
         public ItemType ItemType { get; set; }
         public int Price { get; set; }
         public int Stat { get; set; }
+        public EquipmentItem EquipmentType { get; internal set; }
     }
 
     public class EquipmentItem : Item

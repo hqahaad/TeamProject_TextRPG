@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TeamProject_TextRPG.Scenes;
 
 namespace TeamProject_TextRPG.Item
 {
@@ -12,12 +13,13 @@ namespace TeamProject_TextRPG.Item
         public List<InventorySlot> Inven { get; private set; }
         public EquipmentItem? EquippedWeapon { get; private set; }
         public EquipmentItem? EquippedArmor { get; private set; }
+        public OptionSelecter selecter = OptionSelecter.Create();
 
         public Inventory()
         {
             Inven = new List<InventorySlot>();
         }
- 
+        
         public void AddItem(Item item)
         {
             //스택 가능한 포션이면
@@ -46,6 +48,7 @@ namespace TeamProject_TextRPG.Item
                     if (slot.Count <= 1)
                     {
                         Inven.Remove(slot);
+                        
                     }
                     else
                     {
@@ -64,12 +67,19 @@ namespace TeamProject_TextRPG.Item
                 {
                     if(EquippedWeapon.Name == item.Name)
                     {
+                        Console.WriteLine($"{item.Name} 장착 해제");
+                        EquippedWeapon = null;
+                    }
+                    else
+                    {
+                        Console.WriteLine($"{item.Name} 무기칸에 장착");
                         EquippedWeapon = item;
-                    }                    
+                    }
                     return;
                 }                
                 else
                 {
+                    Console.WriteLine($"{item.Name} 무기칸에 장착");
                     EquippedWeapon = item;
                 }
                 
@@ -80,25 +90,44 @@ namespace TeamProject_TextRPG.Item
                 {
                     if (EquippedArmor.Name == item.Name)
                     {
-                        EquippedArmor = (Armor)item;
+                        Console.WriteLine($"{item.Name} 장착 해제");
+                        EquippedArmor = null;
                     }
-                    return;
+                    else
+                    {
+                        Console.WriteLine($"{item.Name} 갑옷칸에 장착");
+                        EquippedArmor = item;
+                    }
+                    return;                   
                 }
                 else
                 {
-                    EquippedArmor = (Armor)item;
+                    Console.WriteLine($"{item.Name} 갑옷칸에 장착");
+                    EquippedArmor = item;
                 }
             }
+            selecter.AddOption("\n0 나가기", "0", () => SceneManager.Instance.LoadScene("로비 씬"));
+            selecter.SetExceptionMessage("잘못된 입력입니다.");
+            selecter.Display();
+            selecter.Select("\n원하시는 행동을 입력해주세요.\n>>  ");
+
         }
 
         public void UsePotion(Item item)
         {
-             Console.WriteLine($"포션을 사용해 {item.Stat} HP 힐링!");
+            Console.WriteLine($"포션을 사용해 {item.Stat} HP 힐링!");
+            RemoveItem(item);
+            selecter.AddOption("\n0 나가기", "0", () => SceneManager.Instance.LoadScene("로비 씬"));
+            selecter.SetExceptionMessage("잘못된 입력입니다.");
+            selecter.Display();
+            selecter.Select("\n원하시는 행동을 입력해주세요.\n>>  ");
         }
     }
     public class InventorySlot
     {
         public Item SlotItem { get; set; }
+
+        public EquipmentItem SlotEquipment { get; set; }
         public int Count { get; set; }
         
         public InventorySlot(Item item)
