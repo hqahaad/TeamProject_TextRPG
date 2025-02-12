@@ -40,4 +40,10 @@ namespace TeamProject_TextRPG
 
         public abstract void Update();
     }
+
+    public enum StatType
+    {
+        Attack,
+        Defensive
+    }
 }
