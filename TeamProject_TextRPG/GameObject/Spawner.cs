@@ -1,6 +1,6 @@
-﻿namespace TeamProject_TextRPG
+﻿namespace TeamProject_TextRPG.GameObject
 {
-    public class Spawner
+    public class EnemySpawner
     {
         public List<Enemy> Spawn(int min, int max, params Enemy[] enemys)
         {

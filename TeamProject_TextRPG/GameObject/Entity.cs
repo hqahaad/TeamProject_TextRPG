@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TeamProject_TextRPG.ModifierSystem;
 
-namespace TeamProject_TextRPG
+namespace TeamProject_TextRPG.GameObject
 {
     public abstract class Entity
     {

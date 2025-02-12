@@ -1,4 +1,5 @@
 ﻿using System;
+using TeamProject_TextRPG.GameObject;
 using TeamProject_TextRPG.GameTables;
 using TeamProject_TextRPG.InventorySystem;
 

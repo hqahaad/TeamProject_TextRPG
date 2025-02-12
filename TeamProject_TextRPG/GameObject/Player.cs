@@ -4,7 +4,7 @@ using TeamProject_TextRPG.BattleSystem;
 using TeamProject_TextRPG.SkillSystem;
 
 
-namespace TeamProject_TextRPG
+namespace TeamProject_TextRPG.GameObject
 {
     public class Player : Entity, IUnit
     {
@@ -80,7 +80,7 @@ namespace TeamProject_TextRPG
             Console.Clear();
             Utils.Console.WriteLine("Battle!\n", ConsoleColor.DarkYellow);
 
-            CastTarget(battle, FactionType.Enemy, (u) => Attacking(u)); 
+            CastTarget(battle, FactionType.Enemy, (u) => Attacking(u));
         }
 
         private void Attacking(IUnit unit)
@@ -153,7 +153,7 @@ namespace TeamProject_TextRPG
         {
             float originHp = hp;
             int fDamage = damage.CalculateDamage();
-            
+
             if (fDamage <= 0)
             {
                 Console.Write("Lv.{0} ", level);
@@ -168,35 +168,35 @@ namespace TeamProject_TextRPG
             Console.WriteLine($"Lv.{level} {name} 을(를) 맞췄습니다. [{fDamage}]\n");
             //데미지를 계산 로직
             hp -= fDamage;
-           
+
 
             stressGauge += fDamage / 2; // 데미지 양에 따라 스트레스 증가
             DisplayStatus();
-                                
+
         }
 
         public void DisplayStatus()
         {
             Console.WriteLine("\n[내 정보]");
             Console.WriteLine($"Lv.{level} {name} ({className})");
-            
+
 
             Utils.Console.ConsoleGauge(hp, maxHp, 20, '■',
             ConsoleColor.Red, ConsoleColor.Red, ConsoleColor.Red, ConsoleColor.Red);
-            Console.WriteLine($" HP : {(hp / maxHp) * 100f:F0}%");
-            
+            Console.WriteLine($" HP : {hp / maxHp * 100f:F0}%");
+
 
 
             Utils.Console.ConsoleGauge(mp, maxMp, 20, '■',
             ConsoleColor.Blue, ConsoleColor.Blue, ConsoleColor.Blue, ConsoleColor.Blue);
-            Console.WriteLine($" MP : {(mp / maxMp) * 100f:F0}%");
-            
+            Console.WriteLine($" MP : {mp / maxMp * 100f:F0}%");
 
 
 
-            Utils.Console.ConsoleGauge(stressGauge, maxStressGauge, 20,'■',
+
+            Utils.Console.ConsoleGauge(stressGauge, maxStressGauge, 20, '■',
             ConsoleColor.Red, ConsoleColor.Green, ConsoleColor.Yellow, ConsoleColor.Red);
-            Console.WriteLine($" 스트레스 : {(stressGauge / maxStressGauge) * 100f:F0}%");
+            Console.WriteLine($" 스트레스 : {stressGauge / maxStressGauge * 100f:F0}%");
             Console.WriteLine("스트레스가 많으면 안좋은 일이 일어납니다!!");
         }
 
@@ -212,6 +212,6 @@ namespace TeamProject_TextRPG
             skill.SetOrder(this);
             skillList.Add(skill);
         }
-       
+
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace TeamProject_TextRPG
+﻿namespace TeamProject_TextRPG.Scenes
 {
     public interface IScene
     {

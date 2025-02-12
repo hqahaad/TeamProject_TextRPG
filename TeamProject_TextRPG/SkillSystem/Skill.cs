@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TeamProject_TextRPG.BattleSystem;
+using TeamProject_TextRPG.GameObject;
 
 namespace TeamProject_TextRPG.SkillSystem
 {
