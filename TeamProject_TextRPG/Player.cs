@@ -185,13 +185,13 @@ namespace TeamProject_TextRPG
 
             Utils.Console.ConsoleGauge(hp, maxHp, 20, '■',
             ConsoleColor.Red, ConsoleColor.Red, ConsoleColor.Red, ConsoleColor.Red);
-            Console.WriteLine($" 체력 : {(hp / maxHp) * 100f:F0}%");
+            Console.WriteLine($" HP : {(hp / maxHp) * 100f:F0}%");
             
 
 
             Utils.Console.ConsoleGauge(mp, maxMp, 20, '■',
             ConsoleColor.Blue, ConsoleColor.Blue, ConsoleColor.Blue, ConsoleColor.Blue);
-            Console.WriteLine($" 마나 : {(mp / maxMp) * 100f:F0}%");
+            Console.WriteLine($" MP : {(mp / maxMp) * 100f:F0}%");
             
 
 
