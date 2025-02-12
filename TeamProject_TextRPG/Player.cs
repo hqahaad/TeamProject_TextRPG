@@ -6,7 +6,7 @@ using TeamProject_TextRPG.SkillSystem;
 
 namespace TeamProject_TextRPG
 {
-    public class Player : Unit, IUnit
+    public class Player : Entity, IUnit
     {
         private List<Skill> skillList = new();
 
@@ -81,10 +81,10 @@ namespace TeamProject_TextRPG
             Console.Clear();
             Utils.Console.WriteLine("Battle!\n", ConsoleColor.DarkYellow);
 
-            CastTarget(battle, FactionType.Enemy, (u) => Attack(u)); 
+            CastTarget(battle, FactionType.Enemy, (u) => Attacking(u)); 
         }
 
-        private void Attack(IUnit unit)
+        private void Attacking(IUnit unit)
         {
             Console.Clear();
             Utils.Console.WriteLine("Battle!!\n", ConsoleColor.DarkYellow);
@@ -92,7 +92,7 @@ namespace TeamProject_TextRPG
             Utils.Console.Write(name, ConsoleColor.Green);
             Console.WriteLine(" 의 공격!");
             //Console.WriteLine($"{name} 의 공격!");
-            unit.GetDamage(new Damage(attackPower));
+            unit.GetDamage(new Damage(Attack));
 
             var selecter = OptionSelecter.Create();
             selecter.SetExceptionMessage("잘못된 입력입니다");
@@ -142,6 +142,11 @@ namespace TeamProject_TextRPG
         public void DoAction(IBattle battle)
         {
             SelectAction(battle);
+        }
+
+        public override void Update()
+        {
+            mediator.Update();
         }
 
         public void GetDamage(Damage damage)

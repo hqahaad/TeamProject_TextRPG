@@ -8,12 +8,12 @@ namespace TeamProject_TextRPG.ModifierSystem
 {
     public interface IStatModifierOrder
     {
-        int Apply(IEnumerable<StatModifier> mods, int baseValue);
+        float Apply(IEnumerable<StatModifier> mods, float baseValue);
     }
 
     public class NormalStatModifierOrder : IStatModifierOrder
     {
-        public int Apply(IEnumerable<StatModifier> mods, int baseValue)
+        public float Apply(IEnumerable<StatModifier> mods, float baseValue)
         {
             foreach (var mod in mods.Where(mod => mod.Strategy is AddOperation))
             {

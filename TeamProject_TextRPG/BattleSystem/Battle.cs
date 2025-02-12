@@ -56,6 +56,7 @@
                         if (!unit.IsDead())
                         {
                             unit.DoAction(this);
+                            unit.Update();
                         }
                     }
                     else

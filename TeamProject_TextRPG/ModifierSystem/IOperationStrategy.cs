@@ -8,30 +8,30 @@ namespace TeamProject_TextRPG.ModifierSystem
 {
     public interface IOperationStrategy
     {
-        int Culculate(int value);
+        float Culculate(float value);
     }
 
     public class AddOperation : IOperationStrategy
     {
-        private readonly int value;
+        private readonly float value;
 
-        public AddOperation(int value)
+        public AddOperation(float value)
         {
             this.value = value;
         }
 
-        public int Culculate(int value) => value + this.value;
+        public float Culculate(float value) => value + this.value;
     }
 
     public class MultiplyOperation : IOperationStrategy
     {
-        private readonly int value;
+        private readonly float value;
 
-        public MultiplyOperation(int value)
+        public MultiplyOperation(float value)
         {
             this.value = value;
         }
 
-        public int Culculate(int value) => value * this.value;
+        public float Culculate(float value) => value * this.value;
     }
 }
