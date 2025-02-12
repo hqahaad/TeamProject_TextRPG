@@ -14,7 +14,7 @@ namespace TeamProject_TextRPG.GameObject
         public float stressGauge = 0.0f;
         public float maxStressGauge = 100.0f;
 
-        public Player(string name, string className, float att, float def, float maxHp, float maxMp, params Skill[] skills)
+        public Player(string name, string className, float att, float def, float maxHp, float maxMp, float avoid, params Skill[] skills)
         {
             this.name = name;
             this.className = className;
@@ -24,6 +24,7 @@ namespace TeamProject_TextRPG.GameObject
             this.hp = maxHp;
             this.maxMp = maxMp;
             this.mp = maxMp;
+            this.avoidAblility = avoid;
 
             foreach (var iter in skills)
             {

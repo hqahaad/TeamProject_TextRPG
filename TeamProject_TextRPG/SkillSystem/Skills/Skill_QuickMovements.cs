@@ -14,7 +14,7 @@ namespace TeamProject_TextRPG.SkillSystem.Skills
         public Skill_QuickMovements()
         {
             skillName = "날쌘 몸놀림";
-            skillDescription = "모든 아군이 방어력 10 증가합니다";
+            skillDescription = "모든 아군이 회피율 10% 증가합니다";
         }
 
         public override void SkillAction(IBattle battle)
@@ -22,8 +22,11 @@ namespace TeamProject_TextRPG.SkillSystem.Skills
             foreach (var units in battle.GetUnits(FactionType.Player))
             {
                 var player = units as Player;
-                player.mediator.AddModifier(new StatModifier(StatType.Defensive, new AddOperation(10), 2));
-                Console.WriteLine($"{player.Name}의 방어력 10 증가했습니다!");
+                Console.WriteLine(player.Avoid);
+                player.mediator.AddModifier(new StatModifier(StatType.Avoid, new MultiplyOperation(1.1f), 2));
+                Console.WriteLine(player.Avoid);
+                Console.ReadLine();
+                Console.WriteLine($"{player.Name}의 회피율 10% 증가했습니다!");
 
             }
         }

@@ -19,6 +19,7 @@ namespace TeamProject_TextRPG.GameObject
         protected float mp;
         protected float attackPower;
         protected float defensivePower;
+        protected float avoidAblility;
 
         public abstract void Update();
 
@@ -78,11 +79,22 @@ namespace TeamProject_TextRPG.GameObject
                 return q.Value;
             }
         }
+
+        public float Avoid
+        {
+            get
+            {
+                var q = new Query(StatType.Avoid, avoidAblility);
+                mediator.PerformQuery(this, q);
+                return q.Value;
+            }
+        }
     }
 
     public enum StatType
     {
         Attack,
-        Defensive
+        Defensive,
+        Avoid
     }
 }
