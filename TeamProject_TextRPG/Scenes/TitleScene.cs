@@ -1,4 +1,5 @@
-﻿using TeamProject_TextRPG.InventorySystem;
+﻿using TeamProject_TextRPG.GameObject;
+using TeamProject_TextRPG.InventorySystem;
 using TeamProject_TextRPG.SkillSystem.Skills;
 
 namespace TeamProject_TextRPG.Scenes
@@ -48,7 +49,6 @@ namespace TeamProject_TextRPG.Scenes
             player.AddSkill(new Skill_QuickMovements());
             player.AddSkill(new Skill_ManaEssence());
             player.AddSkill(new Skill_HpEssence());
-
             //
 
             PlayerManager.Instance.player = player;

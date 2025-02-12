@@ -1,6 +1,6 @@
 ﻿using TeamProject_TextRPG.BattleSystem;
 
-namespace TeamProject_TextRPG
+namespace TeamProject_TextRPG.GameObject
 {
     public class Enemy : Entity, IUnit
     {
@@ -44,7 +44,7 @@ namespace TeamProject_TextRPG
             enemy.level = origin.level;
             enemy.hp = origin.hp;
             enemy.attackPower = origin.attackPower;
-            enemy.defensivePower= origin.defensivePower;
+            enemy.defensivePower = origin.defensivePower;
 
             return enemy;
         }

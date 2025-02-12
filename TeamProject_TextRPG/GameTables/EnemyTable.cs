@@ -1,4 +1,6 @@
-﻿namespace TeamProject_TextRPG.GameTables
+﻿using TeamProject_TextRPG.GameObject;
+
+namespace TeamProject_TextRPG.GameTables
 {
     public class EnemyTable
     {

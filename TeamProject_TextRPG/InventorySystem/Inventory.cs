@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TeamProject_TextRPG.Scenes;
 using TeamProject_TextRPG.ModifierSystem;
 using TeamProject_TextRPG.GameTables;
+using TeamProject_TextRPG.GameObject;
 
 namespace TeamProject_TextRPG.InventorySystem
 {
