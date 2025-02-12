@@ -17,10 +17,6 @@ namespace TeamProject_TextRPG
 
         public void DoAction(IBattle battle)
         {
-            //if (battle.GetFaction(FactionType.Player).IsAllDead())
-            //{
-            //    return;
-            //}
             Console.Clear();
             Utils.Console.WriteLine("Battle!!\n", ConsoleColor.DarkYellow);
             Console.Write("Lv.{0} ", level);

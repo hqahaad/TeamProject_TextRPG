@@ -22,18 +22,29 @@ namespace TeamProject_TextRPG.ModifierSystem
             query.Value = order.Apply(modifiersCache[query.StatType], query.Value);
         }
 
+        private void InvalidateCache(StatType statType)
+        {
+            modifiersCache.Remove(statType);
+        }
+
         public void AddModifier(StatModifier modifier)
         {
             modifierList.Add(modifier);
             modifiersCache.Remove(modifier.Type);
             modifier.MarkedForRemoval = false;
 
-            
+            modifier.OnDispose += _ => InvalidateCache(modifier.Type);
+            modifier.OnDispose += _ => modifierList.Remove(modifier);
         }
 
         public void Update()
         {
-            
+            modifierList.ForEach(m => m.Update());
+
+            foreach (var mod in modifierList.Where(mod => mod.MarkedForRemoval).ToList())
+            {
+                mod.Dispose();
+            }
         }
     }
 

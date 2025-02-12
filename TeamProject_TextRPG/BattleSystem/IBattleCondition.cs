@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace TeamProject_TextRPG.BattleSystem
 {
-    public interface IBattleCondition
+    public interface IBattleUpdateHandler
     {
         void Update(IBattle battle);
     }
 
-    public class VictoryPlayer : IBattleCondition
+    public class VictoryPlayer : IBattleUpdateHandler
     {
         private readonly Action action;
 
@@ -29,7 +29,7 @@ namespace TeamProject_TextRPG.BattleSystem
         }
     }
 
-    public class DefeatPlayer : IBattleCondition
+    public class DefeatPlayer : IBattleUpdateHandler
     {
         private readonly Action action;
 

@@ -6,13 +6,12 @@ using System.Threading.Tasks;
 
 namespace TeamProject_TextRPG.ModifierSystem
 {
-    //수정 전략
     public interface IOperationStrategy
     {
         int Culculate(int value);
     }
 
-    public class AddOperation
+    public class AddOperation : IOperationStrategy
     {
         private readonly int value;
 
@@ -21,10 +20,10 @@ namespace TeamProject_TextRPG.ModifierSystem
             this.value = value;
         }
 
-        int Culculate(int value) => value + this.value;
+        public int Culculate(int value) => value + this.value;
     }
 
-    public class MultiplyOperation
+    public class MultiplyOperation : IOperationStrategy
     {
         private readonly int value;
 
@@ -33,6 +32,6 @@ namespace TeamProject_TextRPG.ModifierSystem
             this.value = value;
         }
 
-        int Culculate(int value) => value * this.value;
+        public int Culculate(int value) => value * this.value;
     }
 }

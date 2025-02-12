@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TeamProject_TextRPG.ModifierSystem
 {
-    public abstract class StatModifier
+    public class StatModifier : IDisposable
     {
         public StatType Type { get; }
         public IOperationStrategy Strategy { get; }
@@ -14,17 +14,14 @@ namespace TeamProject_TextRPG.ModifierSystem
 
         public event Action<StatModifier> OnDispose = delegate { };
 
-        readonly int turnTimer;
+        private int turnTimer;
 
-        protected StatModifier(StatType type, IOperationStrategy strategy, float duration)
+        public StatModifier(StatType type, IOperationStrategy strategy, int duration = 0)
         {
             Type = type;
             Strategy = strategy;
 
-            if (duration <= 0)
-            {
-                return;
-            }
+            turnTimer = duration;
         }
 
         public void Handle(object sender, Query query)
@@ -37,7 +34,17 @@ namespace TeamProject_TextRPG.ModifierSystem
 
         public void Update()
         {
+            turnTimer--;
 
+            if (turnTimer == 0)
+            {
+                MarkedForRemoval = true;
+            }
+        }
+
+        public void Dispose()
+        {
+            OnDispose?.Invoke(this);
         }
     }
 

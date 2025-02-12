@@ -8,30 +8,36 @@
 
     public class Battle : IBattle
     {
-        private readonly SortedDictionary<FactionType, List<IUnit>> factionDict = new();
-        private readonly List<IBattleCondition> conditions = new();
+        private readonly SortedDictionary<FactionType, List<IUnit>> unitDict = new();
+        private readonly List<IBattleUpdateHandler> updaters = new();
         private BattleState battleState = BattleState.None;
         public int TurnCount { get; } = 0;
 
         public Battle()
         {
-            conditions.Add(new VictoryPlayer(() => battleState = BattleState.Victory));
-            conditions.Add(new DefeatPlayer(() => battleState = BattleState.Defeat));
+            AddUpdateHandler(new VictoryPlayer(() => battleState = BattleState.Victory));
+            AddUpdateHandler(new DefeatPlayer(() => battleState = BattleState.Defeat));
+        }
+
+
+        public void AddUpdateHandler(IBattleUpdateHandler handler)
+        {
+            updaters.Add(handler);
         }
 
         public void AddUnit(IUnit unit, FactionType factionType)
         {
-            if (!factionDict.ContainsKey(factionType))
+            if (!unitDict.ContainsKey(factionType))
             {
-                factionDict.Add(factionType, new());
+                unitDict.Add(factionType, new());
             }
 
-            factionDict[factionType].Add(unit);
+            unitDict[factionType].Add(unit);
         }
 
         public void DoBattle()
         {
-            if (factionDict.Count < 2)
+            if (unitDict.Count < 2)
             {
                 battleState = BattleState.None;
                 return;
@@ -39,11 +45,11 @@
 
             battleState = BattleState.Battle;
 
-            foreach (var iter in factionDict)
+            foreach (var iter in unitDict)
             {
                 foreach (var unit in iter.Value)
                 {
-                    conditions.ForEach(c => c.Update(this));
+                    updaters.ForEach(c => c.Update(this));
 
                     if (battleState == BattleState.Battle)
                     {
@@ -62,16 +68,16 @@
 
         public bool IsAllDead(FactionType faction)
         {
-            if (!factionDict.ContainsKey(faction))
+            if (!unitDict.ContainsKey(faction))
             {
                 return true;
             }
-            return factionDict[faction].All(u => u.IsDead());
+            return unitDict[faction].All(u => u.IsDead());
         }
 
         public List<IUnit>? GetUnits(FactionType faction)
         {
-            return factionDict[faction] ?? null;
+            return unitDict[faction] ?? null;
         }
 
         public BattleState Result()

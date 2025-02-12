@@ -5,18 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using TeamProject_TextRPG.GameTables;
 using TeamProject_TextRPG.Item;
+using TeamProject_TextRPG.ModifierSystem;
 
 namespace TeamProject_TextRPG.Scenes
 {
-    internal class TestScene : IScene
+    public class TestScene : IScene
     {
-        Inventory inven = new();
-
         public void Awake()
         {
-            new WeaponTable();
-            new ArmorTable();
-            new PotionTable();
+
         }
 
         public void End()
@@ -26,18 +23,22 @@ namespace TeamProject_TextRPG.Scenes
 
         public void Start()
         {
-            inven.AddItem(Table<Weapon>.Get().Load("나무몽둥이"));
-            inven.AddItem(Table<Weapon>.Get().Load("나무몽둥이"));
-            inven.AddItem(Table<Potion>.Get().Load("콜라"));
-            inven.AddItem(Table<Potion>.Get().Load("콜라"));
-            inven.AddItem(Table<Potion>.Get().Load("콜라"));
-            inven.AddItem(Table<Potion>.Get().Load("콜라"));
-            inven.AddItem(Table<Potion>.Get().Load("사이다"));
-            inven.RemoveItem(Table<Potion>.Get().Load("콜라"));
-            foreach (var item in inven.Inven)
-            {
-                Console.WriteLine($"{item.SlotItem.Name} {item.Count}");
-            }
+            Stats stat = new Stats();
+
+            var mod = new StatModifier(StatType.Att, new MultiplyOperation(2));
+
+            stat.mediator.AddModifier(new StatModifier(StatType.Att, new AddOperation(12)));
+            stat.mediator.AddModifier(new StatModifier(StatType.Att, new AddOperation(12)));
+            stat.mediator.AddModifier(new StatModifier(StatType.Att, new AddOperation(12)));
+            stat.mediator.AddModifier(mod);
+            stat.mediator.AddModifier(new StatModifier(StatType.Att, new AddOperation(12)));
+            stat.mediator.AddModifier(new StatModifier(StatType.Att, new AddOperation(12)));
+
+            Console.WriteLine(stat.Attack);
+
+            mod.Dispose();
+
+            Console.WriteLine(stat.Attack);
         }
     }
 }

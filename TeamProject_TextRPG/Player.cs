@@ -133,11 +133,6 @@ namespace TeamProject_TextRPG
 
         public void DoAction(IBattle battle)
         {
-            //if (battle.GetFaction(FactionType.Enemy).IsAllDead())
-            //{
-            //    return;
-            //}
-
             SelectAction(battle);
         }
 
