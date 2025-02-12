@@ -8,7 +8,6 @@
             Stat = stat;
             Price = price;
             Description = description;
-            IsEquip = false;
 
             ItemType = ItemType.Equipment;
             EquipmentType = EquipmentType.Armor;

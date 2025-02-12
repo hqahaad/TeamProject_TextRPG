@@ -11,18 +11,52 @@ namespace TeamProject_TextRPG.InventorySystem
 {
     public class Inventory
     {
-        public List<InventorySlot> Inven { get; private set; }
-        public EquipmentItem? EquippedWeapon { get; private set; }
-        public EquipmentItem? EquippedArmor { get; private set; }
+        public Player? player = PlayerManager.Instance.player;
 
-        public OptionSelecter selecter = OptionSelecter.Create();
+        public List<InventorySlot> Inven { get; private set; }
+
+        public Weapon? EquippedWeapon { get; private set; }
+        public Armor? EquippedArmor { get; private set; }
+
+        public event Action<EquipmentItem> OnEquipped = delegate { };
+        public event Action<EquipmentItem> OnUnEquipped = delegate { };
+
+        private StatModifier? weaponModifier;
+        private StatModifier? armorModifier;
 
         public Inventory()
         {
             Inven = new List<InventorySlot>();
 
-            var a = Table<Item>.Get()?.Load("나무몽둥이");
+            OnEquipped += (e) =>
+            {
+                if (e.EquipmentType == EquipmentType.Weapon)
+                {
+                    weaponModifier = new StatModifier(StatType.Attack, new AddOperation(e.Stat));
+                    player.mediator.AddModifier(weaponModifier);
+                }
+                else
+                {
+                    armorModifier = new StatModifier(StatType.Defensive, new AddOperation(e.Stat));
+                    player.mediator.AddModifier(armorModifier);
+                }
+            };
+
+            OnUnEquipped += (e) =>
+            {
+                if (e.EquipmentType == EquipmentType.Weapon)
+                {
+                    weaponModifier?.Dispose();
+                    weaponModifier = null;
+                }
+                else
+                {
+                    armorModifier?.Dispose();
+                    armorModifier = null;
+                }
+            };
         }
+
         
         public void AddItem(Item item)
         {
@@ -42,8 +76,6 @@ namespace TeamProject_TextRPG.InventorySystem
 
         public void RemoveItem(Item item)
         {
-            int removeItem = 1;
-
             if(item.ItemType == ItemType.Potion)
             {
                 InventorySlot? slot = Inven.Find(s => s.SlotItem.Name == item.Name); // 같은 이름 있는지 확인
@@ -55,78 +87,74 @@ namespace TeamProject_TextRPG.InventorySystem
                     }
                     else
                     {
-                        slot.Count -= removeItem;
+                        slot.Count -= 1;
                     }
                 }                               
             }
-            
         }
 
-        public void EquipItem(EquipmentItem item)
+        public void EquipItem(EquipmentItem equipment)
         {
-            var player = PlayerManager.Instance.player;
-            if (item.EquipmentType == EquipmentType.Weapon)
+            if (equipment.EquipmentType == EquipmentType.Weapon)
             {
-                if(EquippedWeapon != null)
-                {
-                    if(EquippedWeapon.Name == item.Name)
-                    {
-                        Console.WriteLine($"{item.Name} 장착 해제");
-                        //var modifier = new StatModifier(StatType.Attack, new RemoveOperation(item.Stat));
-                        EquippedWeapon = null;
-                    }
-                    else
-                    {
-                        Console.WriteLine($"{item.Name} 무기칸에 장착");
-                        var modifier = new StatModifier(StatType.Attack, new AddOperation(item.Stat));
-                        PlayerManager.Instance.player.mediator.AddModifier(modifier);
-                        EquippedWeapon = item;
-                    }
-                    return;
-                }                
-                else
-                {
-                    Console.WriteLine($"{item.Name} 무기칸에 장착");
-                    var modifier = new StatModifier(StatType.Attack, new AddOperation(item.Stat));
-                    PlayerManager.Instance.player.mediator.AddModifier(modifier);
-                    EquippedWeapon = item;
-                }             
+                UnEquipped(EquipmentType.Weapon);
+                Equipped(EquipmentType.Weapon, equipment);
             }
-            else if (item.EquipmentType == EquipmentType.Armor)
+            else
+            {
+                UnEquipped(EquipmentType.Weapon);
+                Equipped(EquipmentType.Armor, equipment);
+            }
+        }
+
+        private void Equipped(EquipmentType equipmentType, EquipmentItem equipment)
+        {
+            if (equipment == null)
+                return;
+
+            if (equipmentType == EquipmentType.Weapon)
+            {
+                EquippedWeapon = equipment as Weapon;
+            }
+            else
+            {
+                EquippedArmor = equipment as Armor;
+            }
+
+            OnEquipped?.Invoke(equipment);
+            RemoveItem(equipment);
+        }
+
+        private void UnEquipped(EquipmentType equipmentType)
+        {
+            if (equipmentType == EquipmentType.Weapon)
+            {
+                if (EquippedWeapon != null)
+                {
+                    //스탯 감소
+                    OnUnEquipped?.Invoke(EquippedWeapon);
+                    AddItem(EquippedWeapon);
+                    EquippedWeapon = null;
+                }
+            }
+            else
             {
                 if (EquippedArmor != null)
                 {
-                    if (EquippedArmor.Name == item.Name)
-                    {
-                        Console.WriteLine($"{item.Name} 장착 해제");
-                        // var modifier = new StatModifier(StatType.Defensive, new RemoveOperation(item.Stat));
-                        EquippedArmor = null;
-                    }
-                    else
-                    {
-                        Console.WriteLine($"{item.Name} 갑옷칸에 장착");
-                        var modifier = new StatModifier(StatType.Defensive, new AddOperation(item.Stat));
-                        PlayerManager.Instance.player.mediator.AddModifier(modifier);
-                        EquippedArmor = item;
-                    }
-                    return;                   
-                }
-                else
-                {
-                    Console.WriteLine($"{item.Name} 갑옷칸에 장착");
-                    var modifier = new StatModifier(StatType.Defensive, new AddOperation(item.Stat));
-                    PlayerManager.Instance.player.mediator.AddModifier(modifier);
-                    EquippedArmor = item;
+                    //스탯 감소
+                    OnUnEquipped?.Invoke(EquippedArmor);
+                    AddItem(EquippedArmor);
+                    EquippedArmor = null;
                 }
             }
-            selecter.AddOption("\n0 나가기", "0", () => SceneManager.Instance.LoadScene("로비 씬"));
-            selecter.SetExceptionMessage("잘못된 입력입니다.");
-            selecter.Display();
-            selecter.Select("\n원하시는 행동을 입력해주세요.\n>>  ");
+
+            //Add Item, Stat 감소
         }
 
         public void UsePotion(Item item)
         {
+            var selecter = OptionSelecter.Create();
+
             Console.WriteLine($"포션을 사용해 {item.Stat} HP 힐링!");
             RemoveItem(item);
             selecter.AddOption("\n0 나가기", "0", () => SceneManager.Instance.LoadScene("로비 씬"));

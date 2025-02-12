@@ -12,7 +12,6 @@
 
     public class EquipmentItem : Item
     {
-        public bool IsEquip { get; set; }
         public EquipmentType EquipmentType { get; set; }
     }
 

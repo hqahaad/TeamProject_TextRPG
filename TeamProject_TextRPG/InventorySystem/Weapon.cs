@@ -12,6 +12,5 @@
             ItemType = ItemType.Equipment;
             EquipmentType = EquipmentType.Weapon;
         }
-
     }
 }
