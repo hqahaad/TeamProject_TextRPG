@@ -11,10 +11,8 @@ namespace TeamProject_TextRPG
         private List<Skill> skillList = new();
 
         public string className;
-        public int mp = 100;
 
-        private StressGauge stressGauge = new StressGauge(100); // 스트레스 게이지 추가
-        private HpBar HpBar { get; set; } = new HpBar(100);// 체력바 추가
+        public int mp = 100;
 
         public void CastTarget(IBattle battle, FactionType faction, Action<IUnit> action)
         {
@@ -170,15 +168,12 @@ namespace TeamProject_TextRPG
             //Console.WriteLine($"Lv.{level} {name} 을(를) 맞췄습니다. [{fDamage}]\n");
             //데미지를 계산 로직
             hp -= fDamage;
-            HpBar.SetCurrentHp(hp);
-            HpBar.UpdateDisplay();
+            //HpBar.SetCurrentHp(hp);
+            //HpBar.UpdateDisplay();
             //
-            int stressIncreaseAmount = fDamage/2; // 데미지 양에 따라 스트레스 증가
-            stressGauge.IncreaseStress(stressIncreaseAmount);
-
-            Console.WriteLine($"Lv.{level} {name}\nHP {originHp}→{hp}");
-
+/*            stressGaugeF += fDamage / 2;*/ // 데미지 양에 따라 스트레스 증가
             
+            Console.WriteLine($"Lv.{level} {name}\nHP {originHp}→{hp}");          
         }
 
         public void DisplayStatus()
@@ -186,11 +181,13 @@ namespace TeamProject_TextRPG
             Console.WriteLine("\n[내 정보]");
             Console.WriteLine($"Lv.{level} {name} ({className})");
             Console.WriteLine($"HP : {hp}");
-            HpBar.UpdateDisplay();
-            double stressPercentage = stressGauge.GetStressPercentage() * 100;
-            
-            stressGauge.UpdateDisplay(); // 스트레스 게이지 업데이트
-            Console.WriteLine($"스트레스 : {stressPercentage:F0}%");
+
+            //abc
+            //가나다
+
+            //Utils.Console.ConsoleGauge(stressGaugeF, maxStressGauge, 20,'■',
+            //    ConsoleColor.Red, ConsoleColor.Green, ConsoleColor.Yellow, ConsoleColor.Red);
+            //Console.WriteLine($"스트레스 : {(stressGaugeF / maxStressGauge) * 100f:F0}%");
             Console.WriteLine("스트레스가 많으면 안좋은 일이 일어납니다!!");
         }
 
