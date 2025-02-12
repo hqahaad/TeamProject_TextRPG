@@ -15,9 +15,14 @@ namespace TeamProject_TextRPG.Scenes
             player = PlayerManager.Instance.player;
 
             Item testItem = Table<Item>.Get()?.Load("나무몽둥이");
-            Item testItem2 = Table<Item>.Get()?.Load("대화수단");
+            Item testItem2 = Table<Item>.Get()?.Load("티셔츠");
+            Item testItem3 = Table<Item>.Get()?.Load("콜라");
 
             inventory.AddItem(testItem);
+            inventory.AddItem(testItem2);
+            inventory.AddItem(testItem3);
+            
+            /*
 
             Console.WriteLine("Player " + player.Attack);
 
@@ -30,6 +35,8 @@ namespace TeamProject_TextRPG.Scenes
             Console.WriteLine("Player " + player.Attack);
 
             Console.ReadLine();
+
+            */
         }
 
 
@@ -89,7 +96,8 @@ namespace TeamProject_TextRPG.Scenes
             for (int i = 0; i < searchItem.Count; i++)
             {
                 var slot = searchItem[i];
-                selecter.AddOption($"{i + 1}. {slot.SlotItem.Name} |  + {slot.Count} + 개 |  + {slot.SlotItem.Description}", (i + 1).ToString(), () => PlayerManager.Instance.inventory.EquipItem((EquipmentItem)slot.SlotItem));
+                selecter.AddOption($"{i + 1}. {slot.SlotItem.Name} |  + {slot.Count} + 개 |  + {slot.SlotItem.Description}", (i + 1).ToString(), 
+                    () => inventory.EquipItem(slot.SlotItem as EquipmentItem));
 
             }
             selecter.AddOption("\n0 나가기", "0", () => SceneManager.Instance.LoadScene("인벤토리 씬" +
@@ -97,7 +105,7 @@ namespace TeamProject_TextRPG.Scenes
             selecter.SetExceptionMessage("잘못된 입력입니다.");
             selecter.Display();
             selecter.Select("\n원하시는 행동을 입력해주세요.\n>>  ");
-
+            ShowInventory();
         }
         private void DrinkPotion()
         {
@@ -110,13 +118,14 @@ namespace TeamProject_TextRPG.Scenes
                 var slot = searchItem[i];
 
                 // Console.WriteLine(slot.SlotItem.Name + " | " + slot.Count + "개 | " + slot.SlotItem.Description);
-                selecter.AddOption($"{i + 1}. {slot.SlotItem.Name} |  + {slot.Count} + 개 |  + {slot.SlotItem.Description}", (i + 1).ToString(), () => PlayerManager.Instance.inventory.UsePotion(slot.SlotItem));
+                selecter.AddOption($"{i + 1}. {slot.SlotItem.Name} |  + {slot.Count} + 개 |  + {slot.SlotItem.Description}", (i + 1).ToString(), () => inventory.UsePotion(slot.SlotItem as PotionItem));
                 //selecter.AddOption($"2.전투 시작", ToString().i,() => SceneManager.Instance.LoadScene("배틀 씬"));
             }
             selecter.AddOption("\n0 나가기", "0", () => SceneManager.Instance.LoadScene("인벤토리 씬"));
             selecter.SetExceptionMessage("잘못된 입력입니다.");
             selecter.Display();
             selecter.Select("\n원하시는 행동을 입력해주세요.\n>>  ");
+            ShowInventory();
         }
 
 

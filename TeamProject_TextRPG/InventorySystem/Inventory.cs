@@ -95,6 +95,7 @@ namespace TeamProject_TextRPG.InventorySystem
 
         public void EquipItem(EquipmentItem equipment)
         {
+            
             if (equipment.EquipmentType == EquipmentType.Weapon)
             {
                 UnEquipped(EquipmentType.Weapon);
@@ -104,11 +105,13 @@ namespace TeamProject_TextRPG.InventorySystem
             {
                 UnEquipped(EquipmentType.Weapon);
                 Equipped(EquipmentType.Armor, equipment);
-            }
+            }          
+            
         }
 
         private void Equipped(EquipmentType equipmentType, EquipmentItem equipment)
         {
+            
             if (equipment == null)
                 return;
 
@@ -123,6 +126,7 @@ namespace TeamProject_TextRPG.InventorySystem
 
             OnEquipped?.Invoke(equipment);
             RemoveItem(equipment);
+            
         }
 
         private void UnEquipped(EquipmentType equipmentType)
@@ -149,18 +153,12 @@ namespace TeamProject_TextRPG.InventorySystem
             }
 
             //Add Item, Stat 감소
+            
         }
 
         public void UsePotion(Item item)
-        {
-            var selecter = OptionSelecter.Create();
-
-            Console.WriteLine($"포션을 사용해 {item.Stat} HP 힐링!");
+        {            
             RemoveItem(item);
-            selecter.AddOption("\n0 나가기", "0", () => SceneManager.Instance.LoadScene("로비 씬"));
-            selecter.SetExceptionMessage("잘못된 입력입니다.");
-            selecter.Display();
-            selecter.Select("\n원하시는 행동을 입력해주세요.\n>>  ");
         }
     }
     public class InventorySlot
