@@ -29,7 +29,7 @@ namespace TeamProject_TextRPG.Scenes
             selecter.Select("\n원하시는 직업을 선택해주세요.\n>>  ");
 
             Player player = new Player();
-            Inventory inven = new Inventory();
+
             player.name = inputName;
             player.level = 1;
             player.attackPower = 10;
@@ -50,6 +50,8 @@ namespace TeamProject_TextRPG.Scenes
             //
 
             PlayerManager.Instance.player = player;
+
+            Inventory inven = new Inventory();
             PlayerManager.Instance.inventory = inven;
             SceneManager.Instance.LoadScene("로비 씬");
         }
