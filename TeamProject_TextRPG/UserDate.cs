@@ -13,6 +13,7 @@ namespace TeamProject_TextRPG
         private int exp;
         private int maxExp;
         private int dungeonFloor;
+        private int gold;
 
     }
 }
