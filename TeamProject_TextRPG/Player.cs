@@ -127,7 +127,7 @@ namespace TeamProject_TextRPG
             {
                 SelectAction(battle);
             }
-            HpBar.UpdateDisplay();
+
             var selecter = OptionSelecter.Create();
             selecter.SetExceptionMessage("잘못된 입력입니다");
             selecter.AddOption("\n0. 다음", "0");

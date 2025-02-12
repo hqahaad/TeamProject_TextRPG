@@ -18,10 +18,11 @@ namespace TeamProject_TextRPG.Scenes
             Console.Clear();
             Console.WriteLine("직업을 선택해주세요\n");
             var selecter = OptionSelecter.Create();
-            selecter.AddOption("1. 전사", "1");
-            selecter.AddOption("2. 궁수", "2");
-            selecter.AddOption("3. 도적", "3");
-            selecter.AddOption("4. 성직자", "4");
+
+            selecter.AddOption("[1] 전사", "1");
+            selecter.AddOption("[2] 궁수", "2");
+            selecter.AddOption("[3] 도적", "3");
+            selecter.AddOption("[4] 성직자", "4");
 
             selecter.SetExceptionMessage("잘못된 입력입니다.");
 
