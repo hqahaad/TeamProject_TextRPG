@@ -15,6 +15,42 @@ namespace TeamProject_TextRPG
 
         private StressGauge stressGauge = new StressGauge(100); // 스트레스 게이지 추가
 
+        private void CastTarget(IBattle battle, FactionType faction, Action<IUnit> action)
+        {
+            var units = battle.GetUnits(faction);
+
+            var selecter = OptionSelecter.Create();
+
+            selecter.SetExceptionMessage("잘못된 입력입니다");
+            selecter.AddOption(string.Empty, "0", () => SelectAction(battle));
+
+            Action<IUnit> tryCast = (u) =>
+            {
+                if (u.IsDead())
+                {
+                    selecter.Exception("\n대상을 선택해주세요.\n >>  ");
+                }
+                else
+                {
+                    action?.Invoke(u);
+                }
+            };
+
+            for (int i = 0; i < units?.Count; i++)
+            {
+                int target = i;
+
+                selecter.AddOption(string.Empty, (i + 1).ToString(), () => tryCast(units[target]));
+                Console.Write($"[{(i + 1).ToString()}] ");
+                units[i].DisplayStatus();
+            }
+
+            DisplayStatus();
+            Utils.Console.WriteLine("\n0. 취소", ConsoleColor.Red);
+
+            selecter.Select("\n대상을 선택해주세요.\n>>  ");
+        }
+
         #region 플레이어의 행동
         private void SelectAction(IBattle battle)
         {
@@ -45,35 +81,7 @@ namespace TeamProject_TextRPG
             Console.Clear();
             Utils.Console.WriteLine("Battle!\n", ConsoleColor.DarkYellow);
 
-            var selecter = OptionSelecter.Create();
-            selecter.SetExceptionMessage("잘못된 입력입니다");
-            selecter.AddOption(string.Empty, "0", () => SelectAction(battle));
-
-            Action<IUnit> tryAttack = (u) =>
-            {
-                if (u.IsDead())
-                {
-                    selecter.Exception("\n대상을 선택해주세요.\n >>  ");
-                }
-                else
-                {
-                    Attack(u);
-                }
-            };
-
-            for (int i = 0; i < units.Count; i++)
-            {
-                int target = i;
-
-                selecter.AddOption(string.Empty, (i + 1).ToString(), () => tryAttack(units[target]));
-                Console.Write($"[{(i + 1).ToString()}] ");
-
-                units[i].DisplayStatus();
-            }
-            DisplayStatus();
-            Utils.Console.WriteLine("\n0. 취소", ConsoleColor.Red);
-
-            selecter.Select("\n대상을 선택해주세요.\n>>  ");
+            CastTarget(battle, FactionType.Enemy, (u) => Attack(u)); 
         }
 
         private void Attack(IUnit unit)
