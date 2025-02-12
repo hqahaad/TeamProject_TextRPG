@@ -4,7 +4,8 @@
     {
         private static readonly float criticalProbability = 0.2f;
         private static readonly float criticalMultipler = 1.5f;
-        private static readonly float missProbability = 0.1f;
+
+        private float avoid = 0f;
 
         private float damage;
 
@@ -51,13 +52,18 @@
         private bool IsMissed()
         {
             Random random = new Random();
-            return random.NextDouble() < missProbability;
+            return random.NextDouble() < (avoid * 0.01f);
         }
 
         private bool IsCritical() //크리티컬 추가
         {
             Random random = new Random();
             return random.NextDouble() < criticalProbability; //20%
+        }
+
+        public void SetAvoid(float avoid)
+        {
+            this.avoid = avoid;
         }
 
         public bool GetIsCritical() //외부에서 엑세스 하기위함

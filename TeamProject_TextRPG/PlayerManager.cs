@@ -10,7 +10,8 @@ namespace TeamProject_TextRPG
 {
     public class PlayerManager: Singleton<PlayerManager>
     {
-        public Player? player;
-        public Inventory? inventory;
+        public Player? player = null;
+        public Inventory? inventory = null;
+        public int dungeonFloor = 1;
     }
 }

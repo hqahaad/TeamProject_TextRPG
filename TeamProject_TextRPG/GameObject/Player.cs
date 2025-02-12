@@ -173,6 +173,7 @@ namespace TeamProject_TextRPG.GameObject
         public void GetDamage(Damage damage)
         {
             float originHp = hp;
+            damage.SetAvoid(Avoid);
             int fDamage = damage.CalculateDamage();
 
             if (fDamage <= 0)
@@ -189,7 +190,6 @@ namespace TeamProject_TextRPG.GameObject
             Console.WriteLine($"Lv.{level} {name} 을(를) 맞췄습니다. [{fDamage}]\n");
             //데미지를 계산 로직
             hp -= fDamage;
-
 
             stressGauge += fDamage / 2; // 데미지 양에 따라 스트레스 증가
             DisplayStatus();

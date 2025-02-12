@@ -52,6 +52,7 @@ namespace TeamProject_TextRPG.GameObject
         public void GetDamage(Damage damage)
         {
             float originHp = hp;
+            damage.SetAvoid(Avoid);
             int fDamage = damage.CalculateDamage();
             if (fDamage <= 0)
             {
