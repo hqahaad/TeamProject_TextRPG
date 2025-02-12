@@ -4,6 +4,7 @@
     {
         public void Awake()
         {
+
         }
 
         public void Start()
@@ -41,8 +42,10 @@
             selecter.Display();
             selecter.Select("\n원하시는 행동을 입력해주세요.\n>>  ");
         }
+
         public void End()
         {
+
         }
     }
 }

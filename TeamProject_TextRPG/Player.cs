@@ -12,8 +12,6 @@ namespace TeamProject_TextRPG
 
         public string className;
 
-        public int mp = 100;
-
         public void CastTarget(IBattle battle, FactionType faction, Action<IUnit> action)
         {
             var units = battle.GetUnits(faction);
