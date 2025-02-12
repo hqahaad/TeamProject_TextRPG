@@ -45,23 +45,26 @@
 
             battleState = BattleState.Battle;
 
-            foreach (var iter in unitDict)
+            while (battleState == BattleState.Battle)
             {
-                foreach (var unit in iter.Value)
+                foreach (var iter in unitDict)
                 {
-                    updaters.ForEach(c => c.Update(this));
+                    foreach (var unit in iter.Value)
+                    {
+                        updaters.ForEach(c => c.Update(this));
 
-                    if (battleState == BattleState.Battle)
-                    {
-                        if (!unit.IsDead())
+                        if (battleState == BattleState.Battle)
                         {
-                            unit.DoAction(this);
-                            unit.Update();
+                            if (!unit.IsDead())
+                            {
+                                unit.DoAction(this);
+                                unit.Update();
+                            }
                         }
-                    }
-                    else
-                    {
-                        return;
+                        else
+                        {
+                            return;
+                        }
                     }
                 }
             }

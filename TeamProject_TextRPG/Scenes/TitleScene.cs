@@ -40,7 +40,7 @@ namespace TeamProject_TextRPG.Scenes
 
             //test code
             player.mediator.AddModifier(new StatModifier(ModifierSystem.StatType.Attack,
-                new AddOperation(115)));
+                new AddOperation(115), 2));
             //
             player.AddSkill(new Skill_BattleAttack());
             player.AddSkill(new Skill_BattleCry());
