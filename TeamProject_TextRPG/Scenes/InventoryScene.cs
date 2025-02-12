@@ -12,8 +12,8 @@ namespace TeamProject_TextRPG.Scenes
 
         public void Awake()
         {
-            inventory = PlayerManager.Instance.inventory;
-            player = PlayerManager.Instance.player;
+            inventory = User.Instance.GetInventory();
+            User.Instance.GetPlayer();
         }
 
         public void Start()

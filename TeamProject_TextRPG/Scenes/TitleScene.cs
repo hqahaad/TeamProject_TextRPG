@@ -31,10 +31,10 @@ namespace TeamProject_TextRPG.Scenes
             selecter.Display();
             selecter.Select("\n원하시는 직업을 선택해주세요.\n>>  ");
 
-            PlayerManager.Instance.player = player;
+            User.Instance.SetPlayer(player);
 
             Inventory inven = new Inventory();
-            PlayerManager.Instance.inventory = inven;
+            User.Instance.SetInventory(inven);
             SceneManager.Instance.LoadScene("로비 씬");
         }
 

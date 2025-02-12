@@ -12,7 +12,7 @@ namespace TeamProject_TextRPG.InventorySystem
 {
     public class Inventory
     {
-        public Player? player = PlayerManager.Instance.player;
+        public Player? player = User.Instance.GetPlayer();
 
         public List<InventorySlot> Inven { get; private set; }
 

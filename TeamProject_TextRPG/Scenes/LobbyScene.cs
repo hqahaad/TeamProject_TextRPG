@@ -27,7 +27,7 @@
 
         private void DisplayPlayer()
         {
-            var player = PlayerManager.Instance.player;
+            var player = User.Instance.GetPlayer();
 
             Console.Clear();
             Utils.Console.WriteLine("[상태보기]", ConsoleColor.Yellow);
