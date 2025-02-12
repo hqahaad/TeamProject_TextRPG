@@ -20,23 +20,7 @@ namespace TeamProject_TextRPG.Scenes
 
             inventory.AddItem(testItem);
             inventory.AddItem(testItem2);
-            inventory.AddItem(testItem3);
-            
-            /*
-
-            Console.WriteLine("Player " + player.Attack);
-
-            inventory.EquipItem(testItem as EquipmentItem);
-
-            Console.WriteLine("Player " + player.Attack);
-
-            inventory.EquipItem(testItem2 as EquipmentItem);
-
-            Console.WriteLine("Player " + player.Attack);
-
-            Console.ReadLine();
-
-            */
+            inventory.AddItem(testItem3);          
         }
 
 
@@ -56,7 +40,7 @@ namespace TeamProject_TextRPG.Scenes
             Console.Clear();
 
             Console.WriteLine("인벤토리");
-            Console.WriteLine("[아이템 목록]");
+            Console.WriteLine("[아이템 목록]\n");
 
             if (inventory?.Inven.Count == 0)
             {
@@ -69,7 +53,7 @@ namespace TeamProject_TextRPG.Scenes
 
             if (inventory.EquippedWeapon == null) Console.WriteLine($"무기: 없음");
             else Console.WriteLine($"무기: {inventory.EquippedWeapon.Name}");
-            if (inventory.EquippedArmor == null) Console.WriteLine($"갑옷: 없음");
+            if (inventory.EquippedArmor == null) Console.WriteLine($"갑옷: 없음\n\n");
             else Console.WriteLine($"갑옷: {inventory.EquippedArmor.Name}");
 
             for (int i = 0; i < inventory.Inven.Count; i++)

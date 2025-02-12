@@ -79,6 +79,7 @@ namespace TeamProject_TextRPG.InventorySystem
             if(item.ItemType == ItemType.Potion)
             {
                 InventorySlot? slot = Inven.Find(s => s.SlotItem.Name == item.Name); // 같은 이름 있는지 확인
+                
                 if (slot?.SlotItem.ItemType == ItemType.Potion)
                 {
                     if (slot.Count <= 1)
@@ -90,6 +91,12 @@ namespace TeamProject_TextRPG.InventorySystem
                         slot.Count -= 1;
                     }
                 }                               
+            }
+            else
+            {
+                var slot = Inven.Find(s => s.SlotItem.Name == item.Name);
+
+                Inven.Remove(slot);
             }
         }
 
@@ -103,7 +110,7 @@ namespace TeamProject_TextRPG.InventorySystem
             }
             else
             {
-                UnEquipped(EquipmentType.Weapon);
+                UnEquipped(EquipmentType.Armor);
                 Equipped(EquipmentType.Armor, equipment);
             }          
             
