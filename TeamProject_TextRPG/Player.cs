@@ -15,7 +15,7 @@ namespace TeamProject_TextRPG
 
         private StressGauge stressGauge = new StressGauge(100); // 스트레스 게이지 추가
 
-        private void CastTarget(IBattle battle, FactionType faction, Action<IUnit> action)
+        public void CastTarget(IBattle battle, FactionType faction, Action<IUnit> action)
         {
             var units = battle.GetUnits(faction);
 

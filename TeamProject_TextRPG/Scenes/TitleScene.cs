@@ -33,13 +33,14 @@ namespace TeamProject_TextRPG.Scenes
             Inventory inven = new Inventory();
             player.name = inputName;
             player.level = 1;
-            player.attackPower = 1;
+            player.attackPower = 10;
             player.defensivePower = 50;
-            player.hp = 15;
+            player.hp = 10000;
 
             //
             player.AddSkill(new Skill_BattleAttack());
             player.AddSkill(new Skill_BattleCry());
+            player.AddSkill(new Skill_RaidAttack());
             //
 
             PlayerManager.Instance.player = player;
