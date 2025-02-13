@@ -13,7 +13,7 @@ namespace TeamProject_TextRPG
         private int exp;
         private int maxExp;
         private int dungeonFloor;
-        private int gold;
-
+        //시연용
+        public int gold { get; set; } = 1500;
     }
 }

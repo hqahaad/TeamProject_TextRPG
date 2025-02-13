@@ -10,7 +10,7 @@ namespace TeamProject_TextRPG
 {
     public class User : Singleton<User>
     {
-        private UserDate userDate = new();
+        public UserDate userDate = new();
         private List<Player> playerList = new();
         private Inventory inventory;
 

@@ -2,7 +2,7 @@
 using System.Formats.Asn1;
 using TeamProject_TextRPG.BattleSystem;
 using TeamProject_TextRPG.SkillSystem;
-
+using TeamProject_TextRPG.ModifierSystem;
 
 namespace TeamProject_TextRPG.GameObject
 {
@@ -10,14 +10,16 @@ namespace TeamProject_TextRPG.GameObject
     {
         private List<Skill> skillList = new();
 
-        public string className;
-        public float stressGauge = 0.0f;
-        public float maxStressGauge = 100.0f;
+        public string ClassName { get; }
+        public float Stress { get; set; } = 0.0f;
+        public float MaxStress { get; set; } = 100.0f;
 
         public Player(string name, string className, float att, float def, float maxHp, float maxMp, float avoid, params Skill[] skills)
         {
+            this.level = 1;
+
             this.name = name;
-            this.className = className;
+            this.ClassName = className;
             this.attackPower = att;
             this.defensivePower = def;
             this.maxHp = maxHp;
@@ -68,8 +70,7 @@ namespace TeamProject_TextRPG.GameObject
             selecter.Select("\n대상을 선택해주세요.\n>>  ");
         }
 
-        #region 플레이어의 행동
-
+        #region 전투 액션
         private void SelectAction(IBattle battle)
         {
             Console.Clear();
@@ -116,7 +117,7 @@ namespace TeamProject_TextRPG.GameObject
             selecter.SetExceptionMessage("잘못된 입력입니다");
             selecter.AddOption("\n0. 다음", "0");
             selecter.Display();
-            selecter.Select();
+            selecter.Select("\n>>  ");
         }
 
         private void SelectSkill(IBattle battle)
@@ -159,7 +160,6 @@ namespace TeamProject_TextRPG.GameObject
         #endregion
 
         #region IUnit 인터페이스
-
         public void DoAction(IBattle battle)
         {
             SelectAction(battle);
@@ -191,14 +191,14 @@ namespace TeamProject_TextRPG.GameObject
             //데미지를 계산 로직
             hp -= fDamage;
 
-            stressGauge += fDamage / 2; // 데미지 양에 따라 스트레스 증가
+            Stress += fDamage / 2; // 데미지 양에 따라 스트레스 증가
             DisplayStatus();
         }
 
         public void DisplayStatus()
         {
             Console.WriteLine("\n[내 정보]");
-            Console.WriteLine($"Lv.{level} {name} ({className})");
+            Console.WriteLine($"Lv.{level} {name} ({ClassName})");
 
             Utils.Console.ConsoleGauge(hp, maxHp, 20, '■',
             ConsoleColor.Red, ConsoleColor.Red, ConsoleColor.Red, ConsoleColor.Red);
@@ -208,9 +208,9 @@ namespace TeamProject_TextRPG.GameObject
             ConsoleColor.Blue, ConsoleColor.Blue, ConsoleColor.Blue, ConsoleColor.Blue);
             Console.WriteLine($" MP : {mp / maxMp * 100f:F0}%");
 
-            Utils.Console.ConsoleGauge(stressGauge, maxStressGauge, 20, '■',
+            Utils.Console.ConsoleGauge(Stress, MaxStress, 20, '■',
             ConsoleColor.Red, ConsoleColor.Green, ConsoleColor.Yellow, ConsoleColor.Red);
-            Console.WriteLine($" 스트레스 : {stressGauge / maxStressGauge * 100f:F0}%");
+            Console.WriteLine($" 스트레스 : {Stress / MaxStress * 100f:F0}%");
             Console.WriteLine("\n스트레스가 많으면 안좋은 일이 일어납니다!!");
         }
 
@@ -225,6 +225,13 @@ namespace TeamProject_TextRPG.GameObject
         {
             skill.SetOrder(this);
             skillList.Add(skill);
+        }
+
+        public void AddModifier()
+        {
+            StatModifier mod = new StatModifier(StatType.Attack, new MultiplyOperation(1.1f), 3);
+
+            mod.Dispose();
         }
 
     }

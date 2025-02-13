@@ -33,13 +33,13 @@ namespace TeamProject_TextRPG.GameTables
     {
         public PotionTable()
         {
-            Table<Item>.Get()?.Add("콜라", new Potion("콜라", 1, 1, "제로를 마시면 죄책감이 덜든다"));
-            Table<Item>.Get()?.Add("사이다", new Potion("사이다", 1, 1, "이것도 제로다"));
-            Table<Item>.Get()?.Add("아메리카노", new Potion("아메리카노", 1, 1, "얼.죽.아."));
-            Table<Item>.Get()?.Add("카페라떼", new Potion("카페라떼", 2, 2, "우유가 들어가서 회복률이 좀 더 효과가 있다."));
-            Table<Item>.Get()?.Add("레드불", new Potion("레드불", 3, 3, "카페인 파워!"));
-            Table<Item>.Get()?.Add("빨간포션", new Potion("빨간포션", 10, 10, "여기서 부터는 진짜 회복약이다"));
-            Table<Item>.Get()?.Add("보약", new Potion("보약", 20, 20, "무협 게임에서 나올거 같은 보약. 수정과 맛"));
+            Table<Item>.Get()?.Add("콜라", new Potion("콜라", 10, 1, "제로를 마시면 죄책감이 덜든다"));
+            Table<Item>.Get()?.Add("사이다", new Potion("사이다", 15, 1, "이것도 제로다"));
+            Table<Item>.Get()?.Add("아메리카노", new Potion("아메리카노", 17, 1, "얼.죽.아."));
+            Table<Item>.Get()?.Add("카페라떼", new Potion("카페라떼", 20, 2, "우유가 들어가서 회복률이 좀 더 효과가 있다."));
+            Table<Item>.Get()?.Add("레드불", new Potion("레드불", 23, 3, "카페인 파워!"));
+            Table<Item>.Get()?.Add("빨간포션", new Potion("빨간포션", 30, 10, "여기서 부터는 진짜 회복약이다"));
+            Table<Item>.Get()?.Add("보약", new Potion("보약", 40, 20, "무협 게임에서 나올거 같은 보약. 수정과 맛"));
             Table<Item>.Get()?.Add("엘릭시어", new Potion("엘릭시어", 50, 50, "최상급 포션"));
         }
     }

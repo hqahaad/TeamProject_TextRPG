@@ -49,7 +49,7 @@ namespace TeamProject_TextRPG.Scenes
             switch (id)
             {
                 case 1:
-                    newPlayer = new Player(inputName, "전사", 10, 5, 100, 100, 10,
+                    newPlayer = new Player(inputName, "전사", 10, 5, 200, 100, 10,
                         new Skill_BattleCry(), new Skill_BattleAttack());
                     break;
                 case 2:

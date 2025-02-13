@@ -35,13 +35,13 @@
 
         public void DoBattle()
         {
+            battleState = BattleState.Battle;
+
             if (unitDict.Count < 2)
             {
                 battleState = BattleState.None;
                 return;
             }
-
-            battleState = BattleState.Battle;
 
             while (battleState == BattleState.Battle)
             {

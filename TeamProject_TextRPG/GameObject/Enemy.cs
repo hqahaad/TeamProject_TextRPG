@@ -29,7 +29,7 @@ namespace TeamProject_TextRPG.GameObject
             selecter.SetExceptionMessage("잘못된 입력입니다");
             selecter.AddOption("\n0. 다음", "0");
             selecter.Display();
-            selecter.Select();
+            selecter.Select("\n>>  ");
         }
 
         public override void Update()
@@ -67,7 +67,14 @@ namespace TeamProject_TextRPG.GameObject
             //데미지를 계산 로직
             hp -= fDamage;
             //
-            Console.WriteLine($"Lv.{level} {name}\nHP {originHp}→{hp}\n");
+            if (hp <= 0)
+            {
+                Console.WriteLine($"Lv.{level} {name}\nHP {originHp} → [Dead]\n");
+            }
+            else
+            {
+                Console.WriteLine($"Lv.{level} {name}\nHP {originHp} → {hp}\n");
+            }
         }
 
         public void DisplayStatus()

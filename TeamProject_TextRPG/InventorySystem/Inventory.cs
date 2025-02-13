@@ -166,6 +166,7 @@ namespace TeamProject_TextRPG.InventorySystem
 
         public void UsePotion(Item item)
         {
+            User.Instance.GetPlayer().Hp += item.Stat;
             RemoveItem(item);
         }
     }
